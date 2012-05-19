@@ -2,6 +2,12 @@
 #define PILE_H
 
 #include "constante.h"
+#include "entier.h"
+#include "expression.h"
+#include "complex"
+#include "rationnel.h"
+#include "reel.h"
+#include <typeinfo>
 
 class Pile
 {
@@ -23,6 +29,8 @@ public:
     void Clear();
     void Dup();//duplique le dernier élément
     void Drop();//supprime le dernier élément
+
+    Constante& Plus(Constante& a, Constante& b);
 };
 
 #endif // PILE_H

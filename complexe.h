@@ -2,7 +2,7 @@
 #define COMPLEXE_H
 
 #include "constante.h"
-#include "rationnel.h"
+#include "include.h"
 
 class Complexe: public Constante
 {
@@ -18,6 +18,11 @@ public:
 
     void SetRe(Constante& r){pRe = r;}
     void SetIm(Constante& i){pIm = i;}
+
+    Constante& operator+(const Constante& c);
+    Constante& operator-(const Constante& c);
+    Constante& operator*(const Constante& c);
+    Constante& operator/(const Constante& c);
 };
 
 #endif // COMPLEXE_H

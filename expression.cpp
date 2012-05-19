@@ -6,4 +6,27 @@ Constante& Expression::GetVal()const
     return e;
 }
 
+Constante& Expression::operator+(const Constante& c)
+{
+    return Entier(0);
+    //erreur
+}
+
+Constante& Expression::operator-(const Constante& c)
+{
+    return Entier(0);
+    //erreur
+}
+
+Constante& Expression::operator*(const Constante& c)
+{
+    return Entier(0);
+    //erreur
+}
+
+Constante& Expression::operator/(const Constante& c)
+{
+    return Entier(0);
+    //erreur
+}
 

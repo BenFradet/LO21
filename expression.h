@@ -3,6 +3,7 @@
 
 #include <string>
 #include "constante.h"
+#include "include.h"
 
 using namespace std;
 
@@ -14,6 +15,11 @@ public:
     ~Expression(){}
 
     Constante& GetVal()const;
+
+    Constante& operator+(const Constante& c);
+    Constante& operator-(const Constante& c);
+    Constante& operator*(const Constante& c);
+    Constante& operator/(const Constante& c);
 };
 
 #endif // EXPRESSION_H

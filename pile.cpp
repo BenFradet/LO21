@@ -21,18 +21,18 @@ void Pile::Empiler(Constante* c)
 
 Constante* Pile::Depiler()
 {
-    //if(sommet>0)
+    if(sommet>0)
         return tabElmt[--sommet];
-    /*else
-        return NULL;//erreur*/
+    else;
+        //erreur
 }
 
 Constante* Pile::Tete()const
 {
-    //if(sommet>0)
+    if(sommet>0)
         return tabElmt[sommet-1];
-    /*else
-        return NULL;//erreur*/
+    else;
+        //erreur
 }
 
 void Pile::Clear()
@@ -77,4 +77,8 @@ float Pile::Sum(int x)
     for(int i = 0; i<x; i++)
         sum += tabElmt[i];
     return sum;
+}*/
+
+/*Constante& Plus(Constante& a, Constante& b)
+{
 }*/

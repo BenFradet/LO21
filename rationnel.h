@@ -2,6 +2,7 @@
 #define RATIONNEL_H
 
 #include "constante.h"
+#include "complexe.h"
 
 class Rationnel : public Constante
 {
@@ -16,6 +17,11 @@ public:
     Constante& GetVal()const;
     void SetDen(int d){den = d;}
     void SetNum(int n){num = n;}
+
+    Constante& operator+(const Constante& c);
+    Constante& operator-(const Constante& c);
+    Constante& operator*(const Constante& c);
+    Constante& operator/(const Constante& c);
 };
 
 #endif // RATIONNEL_H

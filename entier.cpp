@@ -90,7 +90,7 @@ Constante& Entier::operator^(const Constante& c)const
     }
     else if(r!=0)
     {
-        Reel res(pow(value, r->toFloat()));
+        Reel res(pow(value, r->toFloat()));//blabal
         return res;
     }
     else if(f!=0)

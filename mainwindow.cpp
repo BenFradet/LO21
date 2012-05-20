@@ -87,3 +87,5 @@ void MainWindow::btnAnnulerpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("Annuler"));
 }
+
+

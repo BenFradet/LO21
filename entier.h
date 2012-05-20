@@ -11,7 +11,7 @@ public:
     Entier(int val):Constante(), value(val){}
     ~Entier(){}
 
-    Constante& GetVal()const;//blabla
+    Constante& GetVal()const;
 
     int toInt()const;
 

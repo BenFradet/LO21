@@ -15,10 +15,14 @@ public:
 
     int toInt()const;
 
-    Constante& operator+(const Constante& c);
-    Constante& operator-(const Constante& c);
-    Constante& operator*(const Constante& c);
-    Constante& operator/(const Constante& c);
+    Constante& operator+(const Constante& c)const;
+    Constante& operator-(const Constante& c)const;
+    Constante& operator*(const Constante& c)const;
+    Constante& operator/(const Constante& c)const;
+    Constante& operator-(int)const;
+    Constante& operator^(const Constante& c)const;
+
+    Constante& operator%(const Constante& c)const;
 };
 
 #endif // INTEGER_H

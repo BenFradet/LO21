@@ -6,7 +6,7 @@ Constante& Complexe::GetVal()const
     return c;
 }
 
-Constante& Complexe::operator+(const Constante& c)
+Constante& Complexe::operator+(const Constante& c)const
 {
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
@@ -14,10 +14,14 @@ Constante& Complexe::operator+(const Constante& c)
         Complexe res(pRe + co->GetRe(), pIm + co->GetIm());
         return res;
     }
-    else;//erreur
+    else
+    {
+        Expression e("Erreur");
+        return e;
+    }
 }
 
-Constante& Complexe::operator-(const Constante& c)
+Constante& Complexe::operator-(const Constante& c)const
 {
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
@@ -25,10 +29,14 @@ Constante& Complexe::operator-(const Constante& c)
         Complexe res(pRe - co->GetRe(), pIm - co->GetIm());
         return res;
     }
-    else;//erreur
+    else
+    {
+        Expression e("Erreur");
+        return e;
+    }
 }
 
-Constante& Complexe::operator*(const Constante& c)
+Constante& Complexe::operator*(const Constante& c)const
 {
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
@@ -36,17 +44,37 @@ Constante& Complexe::operator*(const Constante& c)
         Complexe res(pRe*co->GetRe()-pIm*co->GetIm(), pRe*co->GetIm()+pIm*co->GetRe());
         return res;
     }
-    else;//erreur
+    else
+    {
+        Expression e("Erreur");
+        return e;
+    }
 }
 
-Constante& Complexe::operator/(const Constante& c)
+Constante& Complexe::operator/(const Constante& c)const
 {
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
-        return Entier(0);
-        //??
+        Entier e(0);
+        return e;
     }
-    else;//erreur
+    else
+    {
+        Expression e("Erreur");
+        return e;
+    }
+}
+
+Constante& Complexe::operator-(int)const
+{
+    Complexe c(pRe - Entier(2)*pRe, pIm-Entier(2)*pIm);//trouver une meilleure solution
+    return c;
+}
+
+Constante& Complexe::operator^(const Constante& c)const
+{
+    Expression e("Erreur");
+    return e;
 }
 

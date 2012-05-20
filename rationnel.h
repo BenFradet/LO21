@@ -18,10 +18,12 @@ public:
     void SetDen(int d){den = d;}
     void SetNum(int n){num = n;}
 
-    Constante& operator+(const Constante& c);
-    Constante& operator-(const Constante& c);
-    Constante& operator*(const Constante& c);
-    Constante& operator/(const Constante& c);
+    Constante& operator+(const Constante& c)const;
+    Constante& operator-(const Constante& c)const;
+    Constante& operator*(const Constante& c)const;
+    Constante& operator/(const Constante& c)const;
+    Constante& operator-(int)const;
+    Constante& operator^(const Constante& c)const;
 };
 
 #endif // RATIONNEL_H

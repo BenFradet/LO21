@@ -19,10 +19,12 @@ public:
     void SetRe(Constante& r){pRe = r;}
     void SetIm(Constante& i){pIm = i;}
 
-    Constante& operator+(const Constante& c);
-    Constante& operator-(const Constante& c);
-    Constante& operator*(const Constante& c);
-    Constante& operator/(const Constante& c);
+    Constante& operator+(const Constante& c)const;
+    Constante& operator-(const Constante& c)const;
+    Constante& operator*(const Constante& c)const;
+    Constante& operator/(const Constante& c)const;
+    Constante& operator-(int)const;
+    Constante& operator^(const Constante& c)const;
 };
 
 #endif // COMPLEXE_H

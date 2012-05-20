@@ -17,10 +17,12 @@ public:
     Constante& GetVal()const;
     float toFloat()const;
 
-    Constante& operator+(const Constante& c);
-    Constante& operator-(const Constante& c);
-    Constante& operator*(const Constante& c);
-    Constante& operator/(const Constante& c);
+    Constante& operator+(const Constante& c)const;
+    Constante& operator-(const Constante& c)const;
+    Constante& operator*(const Constante& c)const;
+    Constante& operator/(const Constante& c)const;
+    Constante& operator-(int)const;
+    Constante& operator^(const Constante& c)const;
 };
 
 #endif // REEL_H

@@ -6,10 +6,12 @@ class Constante
 public:
     Constante(){}
     virtual Constante& GetVal()const = 0;
-    virtual Constante& operator+(const Constante& c) = 0;
-    virtual Constante& operator-(const Constante& c) = 0;
-    virtual Constante& operator*(const Constante& c) = 0;
-    virtual Constante& operator/(const Constante& c) = 0;
+    virtual Constante& operator+(const Constante& c)const = 0;
+    virtual Constante& operator-(const Constante& c)const = 0;
+    virtual Constante& operator*(const Constante& c)const = 0;
+    virtual Constante& operator/(const Constante& c)const = 0;
+    virtual Constante& operator-(int)const = 0;
+    virtual Constante& operator^(const Constante& c)const = 0;
 };
 
 #endif // CONSTANTE_H

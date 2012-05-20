@@ -6,27 +6,39 @@ Constante& Expression::GetVal()const
     return e;
 }
 
-Constante& Expression::operator+(const Constante& c)
+Constante& Expression::operator+(const Constante& c)const
 {
-    return Entier(0);
-    //erreur
+    Expression e("Erreur");
+    return e;
 }
 
-Constante& Expression::operator-(const Constante& c)
+Constante& Expression::operator-(const Constante& c)const
 {
-    return Entier(0);
-    //erreur
+    Expression e("Erreur");
+    return e;
 }
 
-Constante& Expression::operator*(const Constante& c)
+Constante& Expression::operator*(const Constante& c)const
 {
-    return Entier(0);
-    //erreur
+    Expression e("Erreur");
+    return e;
 }
 
-Constante& Expression::operator/(const Constante& c)
+Constante& Expression::operator/(const Constante& c)const
 {
-    return Entier(0);
-    //erreur
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::operator-(int)const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::operator^(const Constante& c)const
+{
+    Expression e("Erreur");
+    return e;
 }
 

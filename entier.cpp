@@ -105,6 +105,24 @@ Constante& Entier::operator^(const Constante& c)const
     }
 }
 
+Constante& Entier::sinus()const
+{
+    Reel res(sin((float)value));
+    return res;
+}
+
+Constante& Entier::cosinus()const
+{
+    Reel res(cos((float)value));
+    return res;
+}
+
+Constante& Entier::tangente()const
+{
+    Reel res(tan((float)value));
+    return res;
+}
+
 Constante& Entier::operator%(const Constante& c)const
 {
     const Entier* e = dynamic_cast<const Entier*>(&c);
@@ -119,6 +137,7 @@ Constante& Entier::operator%(const Constante& c)const
         return e;
     }
 }
+
 
 
 

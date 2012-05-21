@@ -104,3 +104,21 @@ Constante& Reel::operator^(const Constante& c)const
         return e;
     }
 }
+
+Constante& Reel::sinus()const
+{
+    Reel res(sin(value));
+    return res;
+}
+
+Constante& Reel::cosinus()const
+{
+    Reel res(cos(value));
+    return res;
+}
+
+Constante& Reel::tangente()const
+{
+    Reel res(tan(value));
+    return res;
+}

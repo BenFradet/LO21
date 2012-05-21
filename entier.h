@@ -21,6 +21,9 @@ public:
     Constante& operator/(const Constante& c)const;
     Constante& operator-(int)const;
     Constante& operator^(const Constante& c)const;
+    Constante& sinus()const;
+    Constante& cosinus()const;
+    Constante& tangente()const;
 
     Constante& operator%(const Constante& c)const;
 };

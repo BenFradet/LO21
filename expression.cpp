@@ -42,3 +42,20 @@ Constante& Expression::operator^(const Constante& c)const
     return e;
 }
 
+Constante& Expression::sinus()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::cosinus()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::tangente()const
+{
+    Expression e("Erreur");
+    return e;
+}

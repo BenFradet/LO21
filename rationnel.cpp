@@ -99,3 +99,21 @@ Constante& Rationnel::operator^(const Constante& c)const//pas sûr
         return e;
     }
 }
+
+Constante& Rationnel::sinus()const
+{
+    Reel res(sin((float)num/den));
+    return res;
+}
+
+Constante& Rationnel::cosinus()const
+{
+    Reel res(cos((float)num/den));
+    return res;
+}
+
+Constante& Rationnel::tangente()const
+{
+    Reel res(tan((float)num/den));
+    return res;
+}

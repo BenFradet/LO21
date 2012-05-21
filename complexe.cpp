@@ -78,3 +78,20 @@ Constante& Complexe::operator^(const Constante& c)const
     return e;
 }
 
+Constante& Complexe::sinus()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Complexe::cosinus()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Complexe::tangente()const
+{
+    Expression e("Erreur");
+    return e;
+}

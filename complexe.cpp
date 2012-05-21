@@ -95,3 +95,21 @@ Constante& Complexe::tangente()const
     Expression e("Erreur");
     return e;
 }
+
+Constante& Complexe::sinush()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Complexe::cosinush()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Complexe::tangenteh()const
+{
+    Expression e("Erreur");
+    return e;
+}

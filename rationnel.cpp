@@ -117,3 +117,21 @@ Constante& Rationnel::tangente()const
     Reel res(tan((float)num/den));
     return res;
 }
+
+Constante& Rationnel::sinush()const
+{
+    Reel res(sinh((float)num/den));
+    return res;
+}
+
+Constante& Rationnel::cosinush()const
+{
+    Reel res(cosh((float)num/den));
+    return res;
+}
+
+Constante& Rationnel::tangenteh()const
+{
+    Reel res(tanh((float)num/den));
+    return res;
+}

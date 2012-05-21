@@ -24,6 +24,9 @@ public:
     Constante& sinus()const;
     Constante& cosinus()const;
     Constante& tangente()const;
+    Constante& sinush()const;
+    Constante& cosinush()const;
+    Constante& tangenteh()const;
 
     Constante& operator%(const Constante& c)const;
 };

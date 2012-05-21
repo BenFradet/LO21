@@ -15,6 +15,9 @@ public:
     virtual Constante& sinus()const = 0;
     virtual Constante& cosinus()const = 0;
     virtual Constante& tangente()const = 0;
+    virtual Constante& sinush()const = 0;
+    virtual Constante& cosinush()const = 0;
+    virtual Constante& tangenteh()const = 0;
 };
 
 #endif // CONSTANTE_H

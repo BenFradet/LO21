@@ -122,3 +122,21 @@ Constante& Reel::tangente()const
     Reel res(tan(value));
     return res;
 }
+
+Constante& Reel::sinush()const
+{
+    Reel res(sinh(value));
+    return res;
+}
+
+Constante& Reel::cosinush()const
+{
+    Reel res(cosh(value));
+    return res;
+}
+
+Constante& Reel::tangenteh()const
+{
+    Reel res(tanh(value));
+    return res;
+}

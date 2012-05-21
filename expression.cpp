@@ -59,3 +59,21 @@ Constante& Expression::tangente()const
     Expression e("Erreur");
     return e;
 }
+
+Constante& Expression::sinush()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::cosinush()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::tangenteh()const
+{
+    Expression e("Erreur");
+    return e;
+}

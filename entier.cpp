@@ -123,6 +123,24 @@ Constante& Entier::tangente()const
     return res;
 }
 
+Constante& Entier::sinush()const
+{
+    Reel res(sinh((float)value));
+    return res;
+}
+
+Constante& Entier::cosinush()const
+{
+    Reel res(cosh((float)value));
+    return res;
+}
+
+Constante& Entier::tangenteh()const
+{
+    Reel res(tanh((float)value));
+    return res;
+}
+
 Constante& Entier::operator%(const Constante& c)const
 {
     const Entier* e = dynamic_cast<const Entier*>(&c);

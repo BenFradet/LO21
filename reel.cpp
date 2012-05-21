@@ -140,3 +140,55 @@ Constante& Reel::tangenteh()const
     Reel res(tanh(value));
     return res;
 }
+
+Constante& Reel::logdec()const
+{
+    if(value>0)
+    {
+        Reel res(log10(value));
+        return res;
+    }
+    else
+    {
+        Expression e("Erreur");
+        return e;
+    }
+}
+
+Constante& Reel::lognep()const
+{
+    if(value>0)
+    {
+        Reel res(log(value));
+        return res;
+    }
+    else
+    {
+        Expression e("Erreur");
+        return e;
+    }
+}
+
+Constante& Reel::inverse()const
+{
+    Reel res(1/value);
+    return res;
+}
+
+Constante& Reel::racine()const
+{
+    Reel res(sqrt(value));
+    return res;
+}
+
+Constante& Reel::carree()const
+{
+    Reel res(pow(value,2));
+    return res;
+}
+
+Constante& Reel::cube()const
+{
+    Reel res(pow(value,3));
+    return res;
+}

@@ -113,3 +113,39 @@ Constante& Complexe::tangenteh()const
     Expression e("Erreur");
     return e;
 }
+
+Constante& Complexe::logdec()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Complexe::lognep()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Complexe::inverse()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Complexe::racine()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Complexe::carree()const
+{
+    Entier e(0);//à implémenter
+    return e;
+}
+
+Constante& Complexe::cube()const
+{
+    Entier e(0);//à implémenter
+    return e;
+}

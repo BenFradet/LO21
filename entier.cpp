@@ -141,6 +141,40 @@ Constante& Entier::tangenteh()const
     return res;
 }
 
+Constante& Entier::logdec()const
+{
+    if(this->toInt()>0)
+    {
+        Reel res(log10((float)value));
+        return res;
+    }
+    else
+    {
+        Expression e("Erreur");
+        return e;
+    }
+}
+
+Constante& Entier::lognep()const
+{
+    if(this->toInt()>0)
+    {
+        Reel res(log((float)value));
+        return res;
+    }
+    else
+    {
+        Expression e("Erreur");
+        return e;
+    }
+}
+
+Constante& Entier::inverse()const
+{
+    Reel res(1/(float)value);
+    return res;
+}
+
 Constante& Entier::operator%(const Constante& c)const
 {
     const Entier* e = dynamic_cast<const Entier*>(&c);
@@ -156,6 +190,23 @@ Constante& Entier::operator%(const Constante& c)const
     }
 }
 
+Constante& Entier::racine()const
+{
+    Reel res(sqrt((float)value));
+    return res;
+}
+
+Constante& Entier::carree()const
+{
+    Entier res((int)pow((float)value, 2));
+    return res;
+}
+
+Constante& Entier::cube()const
+{
+    Entier res((int)pow((float)value, 3));
+    return res;
+}
 
 
 

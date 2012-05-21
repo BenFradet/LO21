@@ -77,3 +77,39 @@ Constante& Expression::tangenteh()const
     Expression e("Erreur");
     return e;
 }
+
+Constante& Expression::logdec()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::lognep()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::inverse()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::racine()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::carree()const
+{
+    Expression e("Erreur");
+    return e;
+}
+
+Constante& Expression::cube()const
+{
+    Expression e("Erreur");
+    return e;
+}

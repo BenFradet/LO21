@@ -28,6 +28,12 @@ public:
     Constante& sinush()const;
     Constante& cosinush()const;
     Constante& tangenteh()const;
+    Constante& logdec()const;
+    Constante& lognep()const;
+    Constante& inverse()const;
+    Constante& racine()const;
+    Constante& carree()const;
+    Constante& cube()const;
 };
 
 #endif // EXPRESSION_H

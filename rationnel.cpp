@@ -135,3 +135,55 @@ Constante& Rationnel::tangenteh()const
     Reel res(tanh((float)num/den));
     return res;
 }
+
+Constante& Rationnel::logdec()const
+{
+    if((num>0 && den>0) || (num<=0 && den<=0))
+    {
+        Reel res(log10((float)num/den));
+        return res;
+    }
+    else
+    {
+        Expression e("Erreur");
+        return e;
+    }
+}
+
+Constante& Rationnel::lognep()const
+{
+    if((num>0 && den>0) || (num<=0 && den<=0))
+    {
+        Reel res(log((float)num/den));
+        return res;
+    }
+    else
+    {
+        Expression e("Erreur");
+        return e;
+    }
+}
+
+Constante& Rationnel::inverse()const
+{
+    Rationnel res(den, num);
+    return res;
+}
+
+Constante& Rationnel::racine()const
+{
+    Reel res(sqrt((float)num/den));
+    return res;
+}
+
+Constante& Rationnel::carree()const
+{
+    Rationnel res((int)pow((float)num,2), (int)pow((float)den,2));
+    return res;
+}
+
+Constante& Rationnel::cube()const
+{
+    Rationnel res((int)pow((float)num,3), (int)pow((float)den,3));
+    return res;
+}

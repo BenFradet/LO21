@@ -18,6 +18,12 @@ public:
     virtual Constante& sinush()const = 0;
     virtual Constante& cosinush()const = 0;
     virtual Constante& tangenteh()const = 0;
+    virtual Constante& logdec()const = 0;
+    virtual Constante& lognep()const = 0;
+    virtual Constante& inverse()const = 0;
+    virtual Constante& racine()const = 0;
+    virtual Constante& carree()const = 0;
+    virtual Constante& cube()const = 0;
 };
 
 #endif // CONSTANTE_H

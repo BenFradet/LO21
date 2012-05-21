@@ -30,7 +30,12 @@ public:
     void Dup();//duplique le dernier élément
     void Drop();//supprime le dernier élément
 
-    Constante& Plus(Constante& a, Constante& b);
+    Constante& Plus();//test sur les sommets et les types à faire
+    Constante& Moins();
+    Constante& Multiplier();
+    Constante& Diviser();
+    Constante& Puissance();
+    Constante& Modulo();
 };
 
 #endif // PILE_H

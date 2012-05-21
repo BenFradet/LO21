@@ -35,6 +35,7 @@ public:
     Constante& cube()const;
 
     Constante& operator%(const Constante& c)const;
+    Constante& operator!()const;
 };
 
 #endif // INTEGER_H

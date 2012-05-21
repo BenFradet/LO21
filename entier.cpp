@@ -208,6 +208,28 @@ Constante& Entier::cube()const
     return res;
 }
 
+Constante& Entier::operator!()const
+{
+    int e = this->toInt();
+    if(e>0)
+    {
+        for(int i = 1; i<e; i++)
+            e *= i;
+        Entier res(e);
+        return res;
+    }
+    else if(e==0)
+    {
+        Entier res(e);
+        return res;
+    }
+    else
+    {
+        Expression res("Erreur");
+        return res;
+    }
+}
+
 
 
 

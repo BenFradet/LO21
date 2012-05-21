@@ -11,27 +11,27 @@ Pile::~Pile()
 {
 }
 
-void Pile::Empiler(Constante* c)
+void Pile::Empiler(Constante* c)//test sur le sommet à faire
 {
-    if(sommet<taille)
+    //if(sommet<taille)
         tabElmt[sommet++] = c;
-    else;
+    //else;
         //erreur
 }
 
-Constante* Pile::Depiler()
+Constante* Pile::Depiler()//test sur le sommet à faire
 {
-    if(sommet>0)
+    //if(sommet>0)
         return tabElmt[--sommet];
-    else;
+    //else;
         //erreur
 }
 
-Constante* Pile::Tete()const
+Constante* Pile::Tete()const//test sur le sommet à faire
 {
-    if(sommet>0)
+    //if(sommet>0)
         return tabElmt[sommet-1];
-    else;
+    //else;
         //erreur
 }
 
@@ -49,6 +49,65 @@ void Pile::Dup()
 void Pile::Drop()
 {
     sommet--;
+}
+
+Constante& Pile::Plus()
+{
+    Constante* a = this->Depiler();
+    Constante* b = this->Depiler();
+    Constante& c = *a + *b;
+    this->Empiler(&c);
+    return c;
+}
+
+Constante& Pile::Moins()
+{
+    Constante* a = this->Depiler();
+    Constante* b = this->Depiler();
+    Constante& c = *a - *b;
+    this->Empiler(&c);
+    return c;
+}
+
+Constante& Pile::Multiplier()
+{
+    Constante* a = this->Depiler();
+    Constante* b = this->Depiler();
+    Constante& c = *a * *b;
+    this->Empiler(&c);
+    return c;
+}
+
+Constante& Pile::Diviser()
+{
+    Constante* a = this->Depiler();
+    Constante* b = this->Depiler();
+    Constante& c = *a * *b;
+    this->Empiler(&c);
+    return c;
+}
+
+Constante& Pile::Puissance()
+{
+    Constante* a = this->Depiler();
+    Constante* b = this->Depiler();
+    Constante& c = *a ^ *b;
+    this->Empiler(&c);
+    return c;
+}
+
+Constante& Pile::Modulo()
+{
+    Constante* a = this->Depiler();
+    Constante* b = this->Depiler();
+    const Entier* e1 = dynamic_cast<const Entier*>(a);
+    const Entier* e2 = dynamic_cast<const Entier*>(b);
+    if(e1 != NULL && e2 != NULL)
+    {
+        Constante& res = *e1 % *e2;
+        return res;
+    }
+    else;//erreur
 }
 
 /*void Pile::Swap(int x, int y)
@@ -77,8 +136,4 @@ float Pile::Sum(int x)
     for(int i = 0; i<x; i++)
         sum += tabElmt[i];
     return sum;
-}*/
-
-/*Constante& Plus(Constante& a, Constante& b)
-{
 }*/

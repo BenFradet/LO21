@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "pile.h"
 
 namespace Ui {
 class MainWindow;
@@ -12,11 +13,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(Pile *P, QWidget *parent = 0);
     ~MainWindow();
     
 private:
     Ui::MainWindow *ui;
+    Pile* p;
 
 private slots:
 
@@ -31,6 +33,11 @@ private slots:
     void btn8pressed();
     void btn9pressed();
     void btnAnnulerpressed();
+
+    void affichage_scientifique();
+    void affichage_standard();
+
+    void envoi_pile();
 
 
 };

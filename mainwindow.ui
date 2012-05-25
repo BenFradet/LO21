@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>456</height>
+    <width>916</width>
+    <height>645</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,15 +17,27 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>130</y>
-      <width>239</width>
-      <height>201</height>
+      <x>40</x>
+      <y>80</y>
+      <width>171</width>
+      <height>181</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
+     <property name="horizontalSpacing">
+      <number>9</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
      <item row="0" column="0">
       <widget class="QPushButton" name="btn7">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>7</string>
        </property>
@@ -36,6 +48,12 @@
      </item>
      <item row="3" column="0">
       <widget class="QPushButton" name="btnAnnuler">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>Annuler</string>
        </property>
@@ -46,6 +64,12 @@
      </item>
      <item row="0" column="2">
       <widget class="QPushButton" name="btn9">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>9</string>
        </property>
@@ -56,6 +80,12 @@
      </item>
      <item row="3" column="2">
       <widget class="QPushButton" name="btnRetablir">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>Rétablir</string>
        </property>
@@ -66,6 +96,12 @@
      </item>
      <item row="2" column="2">
       <widget class="QPushButton" name="btn3">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>3</string>
        </property>
@@ -76,6 +112,12 @@
      </item>
      <item row="2" column="0">
       <widget class="QPushButton" name="btn1">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
        <property name="text">
         <string>1</string>
        </property>
@@ -86,6 +128,12 @@
      </item>
      <item row="1" column="0">
       <widget class="QPushButton" name="btn4">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>4</string>
        </property>
@@ -96,6 +144,12 @@
      </item>
      <item row="0" column="1">
       <widget class="QPushButton" name="btn8">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>8</string>
        </property>
@@ -106,6 +160,12 @@
      </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="btn5">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>5</string>
        </property>
@@ -116,6 +176,12 @@
      </item>
      <item row="1" column="2">
       <widget class="QPushButton" name="btn6">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>6</string>
        </property>
@@ -126,6 +192,12 @@
      </item>
      <item row="2" column="1">
       <widget class="QPushButton" name="btn2">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>2</string>
        </property>
@@ -136,6 +208,12 @@
      </item>
      <item row="3" column="1">
       <widget class="QPushButton" name="btn0">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>0</string>
        </property>
@@ -149,25 +227,31 @@
    <widget class="QLineEdit" name="le_entree">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>50</y>
-      <width>441</width>
-      <height>51</height>
+      <x>30</x>
+      <y>40</y>
+      <width>401</width>
+      <height>21</height>
      </rect>
     </property>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>130</y>
-      <width>158</width>
-      <height>201</height>
+      <x>230</x>
+      <y>80</y>
+      <width>191</width>
+      <height>181</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="0" column="0">
       <widget class="QPushButton" name="btnAddi">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>+</string>
        </property>
@@ -178,6 +262,12 @@
      </item>
      <item row="3" column="0">
       <widget class="QPushButton" name="btnSIGN">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>SIGN</string>
        </property>
@@ -185,6 +275,12 @@
      </item>
      <item row="2" column="0">
       <widget class="QPushButton" name="btnPOW">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>POW</string>
        </property>
@@ -192,6 +288,12 @@
      </item>
      <item row="1" column="0">
       <widget class="QPushButton" name="btnMult">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>*</string>
        </property>
@@ -202,6 +304,12 @@
      </item>
      <item row="0" column="1">
       <widget class="QPushButton" name="btnSous">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>-</string>
        </property>
@@ -212,6 +320,12 @@
      </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="btnDivi">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>/</string>
        </property>
@@ -222,6 +336,12 @@
      </item>
      <item row="2" column="1">
       <widget class="QPushButton" name="btnMOD">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>MOD</string>
        </property>
@@ -229,6 +349,12 @@
      </item>
      <item row="3" column="1">
       <widget class="QPushButton" name="btnEVAL">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="text">
         <string>EVAL</string>
        </property>
@@ -239,47 +365,11 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLineEdit" name="le_pile">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>30</y>
-      <width>31</width>
-      <height>351</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>0</y>
-      <width>20</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Pile</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>46</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Entrée</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>50</y>
+      <x>680</x>
+      <y>0</y>
       <width>111</width>
       <height>20</height>
      </rect>
@@ -291,10 +381,10 @@
    <widget class="QWidget" name="gridLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>90</y>
-      <width>211</width>
-      <height>191</height>
+      <x>610</x>
+      <y>30</y>
+      <width>255</width>
+      <height>314</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
@@ -306,10 +396,24 @@
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QTextEdit" name="arg2_SWAP"/>
+      <widget class="QTextEdit" name="arg2_SWAP">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QTextEdit" name="arg1_SWAP"/>
+      <widget class="QTextEdit" name="arg1_SWAP">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item row="0" column="2">
       <widget class="QLabel" name="label_4">
@@ -326,7 +430,14 @@
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QTextEdit" name="arg_SUM"/>
+      <widget class="QTextEdit" name="arg_SUM">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item row="1" column="2">
       <widget class="QLabel" name="label_6">
@@ -357,7 +468,14 @@
       </widget>
      </item>
      <item row="2" column="3">
-      <widget class="QTextEdit" name="arg_MEAN"/>
+      <widget class="QTextEdit" name="arg_MEAN">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item row="3" column="1" colspan="4">
       <widget class="QPushButton" name="btnCLEAN">
@@ -382,17 +500,187 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnSENDSTACK">
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>330</y>
-      <width>421</width>
+      <y>270</y>
+      <width>371</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Valider</string>
+     <string>Envoyer dans la pile</string>
+    </property>
+   </widget>
+   <widget class="QListView" name="listView">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>40</y>
+      <width>111</width>
+      <height>241</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>350</y>
+      <width>160</width>
+      <height>83</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="btnCOS">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>COS</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="btnSIN">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>SIN</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="btnTAN">
+       <property name="text">
+        <string>TAN</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="btnSINH">
+       <property name="text">
+        <string>SINH</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="btnCOSH">
+       <property name="text">
+        <string>COSH</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="btnTANH">
+       <property name="text">
+        <string>TANH</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>350</y>
+      <width>160</width>
+      <height>112</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="btnLOG">
+       <property name="text">
+        <string>LOG</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="btnLN">
+       <property name="text">
+        <string>LN</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="btnSQR">
+       <property name="text">
+        <string>SQR</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="btnSQRT">
+       <property name="text">
+        <string>SQRT</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="btnINV">
+       <property name="text">
+        <string>INV</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="btnCUBE">
+       <property name="text">
+        <string>CUBE</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="btnFACTO">
+       <property name="text">
+        <string>FACTOR</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>10</y>
+      <width>51</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="btnPLUS">
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnMOINS">
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>10</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pile</string>
     </property>
    </widget>
   </widget>
@@ -401,7 +689,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>811</width>
+     <width>916</width>
      <height>21</height>
     </rect>
    </property>
@@ -410,9 +698,42 @@
      <string>&amp;Menu</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuAffichage">
+    <property name="title">
+     <string>Affichage</string>
+    </property>
+    <addaction name="actionStandard"/>
+    <addaction name="actionScientifique"/>
+   </widget>
    <addaction name="menu_Menu"/>
+   <addaction name="menuAffichage"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionStandard">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Standard</string>
+   </property>
+  </action>
+  <action name="actionScientifique">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Scientifique</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

@@ -36,6 +36,20 @@ public:
     Constante& Diviser();
     Constante& Puissance();
     Constante& Modulo();
+    Constante& Sign();
+    Constante& Sinus();
+    Constante& Cosinus();
+    Constante& Tangente();
+    Constante& Sinush();
+    Constante& Cosinush();
+    Constante& Tangenteh();
+    Constante& LogaNep();
+    Constante& LogaDec();
+    Constante& Inverse();
+    Constante& Racine();
+    Constante& Carree();
+    Constante& Cube();
+    Constante& Factorielle();
 };
 
 #endif // PILE_H

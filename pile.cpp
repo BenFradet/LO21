@@ -105,6 +105,124 @@ Constante& Pile::Modulo()
     if(e1 != NULL && e2 != NULL)
     {
         Constante& res = *e1 % *e2;
+        this->Empiler(&res);
+        return res;
+    }
+    else;//erreur
+}
+
+Constante& Pile::Sign()
+{
+    Constante* a = this->Depiler();
+    Entier e(2);
+    Constante& res = *a - e*(*a);
+    return res;
+}
+
+Constante& Pile::Sinus()
+{
+    Constante* a = this->Depiler();
+    a->sinus();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::Cosinus()
+{
+    Constante* a = this->Depiler();
+    a->cosinus();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::Tangente()
+{
+    Constante* a = this->Depiler();
+    a->tangente();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::Sinush()
+{
+    Constante* a = this->Depiler();
+    a->sinush();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::Cosinush()
+{
+    Constante* a = this->Depiler();
+    a->cosinush();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::Tangenteh()
+{
+    Constante* a = this->Depiler();
+    a->tangenteh();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::LogaNep()
+{
+    Constante* a = this->Depiler();
+    a->lognep();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::LogaDec()
+{
+    Constante* a = this->Depiler();
+    a->logdec();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::Inverse()
+{
+    Constante* a = this->Depiler();
+    a->inverse();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::Racine()
+{
+    Constante* a = this->Depiler();
+    a->racine();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::Carree()
+{
+    Constante* a = this->Depiler();
+    a->carree();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::Cube()
+{
+    Constante* a = this->Depiler();
+    a->cube();
+    this->Empiler(a);
+    return *a;
+}
+
+Constante& Pile::Factorielle()
+{
+    Constante* a = this->Depiler();
+    const Entier* e = dynamic_cast<const Entier*>(a);
+    if(e!=0)
+    {
+        Constante& res = !*e;
+        this->Empiler(&res);
         return res;
     }
     else;//erreur

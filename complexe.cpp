@@ -1,4 +1,5 @@
 #include "complexe.h"
+#include <QTextStream>
 
 Constante& Complexe::GetVal()const
 {
@@ -83,3 +84,11 @@ Constante& Complexe::cube()const
     Entier e(0);//à implémenter
     return e;
 }
+
+QString Complexe::ToQString()
+{
+       QString str;
+     /*    QTextStream tx(&str);
+        tx << pRe << "$" << pIm;*/
+        return str;
+    }

@@ -3,6 +3,7 @@
 
 #include "constante.h"
 #include "include.h"
+#include <QString>
 
 class Complexe: public Constante
 {
@@ -26,6 +27,8 @@ public:
     Constante& operator-(int)const;
     Constante& carree()const;
     Constante& cube()const;
+
+    QString ToQString();
 };
 
 #endif // COMPLEXE_H

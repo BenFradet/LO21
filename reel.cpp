@@ -1,4 +1,5 @@
 #include "reel.h"
+#include <QTextStream>
 
 Constante& Reel::GetVal()const
 {
@@ -192,3 +193,11 @@ Constante& Reel::cube()const
     Reel res(pow(value,3));
     return res;
 }
+
+QString Reel::ToQString()
+{
+        QString str;
+        QTextStream tx(&str);
+        tx << value;
+        return str;
+    }

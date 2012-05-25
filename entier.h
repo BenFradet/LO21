@@ -33,6 +33,7 @@ public:
     Constante& racine()const;
     Constante& carree()const;
     Constante& cube()const;
+    QString ToQString();
 
     Constante& operator%(const Constante& c)const;
     Constante& operator!()const;

@@ -2,6 +2,7 @@
 #define CONSTANTE_H
 
 #include "calcexception.h"
+#include <QString>
 
 class Constante
 {
@@ -26,6 +27,8 @@ public:
     virtual Constante& racine()const;
     virtual Constante& carree()const;
     virtual Constante& cube()const;
+
+    virtual QString ToQString() = 0;
 };
 
 #endif // CONSTANTE_H

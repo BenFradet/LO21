@@ -4,6 +4,7 @@
 #include <string>
 #include "constante.h"
 #include "include.h"
+#include <QString>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ public:
     ~Expression(){}
 
     Constante& GetVal()const;
+    QString ToQString();
 };
 
 #endif // EXPRESSION_H

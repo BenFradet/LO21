@@ -7,9 +7,12 @@
 #include "complex"
 #include "rationnel.h"
 #include "reel.h"
+#include <QAbstractListModel>
 #include <typeinfo>
+#include <QVariant>
+#include <QList>
 
-class Pile
+class Pile: public QAbstractListModel
 {
     int taille;
     int sommet;
@@ -50,6 +53,25 @@ public:
     Constante& Carree();
     Constante& Cube();
     Constante& Factorielle();
+
+    int getTaille() const
+    {
+        return taille;
+    }
+
+    Constante* getElement(int i)
+    {
+        return tabElmt[i];
+    }
+
+    int rowCount (const QModelIndex &parent=QModelIndex()) const {return 4;}
+    QVariant data (const QModelIndex &index, int role=Qt::DisplayRole) const
+    {
+        if (!index.isValid() || index.row() >= 4)
+          return QVariant();
+        QVariant S(tabElmt[index.row()]->ToQString());
+        return S;
+             }
 };
 
 #endif // PILE_H

@@ -1,4 +1,5 @@
 #include "entier.h"
+#include <QTextStream>
 
 Constante& Entier::GetVal()const
 {
@@ -230,6 +231,12 @@ Constante& Entier::operator!()const
     }
 }
 
-
+QString Entier::ToQString()
+{
+    QString res;
+    QTextStream ss(&res);
+    ss << value;
+    return res;
+}
 
 

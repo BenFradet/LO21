@@ -4,6 +4,7 @@
 #include "constante.h"
 #include "complexe.h"
 #include "rationnel.h"
+#include <QString>
 
 class Reel: public Constante
 {
@@ -35,6 +36,8 @@ public:
     Constante& racine()const;
     Constante& carree()const;
     Constante& cube()const;
+
+    QString ToQString();
 };
 
 #endif // REEL_H

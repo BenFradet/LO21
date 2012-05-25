@@ -1,4 +1,5 @@
 #include "rationnel.h"
+#include <QTextStream>
 
 Constante& Rationnel::GetVal()const
 {
@@ -186,4 +187,13 @@ Constante& Rationnel::cube()const
 {
     Rationnel res((int)pow((float)num,3), (int)pow((float)den,3));
     return res;
+}
+
+QString Rationnel::ToQString()
+{
+            QString str;
+            QTextStream tx(&str);
+            tx << num << '/' << den ;
+            return str;
+
 }

@@ -3,6 +3,7 @@
 
 #include "constante.h"
 #include "complexe.h"
+#include <QString>
 
 class Rationnel : public Constante
 {
@@ -36,6 +37,8 @@ public:
     Constante& racine()const;
     Constante& carree()const;
     Constante& cube()const;
+
+    QString ToQString();
 };
 
 #endif // RATIONNEL_H

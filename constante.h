@@ -1,29 +1,31 @@
 #ifndef CONSTANTE_H
 #define CONSTANTE_H
 
+#include "calcexception.h"
+
 class Constante
 {
 public:
     Constante(){}
     virtual Constante& GetVal()const = 0;
-    virtual Constante& operator+(const Constante& c)const = 0;
-    virtual Constante& operator-(const Constante& c)const = 0;
-    virtual Constante& operator*(const Constante& c)const = 0;
-    virtual Constante& operator/(const Constante& c)const = 0;
-    virtual Constante& operator-(int)const = 0;
-    virtual Constante& operator^(const Constante& c)const = 0;
-    virtual Constante& sinus()const = 0;
-    virtual Constante& cosinus()const = 0;
-    virtual Constante& tangente()const = 0;
-    virtual Constante& sinush()const = 0;
-    virtual Constante& cosinush()const = 0;
-    virtual Constante& tangenteh()const = 0;
-    virtual Constante& logdec()const = 0;
-    virtual Constante& lognep()const = 0;
-    virtual Constante& inverse()const = 0;
-    virtual Constante& racine()const = 0;
-    virtual Constante& carree()const = 0;
-    virtual Constante& cube()const = 0;
+    virtual Constante& operator+(const Constante& c)const;
+    virtual Constante& operator-(const Constante& c)const;
+    virtual Constante& operator*(const Constante& c)const;
+    virtual Constante& operator/(const Constante& c)const;
+    virtual Constante& operator-(int)const;
+    virtual Constante& operator^(const Constante& c)const;
+    virtual Constante& sinus()const;
+    virtual Constante& cosinus()const;
+    virtual Constante& tangente()const;
+    virtual Constante& sinush()const;
+    virtual Constante& cosinush()const;
+    virtual Constante& tangenteh()const;
+    virtual Constante& logdec()const;
+    virtual Constante& lognep()const;
+    virtual Constante& inverse()const;
+    virtual Constante& racine()const;
+    virtual Constante& carree()const;
+    virtual Constante& cube()const;
 };
 
 #endif // CONSTANTE_H

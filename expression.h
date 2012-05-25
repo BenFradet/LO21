@@ -15,25 +15,6 @@ public:
     ~Expression(){}
 
     Constante& GetVal()const;
-
-    Constante& operator+(const Constante& c)const;
-    Constante& operator-(const Constante& c)const;
-    Constante& operator*(const Constante& c)const;
-    Constante& operator/(const Constante& c)const;
-    Constante& operator-(int)const;
-    Constante& operator^(const Constante& c)const;
-    Constante& sinus()const;
-    Constante& cosinus()const;
-    Constante& tangente()const;
-    Constante& sinush()const;
-    Constante& cosinush()const;
-    Constante& tangenteh()const;
-    Constante& logdec()const;
-    Constante& lognep()const;
-    Constante& inverse()const;
-    Constante& racine()const;
-    Constante& carree()const;
-    Constante& cube()const;
 };
 
 #endif // EXPRESSION_H

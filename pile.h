@@ -26,8 +26,8 @@ public:
     Constante* Tete()const;
 
     void Swap(int x, int y);
-    int Sum(int x);//somme des x premiers éléments (N, Q, R, C)         TEMPLATE METHOD
-    int Mean(int x);//moyenne des x premiers éléments (N, Q, R, C)
+    Constante& Sum(int x);//somme des x premiers éléments (N, Q, R, C)         TEMPLATE METHOD
+    Constante& Mean(int x);//moyenne des x premiers éléments (N, Q, R, C)
 
     void Clear();
     void Dup();//duplique le dernier élément

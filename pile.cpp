@@ -11,28 +11,28 @@ Pile::~Pile()
 {
 }
 
-void Pile::Empiler(Constante* c)//test sur le sommet à faire
+void Pile::Empiler(Constante* c)
 {
-    //if(sommet<taille)
+    if(sommet == taille)
+        throw CalcException("Pile pleine");
+    else
         tabElmt[sommet++] = c;
-    //else;
-        //erreur
 }
 
-Constante* Pile::Depiler()//test sur le sommet à faire
+Constante* Pile::Depiler()
 {
-    //if(sommet>0)
+    if(sommet == 0)
+        throw CalcException("Pile vide");
+    else
         return tabElmt[--sommet];
-    //else;
-        //erreur
 }
 
-Constante* Pile::Tete()const//test sur le sommet à faire
+Constante* Pile::Tete()const
 {
-    //if(sommet>0)
+    if(sommet == 0)
+        throw CalcException("Pile vide");
+    else
         return tabElmt[sommet-1];
-    //else;
-        //erreur
 }
 
 void Pile::Clear()
@@ -42,216 +42,407 @@ void Pile::Clear()
 
 void Pile::Dup()
 {
-    Constante* tmp = tabElmt[sommet-1];
-    tabElmt[sommet++] = tmp;
+    if(sommet == taille)
+        throw CalcException("Pile pleine");
+    else
+    {
+        Constante* tmp = tabElmt[sommet-1];
+        tabElmt[sommet++] = tmp;
+    }
 }
 
 void Pile::Drop()
 {
-    sommet--;
+    if(sommet == 0)
+        throw CalcException("Pile vide");
+    else
+        sommet--;
 }
 
 Constante& Pile::Plus()
 {
-    Constante* a = this->Depiler();
-    Constante* b = this->Depiler();
-    Constante& c = *a + *b;
-    this->Empiler(&c);
-    return c;
+    if(sommet>=2)
+    {
+        Constante* a = this->Depiler();
+        Constante* b = this->Depiler();
+        Constante& c = *a + *b;
+        this->Empiler(&c);
+        return c;
+    }
+    else
+        throw CalcException("Cette opération nécessite deux opérandes");
 }
 
 Constante& Pile::Moins()
 {
-    Constante* a = this->Depiler();
-    Constante* b = this->Depiler();
-    Constante& c = *a - *b;
-    this->Empiler(&c);
-    return c;
+    if(sommet>=2)
+    {
+        Constante* a = this->Depiler();
+        Constante* b = this->Depiler();
+        Constante& c = *a - *b;
+        this->Empiler(&c);
+        return c;
+    }
+    else
+        throw CalcException("Cette opération nécessite deux opérandes");
 }
 
 Constante& Pile::Multiplier()
 {
-    Constante* a = this->Depiler();
-    Constante* b = this->Depiler();
-    Constante& c = *a * *b;
-    this->Empiler(&c);
-    return c;
+    if(sommet>=2)
+    {
+        Constante* a = this->Depiler();
+        Constante* b = this->Depiler();
+        Constante& c = *a * *b;
+        this->Empiler(&c);
+        return c;
+    }
+    else
+        throw CalcException("Cette opération nécessite deux opérandes");
 }
 
 Constante& Pile::Diviser()
 {
-    Constante* a = this->Depiler();
-    Constante* b = this->Depiler();
-    Constante& c = *a * *b;
-    this->Empiler(&c);
-    return c;
+    if(sommet>=2)
+    {
+        Constante* a = this->Depiler();
+        Constante* b = this->Depiler();
+        Constante& c = *a * *b;
+        this->Empiler(&c);
+        return c;
+    }
+    else
+        throw CalcException("Cette opération nécessite deux opérandes");
 }
 
 Constante& Pile::Puissance()
 {
-    Constante* a = this->Depiler();
-    Constante* b = this->Depiler();
-    Constante& c = *a ^ *b;
-    this->Empiler(&c);
-    return c;
+    if(sommet>=2)
+    {
+        Constante* a = this->Depiler();
+        Constante* b = this->Depiler();
+        Constante& c = *a ^ *b;
+        this->Empiler(&c);
+        return c;
+    }
+    else
+        throw CalcException("Cette opération nécessite deux opérandes");
 }
 
 Constante& Pile::Modulo()
 {
-    Constante* a = this->Depiler();
-    Constante* b = this->Depiler();
-    const Entier* e1 = dynamic_cast<const Entier*>(a);
-    const Entier* e2 = dynamic_cast<const Entier*>(b);
-    if(e1 != NULL && e2 != NULL)
+    if(sommet>=2)
     {
-        Constante& res = *e1 % *e2;
-        this->Empiler(&res);
-        return res;
+        Constante* a = this->Depiler();
+        Constante* b = this->Depiler();
+        const Entier* e1 = dynamic_cast<const Entier*>(a);
+        const Entier* e2 = dynamic_cast<const Entier*>(b);
+        if(e1 != NULL && e2 != NULL)
+        {
+            Constante& res = *e1 % *e2;
+            this->Empiler(&res);
+            return res;
+        }
+        else
+            throw CalcException("Cette opération nécessite deux entiers");
     }
-    else;//erreur
+    else
+        throw CalcException("Cette opération nécessite deux opérandes");
 }
 
 Constante& Pile::Sign()
 {
-    Constante* a = this->Depiler();
-    Entier e(2);
-    Constante& res = *a - e*(*a);
-    return res;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        Entier e(2);
+        Constante& res = *a - e*(*a);
+        return res;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Sinus()
 {
-    Constante* a = this->Depiler();
-    a->sinus();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->sinus();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Cosinus()
 {
-    Constante* a = this->Depiler();
-    a->cosinus();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->cosinus();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Tangente()
 {
-    Constante* a = this->Depiler();
-    a->tangente();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->tangente();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Sinush()
 {
-    Constante* a = this->Depiler();
-    a->sinush();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->sinush();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Cosinush()
 {
-    Constante* a = this->Depiler();
-    a->cosinush();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->cosinush();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Tangenteh()
 {
-    Constante* a = this->Depiler();
-    a->tangenteh();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->tangenteh();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::LogaNep()
 {
-    Constante* a = this->Depiler();
-    a->lognep();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->lognep();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::LogaDec()
 {
-    Constante* a = this->Depiler();
-    a->logdec();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->logdec();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Inverse()
 {
-    Constante* a = this->Depiler();
-    a->inverse();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->inverse();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Racine()
 {
-    Constante* a = this->Depiler();
-    a->racine();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->racine();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Carree()
 {
-    Constante* a = this->Depiler();
-    a->carree();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->carree();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Cube()
 {
-    Constante* a = this->Depiler();
-    a->cube();
-    this->Empiler(a);
-    return *a;
+    if(sommet>=1)
+    {
+        Constante* a = this->Depiler();
+        a->cube();
+        this->Empiler(a);
+        return *a;
+    }
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
 Constante& Pile::Factorielle()
 {
-    Constante* a = this->Depiler();
-    const Entier* e = dynamic_cast<const Entier*>(a);
-    if(e!=0)
+    if(sommet>=1)
     {
-        Constante& res = !*e;
-        this->Empiler(&res);
-        return res;
+        Constante* a = this->Depiler();
+        const Entier* e = dynamic_cast<const Entier*>(a);
+        if(e!=0)
+        {
+            Constante& res = !*e;
+            this->Empiler(&res);
+            return res;
+        }
+        else
+            throw CalcException("Cette opération nécessite un entier");
     }
-    else;//erreur
+    else
+        throw CalcException("Cette opération nécessite une opérande");
 }
 
-/*void Pile::Swap(int x, int y)
+void Pile::Swap(int x, int y)
 {
     if(sommet>x && sommet>y)
     {
-        int tmp;
+        Constante* tmp;
         tmp = tabElmt[x];
-        tabElmt[x] = tabElemt[y];
+        tabElmt[x] = tabElmt[y];
         tabElmt[y] = tmp;
     }
-    else;//erreur
+    else
+        throw CalcException("Les indices doivent être dans la pile");
 }
 
-int Pile::Sum(int x)
+Constante& Pile::Sum(int x)
 {
-    int sum = 0;
-    for(int i = 0; i<x; i++)
-        sum += tabElmt[i];
-    return sum;
+    if(x<sommet)
+    {
+        Constante* sum;
+        sum = tabElmt[sommet];
+        const Entier* e = dynamic_cast<const Entier*>(sum);
+        const Reel* r = dynamic_cast<const Reel*>(sum);
+        const Rationnel* f = dynamic_cast<const Rationnel*>(sum);
+        const Complexe* c = dynamic_cast<const Complexe*>(sum);
+        if(e!=0)
+        {
+            for(int i = 1; i<x; i++)
+            {
+                const Entier* p = dynamic_cast<const Entier*>(tabElmt[sommet-i]);
+                if(p!=0)
+                    *sum = *sum + *tabElmt[sommet-i];
+                else
+                    throw CalcException("On ne peut pas faire la somme sur des constantes de type différent");
+            }
+            return *sum;
+        }
+        else if(r!=0)
+        {
+            for(int i = 1; i<x; i++)
+            {
+                const Reel* p = dynamic_cast<const Reel*>(tabElmt[sommet-i]);
+                if(p!=0)
+                    *sum = *sum + *tabElmt[sommet-i];
+                else
+                    throw CalcException("On ne peut pas faire la somme sur des constantes de type différent");
+            }
+            return *sum;
+        }
+        else if(f!=0)
+        {
+            for(int i = 1; i<x; i++)
+            {
+                const Rationnel* p = dynamic_cast<const Rationnel*>(tabElmt[sommet-i]);
+                if(p!=0)
+                    *sum = *sum + *tabElmt[sommet-i];
+                else
+                    throw CalcException("On ne peut pas faire la somme sur des constantes de type différent");
+            }
+            return *sum;
+        }
+        else if(c!=0)
+        {
+            for(int i = 0; i<x; i++)
+            {
+                const Complexe* p = dynamic_cast<const Complexe*>(tabElmt[sommet-i]);
+                if(p!=0)
+                    *sum = *sum + *tabElmt[sommet-i];
+                else
+                    throw CalcException("On ne peut pas faire la somme sur des constantes de type différent");
+            }
+            return *sum;
+        }
+    }
+    else
+        throw CalcException("Cet indice est trop grand par rapport au nombre d'éléments contenus dans la pile");
 }
 
-float Pile::Sum(int x)
+Constante& Pile::Mean(int x)
 {
-    float sum = 0;
-    for(int i = 0; i<x; i++)
-        sum += tabElmt[i];
-    return sum;
-}*/
+    Constante& mean = Sum(x);
+    const Entier* e = dynamic_cast<const Entier*>(&mean);
+    const Reel* r = dynamic_cast<const Reel*>(&mean);
+    const Rationnel* f = dynamic_cast<const Rationnel*>(&mean);
+    const Complexe* c = dynamic_cast<const Complexe*>(&mean);
+
+    if(e!=0)
+    {
+        Entier tmp(x);
+        return mean / tmp;
+    }
+    else if(r!=0)
+    {
+        Reel tmp(x);
+        return mean / tmp;
+    }
+    else if(f!=0)
+    {
+        Rationnel tmp(x, 1);
+        return mean / tmp;
+    }
+    else if(c!=0)
+    {
+        Entier e(x);
+        Complexe tmp(e, e);
+        return mean / tmp;
+    }
+    else
+        throw CalcException("Mauvais type");
+}

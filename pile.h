@@ -64,6 +64,34 @@ public:
         return tabElmt[i];
     }
 
+    class Iterator
+    {
+        Constante** elements;
+    public:
+        Iterator(Constante** elmts):elements(elmts){}
+        Iterator& operator++()
+        {
+            elements++;
+            return *this;
+        }
+        bool operator!=(const Iterator& it)
+        {
+            return it.elements != elements;
+        }
+        Constante& operator*()
+        {
+            return **elements;
+        }
+    };
+    Iterator& Begin()const
+    {
+        return Iterator(tabElmt);
+    }
+    Iterator& End()const
+    {
+        return Iterator(tabElmt + taille);
+    }
+
     int rowCount (const QModelIndex &parent=QModelIndex()) const {return 4;}
     QVariant data (const QModelIndex &index, int role=Qt::DisplayRole) const
     {
@@ -71,7 +99,7 @@ public:
           return QVariant();
         QVariant S(tabElmt[index.row()]->ToQString());
         return S;
-             }
+    }
 };
 
 #endif // PILE_H

@@ -17,9 +17,18 @@ class Pile: public QAbstractListModel
     int taille;
     int sommet;
     Constante** tabElmt;
-public:
+
+    static Pile* instance;
     Pile(int dim);
     ~Pile();
+    Pile& operator=(const Pile& p)
+    {
+        return *this;
+    }
+
+public:
+    static Pile& getInstance(int dim);
+    static void releaseInstance();
 
     void Empiler(Constante* c);
     Constante* Depiler();

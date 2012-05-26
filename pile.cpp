@@ -1,5 +1,21 @@
 #include "pile.h"
 
+Pile* Pile::instance = 0;
+
+Pile& Pile::getInstance(int dim)
+{
+    if(instance == 0)
+        instance = new Pile(dim);
+    return *instance;
+}
+
+void Pile::releaseInstance()
+{
+    if(instance != 0)
+        delete instance;
+    instance = 0;
+}
+
 Pile::Pile(int dim)
 {
     taille = dim;

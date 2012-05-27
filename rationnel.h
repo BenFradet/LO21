@@ -10,7 +10,17 @@ class Rationnel : public Constante
     int num;
     int den;
 public:
-    Rationnel(int n, int d):Constante(), num(n), den(d){}
+    Rationnel(int n, int d): Constante()
+    {
+        if(d!=0)
+        {
+            num = n;
+            den = d;
+        }
+        else
+            throw CalcException("Le dénominateur ne peut pas valoir zéro");
+    }
+
     ~Rationnel(){}
 
     int GetDen()const{return den;}
@@ -23,7 +33,7 @@ public:
     Constante& operator-(const Constante& c)const;
     Constante& operator*(const Constante& c)const;
     Constante& operator/(const Constante& c)const;
-    Constante& operator-(int)const;
+    Constante& operator-()const;
     Constante& operator^(const Constante& c)const;
     Constante& sinus()const;
     Constante& cosinus()const;

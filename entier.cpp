@@ -22,8 +22,7 @@ Constante& Entier::operator+(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -37,8 +36,7 @@ Constante& Entier::operator-(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de soustraction nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -52,8 +50,7 @@ Constante& Entier::operator*(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -62,17 +59,16 @@ Constante& Entier::operator/(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Entier res(value/(int)*e);
+        Rationnel res(value, (int)*e);
         return res;
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de division nécessite que les deux opérateurs soient de même type");
     }
 }
 
-Constante& Entier::operator-(int)const
+Constante& Entier::operator-()const
 {
     Entier e(-value);
     return e;
@@ -101,8 +97,7 @@ Constante& Entier::operator^(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de puissance nécessite que l'exposant soit un entier, un rationnel ou un réel");
     }
 }
 
@@ -151,8 +146,7 @@ Constante& Entier::logdec()const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de logarithme nécessite que l'opérateur soit positif");
     }
 }
 
@@ -165,15 +159,19 @@ Constante& Entier::lognep()const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de logarithme nécessite que l'opérateur soit positif");
     }
 }
 
 Constante& Entier::inverse()const
 {
-    Reel res(1/(float)value);
-    return res;
+    if(value!=0)
+    {
+        Reel res(1/(float)value);
+        return res;
+    }
+    else
+        throw CalcException("L'opération d'inverse est impossible avec zéro");
 }
 
 Constante& Entier::operator%(const Constante& c)const
@@ -186,15 +184,19 @@ Constante& Entier::operator%(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de modulo nécessite que les deux opérateurs soient des entiers");
     }
 }
 
 Constante& Entier::racine()const
 {
-    Reel res(sqrt((float)value));
-    return res;
+    if(value>=0)
+    {
+        Reel res(sqrt((float)value));
+        return res;
+    }
+    else
+        throw CalcException("L'opération de racine carrée nécessite une valeur positive");
 }
 
 Constante& Entier::carree()const
@@ -226,8 +228,7 @@ Constante& Entier::operator!()const
     }
     else
     {
-        Expression res("Erreur");
-        return res;
+        throw CalcException("L'opération factorielle nécessite une valeur positive");
     }
 }
 

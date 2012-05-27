@@ -166,13 +166,12 @@ Constante& Pile::Modulo()
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-Constante& Pile::Sign()
+Constante& Pile::Signe()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Entier e(2);
-        Constante& res = *a - e*(*a);
+        Constante& res = -(*a);
         return res;
     }
     else

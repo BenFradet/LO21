@@ -22,8 +22,7 @@ Constante& Reel::operator+(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -37,8 +36,7 @@ Constante& Reel::operator-(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de soustraction nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -52,8 +50,7 @@ Constante& Reel::operator*(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -67,12 +64,11 @@ Constante& Reel::operator/(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de division nécessite que les deux opérateurs soient de même type");
     }
 }
 
-Constante& Reel::operator-(int)const
+Constante& Reel::operator-()const
 {
     Reel r(-value);
     return r;
@@ -101,8 +97,7 @@ Constante& Reel::operator^(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de puissance nécessite que l'exposant soit un entier, un rationnel ou un réel");
     }
 }
 
@@ -151,8 +146,7 @@ Constante& Reel::logdec()const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de logarithme nécessite que l'opérateur soit positif");
     }
 }
 
@@ -165,21 +159,30 @@ Constante& Reel::lognep()const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de logarithme nécessite que l'opérateur soit positif");
     }
 }
 
 Constante& Reel::inverse()const
 {
-    Reel res(1/value);
-    return res;
+    if(value!=0)
+    {
+        Reel res(1/value);
+        return res;
+    }
+    else
+        throw CalcException("L'opération d'inverse est impossible avec zéro");
 }
 
 Constante& Reel::racine()const
 {
-    Reel res(sqrt(value));
-    return res;
+    if(value>=0)
+    {
+        Reel res(sqrt(value));
+        return res;
+    }
+    else
+        throw CalcException("L'opération de racine carrée nécessite une valeur positive");
 }
 
 Constante& Reel::carree()const
@@ -196,8 +199,8 @@ Constante& Reel::cube()const
 
 QString Reel::ToQString()
 {
-        QString str;
-        QTextStream tx(&str);
-        tx << value;
-        return str;
-    }
+    QString str;
+    QTextStream tx(&str);
+    tx << value;
+    return str;
+}

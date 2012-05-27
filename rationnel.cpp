@@ -17,8 +17,7 @@ Constante& Rationnel::operator+(const Constante& c)const//ADAPTER A FAIRE
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -32,8 +31,7 @@ Constante& Rationnel::operator-(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de soustraction nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -47,8 +45,7 @@ Constante& Rationnel::operator*(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -62,12 +59,11 @@ Constante& Rationnel::operator/(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de division nécessite que les deux opérateurs soient de même type");
     }
 }
 
-Constante& Rationnel::operator-(int)const
+Constante& Rationnel::operator-()const
 {
     Rationnel r(-num, den);
     return r;
@@ -96,8 +92,7 @@ Constante& Rationnel::operator^(const Constante& c)const//pas sûr
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de puissance nécessite que l'exposant soit un entier, un rationnel ou un réel");
     }
 }
 
@@ -146,8 +141,7 @@ Constante& Rationnel::logdec()const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de logarithme nécessite que l'opérateur soit positif");
     }
 }
 
@@ -160,21 +154,30 @@ Constante& Rationnel::lognep()const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de logarithme nécessite que l'opérateur soit positif");
     }
 }
 
 Constante& Rationnel::inverse()const
 {
-    Rationnel res(den, num);
-    return res;
+    if(num!=0)
+    {
+        Rationnel res(den, num);
+        return res;
+    }
+    else
+        throw CalcException("L'opération d'inverse est impossible avec zéro");
 }
 
 Constante& Rationnel::racine()const
 {
-    Reel res(sqrt((float)num/den));
-    return res;
+    if((num>0 && den>0) || (num<=0 && den<=0))
+    {
+        Reel res(sqrt((float)num/den));
+        return res;
+    }
+    else
+        throw CalcException("L'opération de racine carrée nécessite une valeur positive");
 }
 
 Constante& Rationnel::carree()const
@@ -191,9 +194,9 @@ Constante& Rationnel::cube()const
 
 QString Rationnel::ToQString()
 {
-            QString str;
-            QTextStream tx(&str);
-            tx << num << '/' << den ;
-            return str;
+    QString str;
+    QTextStream tx(&str);
+    tx << num << '/' << den ;
+    return str;
 
 }

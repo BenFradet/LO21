@@ -17,8 +17,7 @@ Constante& Complexe::operator+(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -32,8 +31,7 @@ Constante& Complexe::operator-(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de soustraction nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -47,8 +45,7 @@ Constante& Complexe::operator*(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
     }
 }
 
@@ -62,14 +59,13 @@ Constante& Complexe::operator/(const Constante& c)const
     }
     else
     {
-        Expression e("Erreur");
-        return e;
+        throw CalcException("L'opération de division nécessite que les deux opérateurs soient de même type");
     }
 }
 
-Constante& Complexe::operator-(int)const
+Constante& Complexe::operator-()const
 {
-    Complexe c(pRe - Entier(2)*pRe, pIm-Entier(2)*pIm);//trouver une meilleure solution
+    Complexe c(pRe - Entier(2)*pRe, pIm-Entier(2)*pIm);
     return c;
 }
 
@@ -87,8 +83,8 @@ Constante& Complexe::cube()const
 
 QString Complexe::ToQString()
 {
-       QString str;
-     /*    QTextStream tx(&str);
-        tx << pRe << "$" << pIm;*/
-        return str;
-    }
+    QString str;
+    /*QTextStream tx(&str);
+    tx << pRe << "$" << pIm;*/
+    return str;
+}

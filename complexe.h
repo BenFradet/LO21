@@ -24,7 +24,7 @@ public:
     Constante& operator-(const Constante& c)const;
     Constante& operator*(const Constante& c)const;
     Constante& operator/(const Constante& c)const;
-    Constante& operator-(int)const;
+    Constante& operator-()const;
     Constante& carree()const;
     Constante& cube()const;
 

@@ -13,7 +13,7 @@ public:
     virtual Constante& operator-(const Constante& c)const;
     virtual Constante& operator*(const Constante& c)const;
     virtual Constante& operator/(const Constante& c)const;
-    virtual Constante& operator-(int)const;
+    virtual Constante& operator-()const;
     virtual Constante& operator^(const Constante& c)const;
     virtual Constante& sinus()const;
     virtual Constante& cosinus()const;

@@ -48,7 +48,7 @@ public:
     Constante& Diviser();
     Constante& Puissance();
     Constante& Modulo();
-    Constante& Sign();
+    Constante& Signe();
     Constante& Sinus();
     Constante& Cosinus();
     Constante& Tangente();

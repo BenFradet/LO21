@@ -7,7 +7,7 @@ Constante& Entier::GetVal()const
     return e;
 }
 
-int Entier::toInt()const
+Entier::operator int()const
 {
     return value;
 }
@@ -17,7 +17,7 @@ Constante& Entier::operator+(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Entier res(value+e->toInt());
+        Entier res(value+(int)*e);
         return res;
     }
     else
@@ -32,7 +32,7 @@ Constante& Entier::operator-(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Entier res(value-e->toInt());
+        Entier res(value-(int)*e);
         return res;
     }
     else
@@ -47,7 +47,7 @@ Constante& Entier::operator*(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Entier res(value*e->toInt());
+        Entier res(value*(int)*e);
         return res;
     }
     else
@@ -62,7 +62,7 @@ Constante& Entier::operator/(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Entier res(value/e->toInt());
+        Entier res(value/(int)*e);
         return res;
     }
     else
@@ -86,12 +86,12 @@ Constante& Entier::operator^(const Constante& c)const
 
     if(e!=0)
     {
-        Entier res((int)pow((float)value, e->toInt()));
+        Entier res((int)pow((float)value, (int)*e));
         return res;
     }
     else if(r!=0)
     {
-        Reel res(pow(value, r->toFloat()));
+        Reel res(pow(value, (float)*r));
         return res;
     }
     else if(f!=0)
@@ -144,7 +144,7 @@ Constante& Entier::tangenteh()const
 
 Constante& Entier::logdec()const
 {
-    if(this->toInt()>0)
+    if((int)*this>0)
     {
         Reel res(log10((float)value));
         return res;
@@ -158,7 +158,7 @@ Constante& Entier::logdec()const
 
 Constante& Entier::lognep()const
 {
-    if(this->toInt()>0)
+    if((int)*this>0)
     {
         Reel res(log((float)value));
         return res;
@@ -181,7 +181,7 @@ Constante& Entier::operator%(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Entier res(value%e->toInt());
+        Entier res(value%(int)*e);
         return res;
     }
     else
@@ -211,7 +211,7 @@ Constante& Entier::cube()const
 
 Constante& Entier::operator!()const
 {
-    int e = this->toInt();
+    int e = (int)*this;
     if(e>0)
     {
         for(int i = 1; i<e; i++)

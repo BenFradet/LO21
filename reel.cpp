@@ -7,7 +7,7 @@ Constante& Reel::GetVal()const
     return r;
 }
 
-float Reel::toFloat()const
+Reel::operator float()const
 {
     return value;
 }
@@ -17,7 +17,7 @@ Constante& Reel::operator+(const Constante& c)const
     const Reel* r = dynamic_cast<const Reel*>(&c);
     if(r!=0)
     {
-        Reel res(r->toFloat() + value);
+        Reel res((float)*r + value);
         return res;
     }
     else
@@ -32,7 +32,7 @@ Constante& Reel::operator-(const Constante& c)const
     const Reel* r = dynamic_cast<const Reel*>(&c);
     if(r!=0)
     {
-        Reel res(value - r->toFloat());
+        Reel res(value - (float)*r);
         return res;
     }
     else
@@ -47,7 +47,7 @@ Constante& Reel::operator*(const Constante& c)const
     const Reel* r = dynamic_cast<const Reel*>(&c);
     if(r!=0)
     {
-        Reel res(value * r->toFloat());
+        Reel res(value * (float)*r);
         return res;
     }
     else
@@ -62,7 +62,7 @@ Constante& Reel::operator/(const Constante& c)const
     const Reel* r = dynamic_cast<const Reel*>(&c);
     if(r!=0)
     {
-        Reel res(value / r->toFloat());
+        Reel res(value / (float)*r);
         return res;
     }
     else
@@ -86,12 +86,12 @@ Constante& Reel::operator^(const Constante& c)const
 
     if(e!=0)
     {
-        Reel res(pow(value, e->toInt()));
+        Reel res(pow(value, (int)*e));
         return res;
     }
     else if(r!=0)
     {
-        Reel res(pow(value, r->toFloat()));
+        Reel res(pow(value, (float)*r));
         return res;
     }
     else if(f!=0)

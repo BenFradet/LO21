@@ -16,7 +16,7 @@ public:
     ~Reel(){}
 
     Constante& GetVal()const;
-    float toFloat()const;
+    operator float()const;
 
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;

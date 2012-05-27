@@ -13,7 +13,7 @@ public:
 
     Constante& GetVal()const;
 
-    int toInt()const;
+    operator int()const;
 
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;

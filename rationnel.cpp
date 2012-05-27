@@ -81,12 +81,12 @@ Constante& Rationnel::operator^(const Constante& c)const//pas sûr
 
     if(e!=0)
     {
-        Rationnel res((int)pow((float)num, e->toInt()), (int)pow((float)den, e->toInt()));
+        Rationnel res((int)pow((float)num, (int)*e), (int)pow((float)den, (int)*e));
         return res;
     }
     else if(r!=0)
     {
-        Reel res(pow((float)num/den, r->toFloat()));
+        Reel res(pow((float)num/den, (float)*r));
         return res;
     }
     else if(f!=0)

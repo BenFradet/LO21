@@ -29,6 +29,9 @@ public:
     void SetDen(int d){den = d;}
     void SetNum(int n){num = n;}
 
+    operator int()const;
+    operator float()const;
+
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;
     Constante& operator*(const Constante& c)const;

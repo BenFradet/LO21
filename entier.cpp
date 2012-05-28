@@ -12,6 +12,11 @@ Entier::operator int()const
     return value;
 }
 
+Entier::operator float()const
+{
+    return (float)value;
+}
+
 Constante& Entier::operator+(const Constante& c)const
 {
     const Entier* e = dynamic_cast<const Entier*>(&c);

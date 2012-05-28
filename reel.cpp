@@ -7,6 +7,11 @@ Constante& Reel::GetVal()const
     return r;
 }
 
+Reel::operator int()const
+{
+    return (int)value;
+}
+
 Reel::operator float()const
 {
     return value;

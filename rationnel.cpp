@@ -7,6 +7,16 @@ Constante& Rationnel::GetVal()const
     return r;
 }
 
+Rationnel::operator int()const
+{
+    return num/den;
+}
+
+Rationnel::operator float()const
+{
+    return (float)num/den;
+}
+
 Constante& Rationnel::operator+(const Constante& c)const//ADAPTER A FAIRE
 {
     const Rationnel* r = dynamic_cast<const Rationnel*>(&c);

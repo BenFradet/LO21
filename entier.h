@@ -14,6 +14,7 @@ public:
     Constante& GetVal()const;
 
     operator int()const;
+    operator float()const;
 
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;

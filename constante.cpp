@@ -30,7 +30,7 @@ Constante& Constante::operator/(const Constante& c)const
     throw CalcException("On ne peut pas diviser deux expressions");
 }
 
-Constante& Constante::operator-(int)const
+Constante& Constante::operator-()const
 {
     throw CalcException("On ne peut pas inverser le signe d'une expression");
 }

@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
     w.show();
 
-    Pile::releaseInstance();
+//    Pile::releaseInstance();
 
     return a.exec();
 }

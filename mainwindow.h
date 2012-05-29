@@ -39,6 +39,31 @@ private slots:
     void btnMultpressed();
     void btnDivipressed();
 
+    void btnINVpressed();
+    void btnCOSpressed();
+    void btnSINpressed();
+    void btnTANpressed();
+    void btnCOSHpressed();
+    void btnSINHpressed();
+    void btnTANHpressed();
+    void btnLOGpressed();
+    void btnLNpressed();
+    void btnFACTOpressed();
+    void btnSIGNpressed();
+    void btnSQRpressed();
+    void btnSQRTpressed();
+    void btnCUBEpressed();
+    void btnCOMPLEXEpressed();
+    void btnPOWpressed();
+    void btnMODpressed();
+
+    void btnSWAPpressed();
+    void btnSUMpressed();
+    void btnMEANpressed();
+    void btnCLEANpressed();
+    void btnDUPpressed();
+    void btnDROPpressed();
+
     void affichage_scientifique();
     void affichage_standard();
     void btnAnnulerpressed();

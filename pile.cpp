@@ -447,11 +447,11 @@ Constante& Pile::Mean(int x)
 }
 
 int Pile::rowCount (const QModelIndex &parent) const
-{return 2;}
+{return sommet;}
 
 QVariant Pile::data (const QModelIndex &index, int role) const
 {
-   if (!index.isValid() || index.row() >= 2)
+   if (!index.isValid() || index.row() >= sommet)
     return QVariant();
     return (tabElmt[index.row()]->ToQString());
 
@@ -482,17 +482,62 @@ void Pile::Parser(QString s)
         else if(elements[i].contains(entier))
             nouveau = &Entier(elements[i]);
 
-  /*      else if(elements[i] == "+")          // pas de type de retour ?
-            Constante nouveau2 = Plus();
+        else if(elements[i] == "+")
+            Plus();
 
         else if(elements[i] == "-")
-            Constante nouveau2 = Moins();
+            Moins();
 
         else if(elements[i] == "*")
-            Constante nouveau2 = Multiplier();
+            Multiplier();
 
-        else if(elements[i] == "/")
-            Constante nouveau2 = Diviser();*/
+        else if(elements[i] == "POW")
+            Puissance();
+
+         else if(elements[i] == "MOD")
+             Modulo();
+
+         else if(elements[i] == "SIGN")
+            Signe();
+
+         else if(elements[i] == "SIN")
+             Sinus();
+
+         else if(elements[i] == "COS")
+             Cosinus();
+
+         else if(elements[i] == "TAN")
+             Tangente();
+
+         else if(elements[i] == "COSH")
+             Cosinush();
+
+         else if(elements[i] == "SINH")
+             Sinush();
+
+         else if(elements[i] == "TANH")
+             Tangenteh();
+
+         else if(elements[i] == "LOG")
+             LogaDec();
+
+         else if(elements[i] == "LN")
+             LogaNep();
+
+         else if(elements[i] == "INV")
+             Inverse();
+
+         else if(elements[i] == "SQRT")
+             Racine();
+
+         else if(elements[i] == "SQR")
+             Carree();
+
+         else if(elements[i] == "CUBE")
+             Cube();
+
+         else if(elements[i] == "!")
+             Factorielle();
 
 
 

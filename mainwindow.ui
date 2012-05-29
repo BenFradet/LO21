@@ -351,7 +351,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QPushButton" name="btnEVAL">
+      <widget class="QPushButton" name="btnCOMPLEXE">
        <property name="maximumSize">
         <size>
          <width>50</width>
@@ -408,26 +408,6 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
-      <widget class="QTextEdit" name="arg2_SWAP">
-       <property name="maximumSize">
-        <size>
-         <width>60</width>
-         <height>30</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QTextEdit" name="arg1_SWAP">
-       <property name="maximumSize">
-        <size>
-         <width>60</width>
-         <height>30</height>
-        </size>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="2">
       <widget class="QLabel" name="label_4">
        <property name="text">
@@ -439,16 +419,6 @@
       <widget class="QLabel" name="label_5">
        <property name="text">
         <string>x</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QTextEdit" name="arg_SUM">
-       <property name="maximumSize">
-        <size>
-         <width>60</width>
-         <height>30</height>
-        </size>
        </property>
       </widget>
      </item>
@@ -480,16 +450,6 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="3">
-      <widget class="QTextEdit" name="arg_MEAN">
-       <property name="maximumSize">
-        <size>
-         <width>60</width>
-         <height>30</height>
-        </size>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="1" colspan="4">
       <widget class="QPushButton" name="btnCLEAN">
        <property name="text">
@@ -508,6 +468,52 @@
       <widget class="QPushButton" name="btnDROP">
        <property name="text">
         <string>DROP</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="arg1_SWAP">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="arg2_SWAP">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLineEdit" name="arg_SUM">
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="QLineEdit" name="arg_MEAN">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
        </property>
       </widget>
      </item>
@@ -662,13 +668,19 @@
      <rect>
       <x>510</x>
       <y>10</y>
-      <width>158</width>
+      <width>71</width>
       <height>25</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="btnPLUS">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>+</string>
        </property>
@@ -676,6 +688,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnMOINS">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>-</string>
        </property>
@@ -727,9 +745,17 @@
     <addaction name="action_Reels"/>
     <addaction name="action_Complexes"/>
    </widget>
+   <widget class="QMenu" name="menu_Angles">
+    <property name="title">
+     <string>&amp;Angles</string>
+    </property>
+    <addaction name="action_Degr_s"/>
+    <addaction name="actionRadians"/>
+   </widget>
    <addaction name="menu_Menu"/>
    <addaction name="menuAffichage"/>
    <addaction name="menu_Mode"/>
+   <addaction name="menu_Angles"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionStandard">
@@ -775,6 +801,16 @@
   <action name="action_Complexes">
    <property name="text">
     <string>&amp;Complexes</string>
+   </property>
+  </action>
+  <action name="action_Degr_s">
+   <property name="text">
+    <string>&amp;Degrés</string>
+   </property>
+  </action>
+  <action name="actionRadians">
+   <property name="text">
+    <string>Radians</string>
    </property>
   </action>
  </widget>

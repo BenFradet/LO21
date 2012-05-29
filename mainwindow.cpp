@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QDirModel>
 #include <QListView>
+#include <QRegExp>
 
 MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QMainWindow(parent),
@@ -58,12 +59,43 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QObject::connect(ui->btnSous, SIGNAL (clicked()), this, SLOT(btnSouspressed()));
     QObject::connect(ui->btnDivi, SIGNAL (clicked()), this, SLOT(btnDivipressed()));
     QObject::connect(ui->btnMult, SIGNAL (clicked()), this, SLOT(btnMultpressed()));
+
+    QObject::connect(ui->btnINV, SIGNAL (clicked()), this, SLOT(btnINVpressed()));
+    QObject::connect(ui->btnCOS, SIGNAL (clicked()), this, SLOT(btnCOSpressed()));
+    QObject::connect(ui->btnSIN, SIGNAL (clicked()), this, SLOT(btnSINpressed()));
+    QObject::connect(ui->btnTAN, SIGNAL (clicked()), this, SLOT(btnTANpressed()));
+    QObject::connect(ui->btnCOSH, SIGNAL (clicked()), this, SLOT(btnCOSHpressed()));
+    QObject::connect(ui->btnSINH, SIGNAL (clicked()), this, SLOT(btnSINHpressed()));
+    QObject::connect(ui->btnTANH, SIGNAL (clicked()), this, SLOT(btnTANHpressed()));
+    QObject::connect(ui->btnLOG, SIGNAL (clicked()), this, SLOT(btnLOGpressed()));
+    QObject::connect(ui->btnLN, SIGNAL (clicked()), this, SLOT(btnLNpressed()));
+    QObject::connect(ui->btnFACTO, SIGNAL (clicked()), this, SLOT(btnFACTOpressed()));
+    QObject::connect(ui->btnSIGN, SIGNAL (clicked()), this, SLOT(btnSIGNpressed()));
+    QObject::connect(ui->btnSQR, SIGNAL (clicked()), this, SLOT(btnSQRpressed()));
+    QObject::connect(ui->btnSQRT, SIGNAL (clicked()), this, SLOT(btnSQRTpressed()));
+    QObject::connect(ui->btnCUBE, SIGNAL (clicked()), this, SLOT(btnCUBEpressed()));
+    QObject::connect(ui->btnCOMPLEXE, SIGNAL (clicked()), this, SLOT(btnCOMPLEXEpressed()));
+    QObject::connect(ui->btnPOW, SIGNAL (clicked()), this, SLOT(btnPOWpressed()));
+    QObject::connect(ui->btnMOD, SIGNAL (clicked()), this, SLOT(btnMODpressed()));
+
+
     QObject::connect(ui->btnAnnuler, SIGNAL(clicked()), this, SLOT(btnAnnulerpressed()));
     QObject::connect(ui->actionScientifique, SIGNAL(triggered()), this, SLOT(affichage_scientifique()));
     QObject::connect(ui->actionStandard, SIGNAL(triggered()), this, SLOT(affichage_standard()));
     QObject::connect(ui->btnSENDSTACK, SIGNAL (clicked()), this, SLOT(envoi_pile()));
+    QObject::connect(ui->btnSWAP, SIGNAL (clicked()), this, SLOT(btnSWAPpressed()));
+    QObject::connect(ui->btnSUM, SIGNAL (clicked()), this, SLOT(btnSUMpressed()));
+    QObject::connect(ui->btnMEAN, SIGNAL (clicked()), this, SLOT(btnMEANpressed()));
+    QObject::connect(ui->btnCLEAN, SIGNAL (clicked()), this, SLOT(btnCLEANpressed()));
+    QObject::connect(ui->btnDUP, SIGNAL (clicked()), this, SLOT(btnDUPpressed()));
+    QObject::connect(ui->btnDROP, SIGNAL (clicked()), this, SLOT(btnDROPpressed()));
 
 
+
+    ui->arg1_SWAP->setText("1");
+    ui->arg2_SWAP->setText("1");
+    ui->arg_SUM->setText("1");
+    ui->arg_MEAN->setText("1");
 
 
 
@@ -156,6 +188,173 @@ void MainWindow::btnDivipressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("/"));
 }
+
+void MainWindow::btnINVpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("INV"));
+}
+
+void MainWindow::btnCOSpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("COS"));
+}
+
+void MainWindow::btnSINpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("SIN"));
+}
+
+void MainWindow::btnTANpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("TAN"));
+}
+
+void MainWindow::btnCOSHpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("COSH"));
+}
+
+void MainWindow::btnSINHpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("SINH"));
+}
+
+void MainWindow::btnTANHpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("TANH"));
+}
+
+void MainWindow::btnLOGpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("LOG"));
+}
+
+void MainWindow::btnLNpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("LN"));
+}
+
+void MainWindow::btnFACTOpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("!"));
+}
+
+void MainWindow::btnSIGNpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("SIGN"));
+}
+
+void MainWindow::btnSQRpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("SQR"));
+}
+
+void MainWindow::btnSQRTpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("SQRT"));
+}
+
+void MainWindow::btnCUBEpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("CUBE"));
+}
+
+void MainWindow::btnCOMPLEXEpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("$"));
+}
+
+void MainWindow::btnPOWpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("POW"));
+}
+
+void MainWindow::btnMODpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("MOD"));
+}
+
+void MainWindow::btnSWAPpressed()
+{
+    QRegExp test ("^[0-9]+$");
+    QString arg1 = ui->arg1_SWAP->text();
+    QString arg2 = ui->arg2_SWAP->text();
+
+    if (arg1.contains(test) && arg2.contains(test))
+    {
+    int i = ui->arg1_SWAP->text().toInt();
+    int j = ui->arg2_SWAP->text().toInt();
+
+    p->Swap(i,j);
+    ui->arg1_SWAP->setText("1");
+    ui->arg2_SWAP->setText("1");
+
+    }
+    else
+        throw CalcException("Au moins un des arguments est invalide.");
+}
+
+void MainWindow::btnSUMpressed()
+{
+   QRegExp test ("^[0-9]+$");
+   QString arg1 = ui->arg_SUM->text();
+
+   if (arg1.contains(test))
+   {
+       int i = ui->arg_SUM->text().toInt();
+       p->Sum(i);
+       ui->arg_SUM->setText("1");
+   }
+   else
+       throw CalcException("Au moins un des arguments est invalide.");
+
+}
+
+void MainWindow::btnMEANpressed()
+{
+   QRegExp test ("^[0-9]+$");
+   QString arg1 = ui->arg_MEAN->text();
+
+   if (arg1.contains(test))
+   {
+       int i = ui->arg_MEAN->text().toInt();
+       p->Mean(i);
+       ui->arg_MEAN->setText("1");
+   }
+   else
+       throw CalcException("Au moins un des arguments est invalide.");
+
+}
+
+void MainWindow::btnCLEANpressed()
+{
+    p->Clear();
+}
+
+void MainWindow::btnDUPpressed()
+{
+    p->Dup();
+}
+
+void MainWindow::btnDROPpressed()
+{
+   p->Drop();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -260,6 +459,13 @@ void MainWindow::affichage_standard()
     }
 
 }
+
+
+
+
+
+
+
 
 void MainWindow::envoi_pile()
 {

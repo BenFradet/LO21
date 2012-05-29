@@ -4,6 +4,7 @@
 #include "constante.h"
 #include "complexe.h"
 #include <QString>
+#include <QStringList>
 
 class Rationnel : public Constante
 {
@@ -22,6 +23,22 @@ public:
     }
 
     ~Rationnel(){}
+
+    Rationnel(QString s)        // crée un rationnel a partir d'un QString
+    {
+        QStringList liste = s.split("/");
+
+        if (liste[1].toInt() != 0)
+
+        {
+
+        num = liste[0].toInt();
+        den = liste[1].toInt();
+        }
+        else
+            throw CalcException("Le dénominateur ne peut pas valoir zéro");
+
+    }
 
     int GetDen()const{return den;}
     int GetNum()const{return num;}
@@ -51,7 +68,7 @@ public:
     Constante& carree()const;
     Constante& cube()const;
 
-    QString ToQString();
+    QString ToQString();  //  crée un QString à partir d'un rationnel
 };
 
 #endif // RATIONNEL_H

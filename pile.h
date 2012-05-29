@@ -42,7 +42,7 @@ public:
     void Dup();//duplique le dernier élément
     void Drop();//supprime le dernier élément
 
-    Constante& Plus();//test sur les sommets et les types à faire
+    Constante& Plus();//test sur les sommets et les types à faire, type de retour void?
     Constante& Moins();
     Constante& Multiplier();
     Constante& Diviser();
@@ -62,6 +62,8 @@ public:
     Constante& Carree();
     Constante& Cube();
     Constante& Factorielle();
+
+    void Parser (QString s); // découpe un QString en Constantes ou opérateur et les empile
 
     int getTaille() const
     {
@@ -101,13 +103,12 @@ public:
         return Iterator(tabElmt + taille);
     }
 
-    int rowCount (const QModelIndex &parent=QModelIndex()) const {return 4;}
-    QVariant data (const QModelIndex &index, int role=Qt::DisplayRole) const
+    int rowCount (const QModelIndex &parent=QModelIndex()) const;
+    QVariant data (const QModelIndex &index, int role=Qt::DisplayRole) const;
+
+    void emitLayoutChanged()
     {
-        if (!index.isValid() || index.row() >= 4)
-          return QVariant();
-        QVariant S(tabElmt[index.row()]->ToQString());
-        return S;
+        emit ( layoutChanged());
     }
 };
 

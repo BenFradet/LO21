@@ -16,7 +16,7 @@ public:
     ~Expression(){}
 
     Constante& GetVal()const;
-    QString ToQString();
+    QString ToQString(); // crée un QString à partir d'une expression
 };
 
 #endif // EXPRESSION_H

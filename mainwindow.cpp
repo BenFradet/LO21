@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include <QDirModel>
+#include <QListView>
 
 MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QMainWindow(parent),
@@ -51,12 +53,19 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QObject::connect(ui->btn7, SIGNAL(clicked()), this, SLOT(btn7pressed()));
     QObject::connect(ui->btn8, SIGNAL(clicked()), this, SLOT(btn8pressed()));
     QObject::connect(ui->btn9, SIGNAL(clicked()), this, SLOT(btn9pressed()));
+    QObject::connect(ui->btnSPACE, SIGNAL (clicked()), this, SLOT(btnSPACEpressed()));
+    QObject::connect(ui->btnAddi, SIGNAL (clicked()), this, SLOT(btnAddipressed()));
+    QObject::connect(ui->btnSous, SIGNAL (clicked()), this, SLOT(btnSouspressed()));
+    QObject::connect(ui->btnDivi, SIGNAL (clicked()), this, SLOT(btnDivipressed()));
+    QObject::connect(ui->btnMult, SIGNAL (clicked()), this, SLOT(btnMultpressed()));
     QObject::connect(ui->btnAnnuler, SIGNAL(clicked()), this, SLOT(btnAnnulerpressed()));
     QObject::connect(ui->actionScientifique, SIGNAL(triggered()), this, SLOT(affichage_scientifique()));
     QObject::connect(ui->actionStandard, SIGNAL(triggered()), this, SLOT(affichage_standard()));
     QObject::connect(ui->btnSENDSTACK, SIGNAL (clicked()), this, SLOT(envoi_pile()));
 
-ui->listView->setModel(p);
+
+
+
 
 
 }
@@ -122,6 +131,32 @@ void MainWindow::btn9pressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("9"));
 }
+
+void MainWindow::btnSPACEpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append(" "));
+}
+
+void MainWindow::btnAddipressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("+"));
+}
+
+void MainWindow::btnSouspressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("-"));
+}
+
+void MainWindow::btnMultpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("*"));
+}
+
+void MainWindow::btnDivipressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("/"));
+}
+
 
 
 void MainWindow::btnAnnulerpressed()
@@ -228,7 +263,11 @@ void MainWindow::affichage_standard()
 
 void MainWindow::envoi_pile()
 {
+
     ui->listView->setModel(p);
 
+
+
+ //   p->emitLayoutChanged();
 }
 

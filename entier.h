@@ -11,6 +11,11 @@ public:
     Entier(int val):Constante(), value(val){}
     ~Entier(){}
 
+    Entier(QString s) // crée un entier a partir d'un QString
+    {
+        value = s.toInt();
+    }
+
     Constante& GetVal()const;
 
     operator int()const;
@@ -34,7 +39,7 @@ public:
     Constante& racine()const;
     Constante& carree()const;
     Constante& cube()const;
-    QString ToQString();
+    QString ToQString();  // crée un QString à partir d'un entier
 
     Constante& operator%(const Constante& c)const;
     Constante& operator!()const;

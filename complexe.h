@@ -4,6 +4,7 @@
 #include "constante.h"
 #include "include.h"
 #include <QString>
+#include <QStringList>
 
 class Complexe: public Constante
 {
@@ -12,6 +13,13 @@ class Complexe: public Constante
 public:
     Complexe(Constante& r, Constante& i): Constante(), pRe(r), pIm(i){}
     ~Complexe(){}
+
+/*    Complexe(QString &s)  // crée un rationnel a partir d'un QString (a voir plus compliqué)
+    {
+        QStringList liste = s.split("$");
+        pRe = Entier(liste[0].toInt());
+        pIm = Entier(liste[1].toInt());
+    }*/
 
     Constante& GetRe()const{return pRe;}
     Constante& GetIm()const{return pIm;}
@@ -28,7 +36,7 @@ public:
     Constante& carree()const;
     Constante& cube()const;
 
-    QString ToQString();
+    QString ToQString(); // crée un QString à partir d'un complexe
 };
 
 #endif // COMPLEXE_H

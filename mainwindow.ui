@@ -233,6 +233,9 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
@@ -356,10 +359,20 @@
         </size>
        </property>
        <property name="text">
-        <string>EVAL</string>
+        <string>$</string>
        </property>
        <property name="shortcut">
         <string>Enter</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0" colspan="2">
+      <widget class="QPushButton" name="btnSPACE">
+       <property name="text">
+        <string>SPACE</string>
+       </property>
+       <property name="shortcut">
+        <string>Space</string>
        </property>
       </widget>
      </item>
@@ -649,7 +662,7 @@
      <rect>
       <x>510</x>
       <y>10</y>
-      <width>51</width>
+      <width>158</width>
       <height>25</height>
      </rect>
     </property>
@@ -705,8 +718,18 @@
     <addaction name="actionStandard"/>
     <addaction name="actionScientifique"/>
    </widget>
+   <widget class="QMenu" name="menu_Mode">
+    <property name="title">
+     <string>&amp;Mode</string>
+    </property>
+    <addaction name="action_Entiers"/>
+    <addaction name="action_Rationnels"/>
+    <addaction name="action_Reels"/>
+    <addaction name="action_Complexes"/>
+   </widget>
    <addaction name="menu_Menu"/>
    <addaction name="menuAffichage"/>
+   <addaction name="menu_Mode"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionStandard">
@@ -732,6 +755,26 @@
    </property>
    <property name="text">
     <string>&amp;Scientifique</string>
+   </property>
+  </action>
+  <action name="action_Entiers">
+   <property name="text">
+    <string>&amp;Entiers</string>
+   </property>
+  </action>
+  <action name="action_Rationnels">
+   <property name="text">
+    <string>&amp;Rationnels</string>
+   </property>
+  </action>
+  <action name="action_Reels">
+   <property name="text">
+    <string>&amp;Réels</string>
+   </property>
+  </action>
+  <action name="action_Complexes">
+   <property name="text">
+    <string>&amp;Complexes</string>
    </property>
   </action>
  </widget>

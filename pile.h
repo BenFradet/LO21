@@ -63,6 +63,8 @@ public:
     void Cube();
     void Factorielle();
 
+    void Parser (QString s); // découpe un QString en Constantes ou opérateur et les empile
+
     int getTaille() const
     {
         return taille;
@@ -101,13 +103,12 @@ public:
         return Iterator(tabElmt + sommet);
     }
 
-    int rowCount (const QModelIndex &parent=QModelIndex()) const {return 4;}
-    QVariant data (const QModelIndex &index, int role=Qt::DisplayRole) const
+    int rowCount (const QModelIndex &parent=QModelIndex()) const;
+    QVariant data (const QModelIndex &index, int role=Qt::DisplayRole) const;
+
+    void emitLayoutChanged()
     {
-        if (!index.isValid() || index.row() >= 4)
-          return QVariant();
-        QVariant S(tabElmt[index.row()]->ToQString());
-        return S;
+        emit ( layoutChanged());
     }
 };
 

@@ -15,6 +15,11 @@ public:
     Reel(float val):Constante(), value(val){}
     ~Reel(){}
 
+    Reel(QString s)  // crée un rationnel a partir d'un QString
+    {
+       value = s.toFloat();
+    }
+
     Constante& GetVal()const;
 
     operator int()const;
@@ -39,7 +44,7 @@ public:
     Constante& carree()const;
     Constante& cube()const;
 
-    QString ToQString();
+    QString ToQString(); // crée QString à partir d'un réel
 };
 
 #endif // REEL_H

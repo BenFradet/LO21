@@ -1,4 +1,7 @@
 #include "pile.h"
+#include "QStringList"
+#include "QRegExp"
+#include "QString"
 
 Pile* Pile::instance = 0;
 
@@ -441,4 +444,61 @@ Constante& Pile::Mean(int x)
     }
     else
         throw CalcException("Mauvais type");
+}
+
+int Pile::rowCount (const QModelIndex &parent) const
+{return 2;}
+
+QVariant Pile::data (const QModelIndex &index, int role) const
+{
+   if (!index.isValid() || index.row() >= 2)
+    return QVariant();
+    return (tabElmt[index.row()]->ToQString());
+
+}
+
+
+void Pile::Parser(QString s)
+{
+    QStringList elements = s.split(" ");
+    QRegExp complexe("^[0-9]+\\${1}[0-9]+$");  // à compléter, complexe prend 2 constantes
+    QRegExp rationnel ("^[0-9]+/{1}[0-9]+$");
+    QRegExp reel ("^[0-9]+\.{1}[0-9]+$");
+    QRegExp entier ("^[0-9]+$");
+    Constante* nouveau = 0;
+
+    for (int i = 0; i< elements.size(); i++)
+    {
+
+    /*    if(elements[i].contains(complexe))
+            nouveau = &Complexe(elements[i]);*/
+
+         if(elements[i].contains(rationnel))
+            nouveau = &Rationnel(elements[i]);
+
+        else if(elements[i].contains(reel))
+            nouveau = &Reel(elements[i]);
+
+        else if(elements[i].contains(entier))
+            nouveau = &Entier(elements[i]);
+
+  /*      else if(elements[i] == "+")          // pas de type de retour ?
+            Constante nouveau2 = Plus();
+
+        else if(elements[i] == "-")
+            Constante nouveau2 = Moins();
+
+        else if(elements[i] == "*")
+            Constante nouveau2 = Multiplier();
+
+        else if(elements[i] == "/")
+            Constante nouveau2 = Diviser();*/
+
+
+
+    }
+
+
+
+
 }

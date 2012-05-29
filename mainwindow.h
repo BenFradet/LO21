@@ -32,11 +32,16 @@ private slots:
     void btn7pressed();
     void btn8pressed();
     void btn9pressed();
-    void btnAnnulerpressed();
+    void btnSPACEpressed();
+
+    void btnAddipressed();
+    void btnSouspressed();
+    void btnMultpressed();
+    void btnDivipressed();
 
     void affichage_scientifique();
     void affichage_standard();
-
+    void btnAnnulerpressed();
     void envoi_pile();
 
 

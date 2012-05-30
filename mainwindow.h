@@ -63,6 +63,7 @@ private slots:
     void btnCLEANpressed();
     void btnDUPpressed();
     void btnDROPpressed();
+    void btnPOINTpressed();
 
     void affichage_scientifique();
     void affichage_standard();

@@ -89,6 +89,7 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QObject::connect(ui->btnCLEAN, SIGNAL (clicked()), this, SLOT(btnCLEANpressed()));
     QObject::connect(ui->btnDUP, SIGNAL (clicked()), this, SLOT(btnDUPpressed()));
     QObject::connect(ui->btnDROP, SIGNAL (clicked()), this, SLOT(btnDROPpressed()));
+    QObject::connect(ui->btnPOINT, SIGNAL (clicked()), this, SLOT(btnPOINTpressed()));
 
 
 
@@ -96,6 +97,7 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     ui->arg2_SWAP->setText("1");
     ui->arg_SUM->setText("1");
     ui->arg_MEAN->setText("1");
+    ui->listView->setModel(p);
 
 
 
@@ -274,6 +276,11 @@ void MainWindow::btnMODpressed()
     ui->le_entree->setText(ui->le_entree->text().append("MOD"));
 }
 
+void MainWindow::btnPOINTpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("."));
+}
+
 void MainWindow::btnSWAPpressed()
 {
     QRegExp test ("^[0-9]+$");
@@ -288,6 +295,7 @@ void MainWindow::btnSWAPpressed()
     p->Swap(i,j);
     ui->arg1_SWAP->setText("1");
     ui->arg2_SWAP->setText("1");
+    ui->listView->reset();
 
     }
     else
@@ -304,6 +312,7 @@ void MainWindow::btnSUMpressed()
        int i = ui->arg_SUM->text().toInt();
        p->Sum(i);
        ui->arg_SUM->setText("1");
+       ui->listView->reset();
    }
    else
        throw CalcException("Au moins un des arguments est invalide.");
@@ -320,6 +329,7 @@ void MainWindow::btnMEANpressed()
        int i = ui->arg_MEAN->text().toInt();
        p->Mean(i);
        ui->arg_MEAN->setText("1");
+       ui->listView->reset();
    }
    else
        throw CalcException("Au moins un des arguments est invalide.");
@@ -329,16 +339,19 @@ void MainWindow::btnMEANpressed()
 void MainWindow::btnCLEANpressed()
 {
     p->Clear();
+    ui->listView->reset();
 }
 
 void MainWindow::btnDUPpressed()
 {
     p->Dup();
+    ui->listView->reset();
 }
 
 void MainWindow::btnDROPpressed()
 {
    p->Drop();
+   ui->listView->reset();
 }
 
 
@@ -470,8 +483,9 @@ void MainWindow::affichage_standard()
 void MainWindow::envoi_pile()
 {
 
-    ui->listView->setModel(p);
-
+    p->Parser(ui->le_entree->text());
+    ui->listView->reset();
+    ui->le_entree->clear();
 
 
  //   p->emitLayoutChanged();

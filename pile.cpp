@@ -451,10 +451,12 @@ int Pile::rowCount (const QModelIndex &parent) const
 
 QVariant Pile::data (const QModelIndex &index, int role) const
 {
-   if (!index.isValid() || index.row() >= sommet)
-    return QVariant();
-    return (tabElmt[index.row()]->ToQString());
-
+    if (!index.isValid() || index.row() >= sommet)
+        return QVariant();
+    if (role == Qt::DisplayRole)
+       return tabElmt[index.row()]->ToQString();
+    else
+        return QVariant();
 }
 
 
@@ -465,22 +467,28 @@ void Pile::Parser(QString s)
     QRegExp rationnel ("^[0-9]+/{1}[0-9]+$");
     QRegExp reel ("^[0-9]+\.{1}[0-9]+$");
     QRegExp entier ("^[0-9]+$");
-    Constante* nouveau = 0;
+
 
     for (int i = 0; i< elements.size(); i++)
     {
-
     /*    if(elements[i].contains(complexe))
             nouveau = &Complexe(elements[i]);*/
 
          if(elements[i].contains(rationnel))
-            nouveau = &Rationnel(elements[i]);
+         {      Constante* nouveau2 = new Rationnel(elements[i]);
+              Empiler(nouveau2);
+         }
 
         else if(elements[i].contains(reel))
-            nouveau = &Reel(elements[i]);
-
+         {      Constante* nouveau2 = new Reel(elements[i]);
+              Empiler(nouveau2);
+         }
         else if(elements[i].contains(entier))
-            nouveau = &Entier(elements[i]);
+         {      Constante* nouveau2 = new Entier(elements[i]);
+              Empiler(nouveau2);
+         }
+
+
 
         else if(elements[i] == "+")
             Plus();
@@ -538,6 +546,7 @@ void Pile::Parser(QString s)
 
          else if(elements[i] == "!")
              Factorielle();
+
 
 
 

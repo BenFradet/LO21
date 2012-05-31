@@ -21,6 +21,7 @@ public:
     operator int()const;
     operator float()const;
 
+    void operator=(const Constante& c);
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;
     Constante& operator*(const Constante& c)const;

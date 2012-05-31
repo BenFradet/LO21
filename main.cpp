@@ -6,25 +6,33 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    try
+    {
+        QApplication a(argc, argv);
 
-    Pile& pile = Pile::getInstance(20);
-    Entier p(3);
-    Entier k(4);
-    Entier t(5);
-    Entier l(5);
+        Pile& pile = Pile::getInstance(20);
+        Entier p(3);
+        Entier k(4);
+        Entier t(5);
+        Entier l(5);
 
-    pile.Empiler(&p);
-    pile.Empiler(&k);
-    pile.Empiler(&t);
-    pile.Empiler(&l);    
+        pile.Empiler(&p);
+        pile.Empiler(&k);
+        pile.Empiler(&t);
+        pile.Empiler(&l);
+        pile.Empiler(&(Entier)pile.Plus());//besoin du mode
 
-    MainWindow w(&pile, 0);
+        MainWindow w(&pile, 0);
 
-    w.show();
+        w.show();
 
-//    Pile::releaseInstance();
+        //Pile::releaseInstance();
 
-    return a.exec();
+        return a.exec();
+    }
+    catch(CalcException c)
+    {
+
+    }
 }
 

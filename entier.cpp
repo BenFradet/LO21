@@ -17,6 +17,19 @@ Entier::operator float()const
     return (float)value;
 }
 
+void Entier::operator=(const Constante& c)
+{
+    const Entier* e = dynamic_cast<const Entier*>(&c);
+    if(e!=0)
+    {
+        this->value = e->value;
+    }
+    else
+    {
+        throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
+    }
+}
+
 Constante& Entier::operator+(const Constante& c)const
 {
     const Entier* e = dynamic_cast<const Entier*>(&c);

@@ -42,7 +42,7 @@ public:
     void Dup();//duplique le dernier élément
     void Drop();//supprime le dernier élément
 
-    void Plus();//test sur les sommets et les types à faire
+    Constante& Plus();//test sur les sommets et les types à faire
     void Moins();
     void Multiplier();
     void Diviser();

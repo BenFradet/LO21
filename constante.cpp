@@ -10,6 +10,11 @@ Constante::operator float()const
     throw CalcException("On ne peut pas convertir ce type en float");
 }
 
+void Constante::operator =(const Constante& c)
+{
+    throw CalcException("On ne peut pas affecter");
+}
+
 Constante& Constante::operator+(const Constante& c)const
 {
     throw CalcException("On ne peut pas ajouter deux expressions");

@@ -19,6 +19,13 @@ void Pile::releaseInstance()
     instance = 0;
 }
 
+void Pile::reinstateMemento(Memento* mem)//a voir si ça marche avec le tabElmt
+{
+    taille = mem->taille;
+    sommet = mem->taille;
+    tabElmt = mem->tabElmt;
+}
+
 Pile::Pile(int dim)
 {
     taille = dim;
@@ -283,7 +290,7 @@ Constante& Pile::Inverse()
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-Constante Pile::Racine()
+Constante& Pile::Racine()
 {
     if(sommet>=1)
     {

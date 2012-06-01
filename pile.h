@@ -1,16 +1,30 @@
 #ifndef PILE_H
 #define PILE_H
-
 #include "constante.h"
 #include "entier.h"
 #include "expression.h"
-#include "complex"
+#include "complexe.h"
 #include "rationnel.h"
 #include "reel.h"
 #include <QAbstractListModel>
 #include <typeinfo>
 #include <QVariant>
 #include <QList>
+
+class Memento
+{
+    friend class Pile;
+    int taille;
+    int sommet;
+    Constante** tabElmt;
+public:
+    Memento(int dim, int top, Constante** pt)
+    {
+        taille = dim;
+        sommet = top;
+        tabElmt = pt;
+    }
+};
 
 class Pile: public QAbstractListModel
 {
@@ -28,7 +42,13 @@ class Pile: public QAbstractListModel
 
 public:
     static Pile& getInstance(int dim);
-    static void releaseInstance();
+    static void releaseInstance();    
+
+    Memento* createMemento()const
+    {
+        return new Memento(taille, sommet, tabElmt);
+    }
+    void reinstateMemento(Memento* mem);
 
     void Empiler(Constante* c);
     Constante* Depiler();

@@ -1,11 +1,6 @@
 #ifndef PILE_H
 #define PILE_H
-#include "constante.h"
-#include "entier.h"
-#include "expression.h"
-#include "complexe.h"
-#include "rationnel.h"
-#include "reel.h"
+#include "include.h"
 #include <string>
 #include <QAbstractListModel>
 #include <typeinfo>

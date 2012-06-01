@@ -1,8 +1,10 @@
 #ifndef INTEGER_H
 #define INTEGER_H
 
-#include "constante.h"
 #include "include.h"
+
+class Reel;
+class Rationnel;
 
 class Entier: public Constante
 {
@@ -20,6 +22,8 @@ public:
 
     operator int()const;
     operator float()const;
+    operator Reel()const;
+    operator Rationnel()const;
 
     void operator=(const Constante& c);
     Constante& operator+(const Constante& c)const;

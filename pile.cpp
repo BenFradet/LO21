@@ -91,7 +91,8 @@ void Pile::Plus()
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
-        //Empiler(c);
+        Constante* c = new Entier(*a + *b);
+        Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");

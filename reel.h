@@ -1,10 +1,11 @@
 #ifndef REEL_H
 #define REEL_H
 
-#include "constante.h"
-#include "complexe.h"
-#include "rationnel.h"
+#include "include.h"
 #include <QString>
+
+class Entier;
+class Rationnel;
 
 class Reel: public Constante
 {
@@ -24,6 +25,8 @@ public:
 
     operator int()const;
     operator float()const;
+    operator Entier()const;
+    operator Rationnel()const;
 
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;

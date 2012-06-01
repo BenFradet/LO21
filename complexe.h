@@ -1,7 +1,6 @@
 #ifndef COMPLEXE_H
 #define COMPLEXE_H
 
-#include "constante.h"
 #include "include.h"
 #include <QString>
 #include <QStringList>

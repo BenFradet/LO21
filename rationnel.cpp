@@ -17,6 +17,16 @@ Rationnel::operator float()const
     return (float)num/den;
 }
 
+Rationnel::operator Entier()const
+{
+    return Entier(num/den);
+}
+
+Rationnel::operator Reel()const
+{
+    return Reel((float)num/den);
+}
+
 Constante& Rationnel::operator+(const Constante& c)const//ADAPTER A FAIRE
 {
     const Rationnel* r = dynamic_cast<const Rationnel*>(&c);

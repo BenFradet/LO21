@@ -2,7 +2,6 @@
 #define EXPRESSION_H
 
 #include <string>
-#include "constante.h"
 #include "include.h"
 #include <QString>
 

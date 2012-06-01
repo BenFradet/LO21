@@ -1,10 +1,12 @@
 #ifndef RATIONNEL_H
 #define RATIONNEL_H
 
-#include "constante.h"
-#include "complexe.h"
+#include "include.h"
 #include <QString>
 #include <QStringList>
+
+class Entier;
+class Reel;
 
 class Rationnel : public Constante
 {
@@ -48,6 +50,8 @@ public:
 
     operator int()const;
     operator float()const;
+    operator Entier()const;
+    operator Reel()const;
 
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;

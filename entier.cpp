@@ -17,6 +17,16 @@ Entier::operator float()const
     return (float)value;
 }
 
+Entier::operator Reel()const
+{
+    return Reel((float)value);
+}
+
+Entier::operator Rationnel()const
+{
+    return Rationnel(value, 1);
+}
+
 void Entier::operator=(const Constante& c)
 {
     const Entier* e = dynamic_cast<const Entier*>(&c);

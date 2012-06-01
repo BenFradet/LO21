@@ -17,6 +17,24 @@ Reel::operator float()const
     return value;
 }
 
+Reel::operator Entier()const
+{
+    return Entier((int)value);
+}
+
+Reel::operator Rationnel()const
+{
+    float f = value;
+    int e = (int)f, i = 0;
+    while(f!=(float)e)
+    {
+        f*=10;
+        e = (int)f;
+        i++;
+    }
+    return Rationnel(e, (int)pow((float)10, i));
+}
+
 Constante& Reel::operator+(const Constante& c)const
 {
     const Reel* r = dynamic_cast<const Reel*>(&c);

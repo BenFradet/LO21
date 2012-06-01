@@ -35,8 +35,8 @@ Constante& Entier::operator+(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Entier res(value+(int)*e);
-        return res;
+        Entier* res = new Entier(value+(int)*e);
+        return *res;
     }
     else
     {
@@ -49,8 +49,8 @@ Constante& Entier::operator-(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Entier res(value-(int)*e);
-        return res;
+        Entier* res = new Entier(value-(int)*e);
+        return *res;
     }
     else
     {
@@ -63,8 +63,8 @@ Constante& Entier::operator*(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Entier res(value*(int)*e);
-        return res;
+        Entier* res = new Entier(value*(int)*e);
+        return *res;
     }
     else
     {
@@ -77,8 +77,8 @@ Constante& Entier::operator/(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Rationnel res(value, (int)*e);
-        return res;
+        Rationnel* res = new Rationnel(value, (int)*e);
+        return *res;
     }
     else
     {
@@ -88,8 +88,8 @@ Constante& Entier::operator/(const Constante& c)const
 
 Constante& Entier::operator-()const
 {
-    Entier e(-value);
-    return e;
+    Entier* e = new Entier(-value);
+    return *e;
 }
 
 Constante& Entier::operator^(const Constante& c)const
@@ -100,18 +100,18 @@ Constante& Entier::operator^(const Constante& c)const
 
     if(e!=0)
     {
-        Entier res((int)pow((float)value, (int)*e));
-        return res;
+        Entier* res = new Entier((int)pow((float)value, (int)*e));
+        return *res;
     }
     else if(r!=0)
     {
-        Reel res(pow(value, (float)*r));
-        return res;
+        Reel* res = new Reel(pow(value, (float)*r));
+        return *res;
     }
     else if(f!=0)
     {
-        Reel res(pow(pow((float)value, f->GetNum()), -f->GetDen()));
-        return res;
+        Reel* res = new Reel(pow(pow((float)value, f->GetNum()), -f->GetDen()));
+        return *res;
     }
     else
     {
@@ -121,46 +121,46 @@ Constante& Entier::operator^(const Constante& c)const
 
 Constante& Entier::sinus()const
 {
-    Reel res(sin((float)value));
-    return res;
+    Reel* res = new Reel(sin((float)value));
+    return *res;
 }
 
 Constante& Entier::cosinus()const
 {
-    Reel res(cos((float)value));
-    return res;
+    Reel* res = new Reel(cos((float)value));
+    return *res;
 }
 
 Constante& Entier::tangente()const
 {
-    Reel res(tan((float)value));
-    return res;
+    Reel* res = new Reel(tan((float)value));
+    return *res;
 }
 
 Constante& Entier::sinush()const
 {
-    Reel res(sinh((float)value));
-    return res;
+    Reel* res = new Reel(sinh((float)value));
+    return *res;
 }
 
 Constante& Entier::cosinush()const
 {
-    Reel res(cosh((float)value));
-    return res;
+    Reel* res = new Reel(cosh((float)value));
+    return *res;
 }
 
 Constante& Entier::tangenteh()const
 {
-    Reel res(tanh((float)value));
-    return res;
+    Reel* res = new Reel(tanh((float)value));
+    return *res;
 }
 
 Constante& Entier::logdec()const
 {
     if((int)*this>0)
     {
-        Reel res(log10((float)value));
-        return res;
+        Reel* res = new Reel(log10((float)value));
+        return *res;
     }
     else
     {
@@ -172,8 +172,8 @@ Constante& Entier::lognep()const
 {
     if((int)*this>0)
     {
-        Reel res(log((float)value));
-        return res;
+        Reel* res = new Reel(log((float)value));
+        return *res;
     }
     else
     {
@@ -185,8 +185,8 @@ Constante& Entier::inverse()const
 {
     if(value!=0)
     {
-        Reel res(1/(float)value);
-        return res;
+        Reel* res = new Reel(1/(float)value);
+        return *res;
     }
     else
         throw CalcException("L'opération d'inverse est impossible avec zéro");
@@ -197,8 +197,8 @@ Constante& Entier::operator%(const Constante& c)const
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
-        Entier res(value%(int)*e);
-        return res;
+        Entier* res = new Entier(value%(int)*e);
+        return *res;
     }
     else
     {
@@ -210,8 +210,8 @@ Constante& Entier::racine()const
 {
     if(value>=0)
     {
-        Reel res(sqrt((float)value));
-        return res;
+        Reel* res = new Reel(sqrt((float)value));
+        return *res;
     }
     else
         throw CalcException("L'opération de racine carrée nécessite une valeur positive");
@@ -219,14 +219,14 @@ Constante& Entier::racine()const
 
 Constante& Entier::carree()const
 {
-    Entier res((int)pow((float)value, 2));
-    return res;
+    Entier* res = new Entier((int)pow((float)value, 2));
+    return *res;
 }
 
 Constante& Entier::cube()const
 {
-    Entier res((int)pow((float)value, 3));
-    return res;
+    Entier* res = new Entier((int)pow((float)value, 3));
+    return *res;
 }
 
 Constante& Entier::operator!()const
@@ -236,13 +236,13 @@ Constante& Entier::operator!()const
     {
         for(int i = 1; i<e; i++)
             e *= i;
-        Entier res(e);
-        return res;
+        Entier* res = new Entier(e);
+        return *res;
     }
     else if(e==0)
     {
-        Entier res(e);
-        return res;
+        Entier* res = new Entier(e);
+        return *res;
     }
     else
     {

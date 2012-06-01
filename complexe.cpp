@@ -12,8 +12,8 @@ Constante& Complexe::operator+(const Constante& c)const
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
-        Complexe res(pRe + co->GetRe(), pIm + co->GetIm());
-        return res;
+        Complexe* res = new Complexe(pRe + co->GetRe(), pIm + co->GetIm());
+        return *res;
     }
     else
     {
@@ -26,8 +26,8 @@ Constante& Complexe::operator-(const Constante& c)const
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
-        Complexe res(pRe - co->GetRe(), pIm - co->GetIm());
-        return res;
+        Complexe* res = new Complexe(pRe - co->GetRe(), pIm - co->GetIm());
+        return *res;
     }
     else
     {
@@ -40,8 +40,8 @@ Constante& Complexe::operator*(const Constante& c)const
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
-        Complexe res(pRe*co->GetRe()-pIm*co->GetIm(), pRe*co->GetIm()+pIm*co->GetRe());
-        return res;
+        Complexe* res = new Complexe(pRe*co->GetRe()-pIm*co->GetIm(), pRe*co->GetIm()+pIm*co->GetRe());
+        return *res;
     }
     else
     {
@@ -54,8 +54,8 @@ Constante& Complexe::operator/(const Constante& c)const
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
-        Entier e(0);
-        return e;
+        Entier* e = new Entier(0);
+        return *e;
     }
     else
     {
@@ -65,20 +65,20 @@ Constante& Complexe::operator/(const Constante& c)const
 
 Constante& Complexe::operator-()const
 {
-    Complexe c(pRe - Entier(2)*pRe, pIm-Entier(2)*pIm);
-    return c;
+    Complexe* c = new Complexe(pRe - Entier(2)*pRe, pIm-Entier(2)*pIm);
+    return *c;
 }
 
 Constante& Complexe::carree()const
 {
-    Entier e(0);//à implémenter
-    return e;
+    Entier* e = new Entier(0);//à implémenter
+    return *e;
 }
 
 Constante& Complexe::cube()const
 {
-    Entier e(0);//à implémenter
-    return e;
+    Entier* e = new Entier(0);//à implémenter
+    return *e;
 }
 
 QString Complexe::ToQString()

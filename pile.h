@@ -6,10 +6,13 @@
 #include "complexe.h"
 #include "rationnel.h"
 #include "reel.h"
+#include <string>
 #include <QAbstractListModel>
 #include <typeinfo>
 #include <QVariant>
 #include <QList>
+
+using namespace std;
 
 class Memento
 {
@@ -31,6 +34,8 @@ class Pile: public QAbstractListModel
     int taille;
     int sommet;
     Constante** tabElmt;
+
+    string mode;
 
     static Pile* instance;
     Pile(int dim);
@@ -62,7 +67,7 @@ public:
     void Dup();//duplique le dernier élément
     void Drop();//supprime le dernier élément
 
-    Constante& Plus();//test sur les sommets et les types à faire
+    void Plus();//test sur les sommets et les types à faire
     Constante& Moins();
     Constante& Multiplier();
     Constante& Diviser();

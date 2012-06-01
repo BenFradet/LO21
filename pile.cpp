@@ -85,14 +85,13 @@ void Pile::Drop()
         sommet--;
 }
 
-Constante& Pile::Plus()
+void Pile::Plus()
 {
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
-        Constante& c = *a + *b;
-        return c;
+        //Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
@@ -498,7 +497,7 @@ void Pile::Parser(QString s)
 
 
         else if(elements[i] == "+")//besoin du mode
-            Plus();
+            Plus();//besoin du mode
 
         else if(elements[i] == "-")
             Moins();

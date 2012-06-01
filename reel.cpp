@@ -22,8 +22,8 @@ Constante& Reel::operator+(const Constante& c)const
     const Reel* r = dynamic_cast<const Reel*>(&c);
     if(r!=0)
     {
-        Reel res((float)*r + value);
-        return res;
+        Reel* res = new Reel((float)*r + value);
+        return *res;
     }
     else
     {
@@ -36,8 +36,8 @@ Constante& Reel::operator-(const Constante& c)const
     const Reel* r = dynamic_cast<const Reel*>(&c);
     if(r!=0)
     {
-        Reel res(value - (float)*r);
-        return res;
+        Reel* res = new Reel(value - (float)*r);
+        return *res;
     }
     else
     {
@@ -50,8 +50,8 @@ Constante& Reel::operator*(const Constante& c)const
     const Reel* r = dynamic_cast<const Reel*>(&c);
     if(r!=0)
     {
-        Reel res(value * (float)*r);
-        return res;
+        Reel* res = new Reel(value * (float)*r);
+        return *res;
     }
     else
     {
@@ -64,8 +64,8 @@ Constante& Reel::operator/(const Constante& c)const
     const Reel* r = dynamic_cast<const Reel*>(&c);
     if(r!=0)
     {
-        Reel res(value / (float)*r);
-        return res;
+        Reel* res = new Reel(value / (float)*r);
+        return *res;
     }
     else
     {
@@ -75,8 +75,8 @@ Constante& Reel::operator/(const Constante& c)const
 
 Constante& Reel::operator-()const
 {
-    Reel r(-value);
-    return r;
+    Reel* r = new Reel(-value);
+    return *r;
 }
 
 Constante& Reel::operator^(const Constante& c)const
@@ -87,18 +87,18 @@ Constante& Reel::operator^(const Constante& c)const
 
     if(e!=0)
     {
-        Reel res(pow(value, (int)*e));
-        return res;
+        Reel *res = new Reel(pow(value, (int)*e));
+        return *res;
     }
     else if(r!=0)
     {
-        Reel res(pow(value, (float)*r));
-        return res;
+        Reel* res = new Reel(pow(value, (float)*r));
+        return *res;
     }
     else if(f!=0)
     {
-        Reel res(pow(pow(value, f->GetNum()), -f->GetDen()));
-        return res;
+        Reel* res = new Reel(pow(pow(value, f->GetNum()), -f->GetDen()));
+        return *res;
     }
     else
     {
@@ -108,46 +108,46 @@ Constante& Reel::operator^(const Constante& c)const
 
 Constante& Reel::sinus()const
 {
-    Reel res(sin(value));
-    return res;
+    Reel* res = new Reel(sin(value));
+    return *res;
 }
 
 Constante& Reel::cosinus()const
 {
-    Reel res(cos(value));
-    return res;
+    Reel* res = new Reel(cos(value));
+    return *res;
 }
 
 Constante& Reel::tangente()const
 {
-    Reel res(tan(value));
-    return res;
+    Reel* res = new Reel(tan(value));
+    return *res;
 }
 
 Constante& Reel::sinush()const
 {
-    Reel res(sinh(value));
-    return res;
+    Reel* res = new Reel(sinh(value));
+    return *res;
 }
 
 Constante& Reel::cosinush()const
 {
-    Reel res(cosh(value));
-    return res;
+    Reel* res = new Reel(cosh(value));
+    return *res;
 }
 
 Constante& Reel::tangenteh()const
 {
-    Reel res(tanh(value));
-    return res;
+    Reel* res = new Reel(tanh(value));
+    return *res;
 }
 
 Constante& Reel::logdec()const
 {
     if(value>0)
     {
-        Reel res(log10(value));
-        return res;
+        Reel* res = new Reel(log10(value));
+        return *res;
     }
     else
     {
@@ -159,8 +159,8 @@ Constante& Reel::lognep()const
 {
     if(value>0)
     {
-        Reel res(log(value));
-        return res;
+        Reel* res = new Reel(log(value));
+        return *res;
     }
     else
     {
@@ -172,8 +172,8 @@ Constante& Reel::inverse()const
 {
     if(value!=0)
     {
-        Reel res(1/value);
-        return res;
+        Reel* res = new Reel(1/value);
+        return *res;
     }
     else
         throw CalcException("L'opération d'inverse est impossible avec zéro");
@@ -183,8 +183,8 @@ Constante& Reel::racine()const
 {
     if(value>=0)
     {
-        Reel res(sqrt(value));
-        return res;
+        Reel* res = new Reel(sqrt(value));
+        return *res;
     }
     else
         throw CalcException("L'opération de racine carrée nécessite une valeur positive");
@@ -192,14 +192,14 @@ Constante& Reel::racine()const
 
 Constante& Reel::carree()const
 {
-    Reel res(pow(value,2));
-    return res;
+    Reel* res = new Reel(pow(value,2));
+    return *res;
 }
 
 Constante& Reel::cube()const
 {
-    Reel res(pow(value,3));
-    return res;
+    Reel* res = new Reel(pow(value,3));
+    return *res;
 }
 
 QString Reel::ToQString()

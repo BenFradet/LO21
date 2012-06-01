@@ -43,25 +43,25 @@ public:
     void Drop();//supprime le dernier élément
 
     Constante& Plus();//test sur les sommets et les types à faire
-    void Moins();
-    void Multiplier();
-    void Diviser();
-    void Puissance();
-    void Modulo();
-    void Signe();
-    void Sinus();
-    void Cosinus();
-    void Tangente();
-    void Sinush();
-    void Cosinush();
-    void Tangenteh();
-    void LogaNep();
-    void LogaDec();
-    void Inverse();
-    void Racine();
-    void Carree();
-    void Cube();
-    void Factorielle();
+    Constante& Moins();
+    Constante& Multiplier();
+    Constante& Diviser();
+    Constante& Puissance();
+    Constante& Modulo();
+    Constante& Signe();
+    Constante& Sinus();
+    Constante& Cosinus();
+    Constante& Tangente();
+    Constante& Sinush();
+    Constante& Cosinush();
+    Constante& Tangenteh();
+    Constante& LogaNep();
+    Constante& LogaDec();
+    Constante& Inverse();
+    Constante& Racine();
+    Constante& Carree();
+    Constante& Cube();
+    Constante& Factorielle();
 
     void Parser (QString s); // découpe un QString en Constantes ou opérateur et les empile
 

@@ -91,55 +91,59 @@ Constante& Pile::Plus()
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Moins()
+Constante& Pile::Moins()
 {
     if(sommet>=2)
     {
+        Constante* a = this->Depiler();
+        Constante* b = this->Depiler();
+        Constante& c = *a + *b;
+        return c;
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Multiplier()
+Constante& Pile::Multiplier()
 {
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         Constante& c = *a * *b;
-        this->Empiler(&c);
+        return c;
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Diviser()
+Constante& Pile::Diviser()
 {
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         Constante& c = *a * *b;
-        this->Empiler(&c);
+        return c;
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Puissance()
+Constante& Pile::Puissance()
 {
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         Constante& c = *a ^ *b;
-        this->Empiler(&c);
+        return c;
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Modulo()
+Constante& Pile::Modulo()
 {
     if(sommet>=2)
     {
@@ -150,7 +154,7 @@ void Pile::Modulo()
         if(e1 != NULL && e2 != NULL)
         {
             Constante& res = *e1 % *e2;
-            this->Empiler(&res);
+            return res;
         }
         else
             throw CalcException("Cette opération nécessite deux entiers");
@@ -159,163 +163,163 @@ void Pile::Modulo()
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Signe()
+Constante& Pile::Signe()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         Constante& res = -(*a);
-        this->Empiler(&res);
+        return res;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Sinus()
+Constante& Pile::Sinus()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->sinus();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Cosinus()
+Constante& Pile::Cosinus()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->cosinus();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Tangente()
+Constante& Pile::Tangente()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->tangente();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Sinush()
+Constante& Pile::Sinush()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->sinush();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Cosinush()
+Constante& Pile::Cosinush()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->cosinush();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Tangenteh()
+Constante& Pile::Tangenteh()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->tangenteh();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::LogaNep()
+Constante& Pile::LogaNep()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->lognep();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::LogaDec()
+Constante& Pile::LogaDec()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->logdec();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Inverse()
+Constante& Pile::Inverse()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->inverse();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Racine()
+Constante Pile::Racine()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->racine();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Carree()
+Constante& Pile::Carree()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->carree();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Cube()
+Constante& Pile::Cube()
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         a->cube();
-        this->Empiler(a);
+        return *a;
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Factorielle()
+Constante& Pile::Factorielle()
 {
     if(sommet>=1)
     {
@@ -324,7 +328,7 @@ void Pile::Factorielle()
         if(e!=0)
         {
             Constante& res = !*e;
-            this->Empiler(&res);
+            return res;
         }
         else
             throw CalcException("Cette opération nécessite un entier");

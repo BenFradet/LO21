@@ -3,6 +3,63 @@
 #include "QRegExp"
 #include "QString"
 
+/*Mementos* Mementos::instance = 0;
+
+Mementos& Mementos::getInstance(int dim)
+{
+    if(instance == 0)
+        instance = new Mementos(dim);
+    return *instance;
+}
+
+void Mementos::releaseInstance()
+{
+    if(instance != 0)
+        delete instance;
+    instance = 0;
+}*/
+
+Mementos::Mementos(int dim)
+{
+    taille = dim;
+    sommet = 0;
+    mementos = new Memento*[taille]();
+}
+
+Mementos::~Mementos()
+{
+    delete[] mementos;
+}
+
+void Mementos::Empiler(Memento* m)
+{
+    if(sommet == taille)
+        throw CalcException("Pile pleine");
+    else
+        mementos[sommet++] = m;
+}
+
+Memento* Mementos::Depiler()
+{
+    if(sommet == 0)
+        throw CalcException("Pile vide");
+    else
+        return mementos[--sommet];
+}
+
+Memento* Mementos::Tete()const
+{
+    if(sommet == 0)
+        throw CalcException("Pile vide");
+    else
+        return mementos[sommet-1];
+}
+
+void Mementos::Clear()
+{
+    sommet = 0;
+}
+
 Pile* Pile::instance = 0;
 
 Pile& Pile::getInstance(int dim)
@@ -19,11 +76,18 @@ void Pile::releaseInstance()
     instance = 0;
 }
 
-void Pile::reinstateMemento(Memento* mem)//a voir si ça marche avec le tabElmt
+void Pile::createMemento()const
 {
-    taille = mem->taille;
-    sommet = mem->taille;
-    tabElmt = mem->tabElmt;
+    Memento* m = new Memento(taille, sommet, tabElmt);
+    mem->Empiler(m);
+}
+
+void Pile::reinstateMemento()//a voir si ça marche avec le tabElmt
+{
+    Memento* m = mem->Depiler();
+    taille = m->taille;
+    sommet = m->sommet;
+    tabElmt = m->tabElmt;
 }
 
 Pile::Pile(int dim)
@@ -31,10 +95,13 @@ Pile::Pile(int dim)
     taille = dim;
     sommet = 0;
     tabElmt = new Constante*[taille]();
+    mem = new Mementos(dim);
 }
 
 Pile::~Pile()
 {
+    delete[] tabElmt;
+    delete mem;
 }
 
 void Pile::Empiler(Constante* c)
@@ -92,12 +159,18 @@ void Pile::Plus(QString mode)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
+        createMemento();
         Constante& tmp = *a + *b;
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
+}
+
+void Pile::Annuler()
+{
+    reinstateMemento();
 }
 
 void Pile::Moins(QString mode)
@@ -107,6 +180,7 @@ void Pile::Moins(QString mode)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
+        createMemento();
         Constante& tmp = *a - *b;
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
@@ -122,6 +196,7 @@ void Pile::Multiplier(QString mode)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
+        createMemento();
         Constante& tmp = *a * *b;
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
@@ -137,6 +212,7 @@ void Pile::Diviser(QString mode)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
+        createMemento();
         Constante& tmp = *a / *b;
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
@@ -152,6 +228,7 @@ void Pile::Puissance(QString mode)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
+        createMemento();
         Constante& tmp = *a ^ *b;
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
@@ -170,6 +247,7 @@ void Pile::Modulo(QString mode)
         const Entier* e2 = dynamic_cast<const Entier*>(b);
         if(e1 != NULL && e2 != NULL && mode == "Entier")
         {
+            createMemento();
             Constante* c = new Entier(*a % *b);
             Empiler(c);
         }
@@ -186,6 +264,7 @@ void Pile::Signe(QString mode)
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante& tmp = -*a;
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
@@ -199,6 +278,7 @@ void Pile::Sinus()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante* res = new Reel(a->sinus());
         Empiler(res);
     }
@@ -211,6 +291,7 @@ void Pile::Cosinus()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante* res = new Reel(a->cosinus());
         Empiler(res);
     }
@@ -223,6 +304,7 @@ void Pile::Tangente()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante* res = new Reel(a->tangente());
         Empiler(res);
     }
@@ -235,6 +317,7 @@ void Pile::Sinush()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante* res = new Reel(a->sinush());
         Empiler(res);
     }
@@ -247,6 +330,7 @@ void Pile::Cosinush()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante* res = new Reel(a->cosinush());
         Empiler(res);
     }
@@ -259,6 +343,7 @@ void Pile::Tangenteh()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante* res = new Reel(a->tangenteh());
         Empiler(res);
     }
@@ -271,6 +356,7 @@ void Pile::LogaNep()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante* res = new Reel(a->lognep());
         Empiler(res);
     }
@@ -283,6 +369,7 @@ void Pile::LogaDec()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante* res = new Reel(a->logdec());
         Empiler(res);
     }
@@ -295,7 +382,8 @@ void Pile::Inverse(QString mode)
     ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
     {
-        Constante* a = this->Depiler();
+        Constante* a = this->Depiler();        
+        createMemento();
         Constante& tmp = a->inverse();
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
@@ -309,6 +397,7 @@ void Pile::Racine()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante* res = new Reel(a->racine());
         Empiler(res);
     }
@@ -322,6 +411,7 @@ void Pile::Carree(QString mode)
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante& tmp = a->carree();
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
@@ -336,6 +426,7 @@ void Pile::Cube(QString mode)
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
+        createMemento();
         Constante& tmp = a->cube();
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
@@ -352,6 +443,7 @@ void Pile::Factorielle(QString mode)
         const Entier* e = dynamic_cast<const Entier*>(a);
         if(e!=0 && mode == "Entier")
         {
+            createMemento();
             Constante* res = new Entier(!(Entier)*a);
             Empiler(res);
         }
@@ -366,6 +458,7 @@ void Pile::Swap(int x, int y)
 {
     if(sommet>x && sommet>y)
     {
+        createMemento();
         Constante* tmp;
         tmp = tabElmt[x];
         tabElmt[x] = tabElmt[y];
@@ -379,6 +472,7 @@ Constante& Pile::Sum(int x)
 {
     if(x<sommet)
     {
+        createMemento();
         Constante* sum;
         sum = tabElmt[sommet];
         const Entier* e = dynamic_cast<const Entier*>(sum);
@@ -440,6 +534,7 @@ Constante& Pile::Sum(int x)
 
 Constante& Pile::Mean(int x)
 {
+    createMemento();
     Constante& mean = Sum(x);
     const Entier* e = dynamic_cast<const Entier*>(&mean);
     const Reel* r = dynamic_cast<const Reel*>(&mean);

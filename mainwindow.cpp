@@ -373,7 +373,8 @@ void MainWindow::btnDROPpressed()
 
 void MainWindow::btnAnnulerpressed()
 {
-    ui->le_entree->setText(ui->le_entree->text().append("Annuler"));
+    p->Annuler();
+    //ui->le_entree->setText(ui->le_entree->text().append("Annuler"));
 }
 
 void MainWindow::affichage_scientifique()

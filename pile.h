@@ -8,7 +8,6 @@
 #include <QVariant>
 #include <QList>
 
-using namespace std;
 
 class Memento
 {
@@ -25,13 +24,41 @@ public:
     }
 };
 
+class Mementos
+{
+    int taille;
+    int sommet;
+    Memento** mementos;
+    friend class Pile;
+
+    /*static Mementos* instance;
+    Mementos(int dim);
+    ~Mementos();
+    Mementos& operator=(const Mementos& m)
+    {
+        return *this;
+    }*/
+
+public:
+    /*static Mementos& getInstance(int dim);
+    static void releaseInstance();*/
+
+    Mementos(int dim);
+    ~Mementos();
+
+    void Empiler(Memento* m);
+    Memento* Depiler();
+    Memento* Tete()const;
+    void Clear();
+};
+
 class Pile: public QAbstractListModel
 {
     int taille;
     int sommet;
     Constante** tabElmt;
 
-    string mode;
+    Mementos* mem;
 
     static Pile* instance;
     Pile(int dim);
@@ -43,27 +70,24 @@ class Pile: public QAbstractListModel
 
 public:
     static Pile& getInstance(int dim);
-    static void releaseInstance();    
+    static void releaseInstance();
 
-    Memento* createMemento()const
-    {
-        return new Memento(taille, sommet, tabElmt);
-    }
-    void reinstateMemento(Memento* mem);
+    void createMemento()const;
+    void reinstateMemento();
 
     void Empiler(Constante* c);
     Constante* Depiler();
     Constante* Tete()const;
 
     void Swap(int x, int y);
-    Constante& Sum(int x);//somme des x premiers éléments (N, Q, R, C)         TEMPLATE METHOD
-    Constante& Mean(int x);//moyenne des x premiers éléments (N, Q, R, C)
+    Constante& Sum(int x);
+    Constante& Mean(int x);
 
     void Clear();
     void Dup();//duplique le dernier élément
     void Drop();//supprime le dernier élément
 
-    void Plus(QString mode);//test sur les sommets et les types à faire
+    void Plus(QString mode);
     void Moins(QString mode);
     void Multiplier(QString mode);
     void Diviser(QString mode);
@@ -83,6 +107,8 @@ public:
     void Carree(QString mode);
     void Cube(QString mode);
     void Factorielle(QString mode);
+
+    void Annuler();
 
     void Parser (QString s); // découpe un QString en Constantes ou opérateur et les empile
 

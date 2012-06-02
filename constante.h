@@ -8,9 +8,12 @@ class Constante
 {
 public:
     Constante(){}
+
     virtual Constante& GetVal()const = 0;
+
     virtual operator int()const;
     virtual operator float()const;
+
     virtual void operator=(const Constante& c);
     virtual Constante& operator+(const Constante& c)const;
     virtual Constante& operator-(const Constante& c)const;

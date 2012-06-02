@@ -195,7 +195,7 @@ Constante& Entier::inverse()const
 {
     if(value!=0)
     {
-        Reel* res = new Reel(1/(float)value);
+        Rationnel* res = new Rationnel(1, value);
         return *res;
     }
     else

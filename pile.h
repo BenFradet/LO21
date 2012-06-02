@@ -1,6 +1,7 @@
 #ifndef PILE_H
 #define PILE_H
 #include "include.h"
+#include "constantefactory.h"
 #include <string>
 #include <QAbstractListModel>
 #include <typeinfo>
@@ -62,13 +63,13 @@ public:
     void Dup();//duplique le dernier élément
     void Drop();//supprime le dernier élément
 
-    void Plus();//test sur les sommets et les types à faire
-    void Moins();
-    void Multiplier();
-    void Diviser();
-    void Puissance();
-    void Modulo();
-    void Signe();
+    void Plus(QString mode);//test sur les sommets et les types à faire
+    void Moins(QString mode);
+    void Multiplier(QString mode);
+    void Diviser(QString mode);
+    void Puissance(QString mode);
+    void Modulo(QString mode);
+    void Signe(QString mode);
     void Sinus();
     void Cosinus();
     void Tangente();
@@ -77,11 +78,11 @@ public:
     void Tangenteh();
     void LogaNep();
     void LogaDec();
-    void Inverse();
+    void Inverse(QString mode);
     void Racine();
-    void Carree();
-    void Cube();
-    void Factorielle();
+    void Carree(QString mode);
+    void Cube(QString mode);
+    void Factorielle(QString mode);
 
     void Parser (QString s); // découpe un QString en Constantes ou opérateur et les empile
 

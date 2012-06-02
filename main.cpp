@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
         pile.Empiler(&k);
         pile.Empiler(&t);
         pile.Empiler(&l);
-        pile.Plus();//besoin du mode
+        pile.Plus("Entier");//besoin du mode
 
         MainWindow w(&pile, 0);
 

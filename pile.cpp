@@ -85,72 +85,82 @@ void Pile::Drop()
         sommet--;
 }
 
-void Pile::Plus()
+void Pile::Plus(QString mode)
 {
+    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
-        Constante* c = new Entier(*a + *b);
+        Constante& tmp = *a + *b;
+        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Moins()
+void Pile::Moins(QString mode)
 {
+    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
-        Constante* c = new Entier(*a - *b);
+        Constante& tmp = *a - *b;
+        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Multiplier()
+void Pile::Multiplier(QString mode)
 {
+    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
-        Constante* c = new Entier(*a * *b);
+        Constante& tmp = *a * *b;
+        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Diviser()
+void Pile::Diviser(QString mode)
 {
+    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
-        Constante* c = new Reel(*a / *b);
+        Constante& tmp = *a / *b;
+        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Puissance()
+void Pile::Puissance(QString mode)
 {
+    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
-        Constante* c = new Entier(*a ^ *b);
+        Constante& tmp = *a ^ *b;
+        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Modulo()
+void Pile::Modulo(QString mode)
 {
     if(sommet>=2)
     {
@@ -158,7 +168,7 @@ void Pile::Modulo()
         Constante* b = this->Depiler();
         const Entier* e1 = dynamic_cast<const Entier*>(a);
         const Entier* e2 = dynamic_cast<const Entier*>(b);
-        if(e1 != NULL && e2 != NULL)
+        if(e1 != NULL && e2 != NULL && mode == "Entier")
         {
             Constante* c = new Entier(*a % *b);
             Empiler(c);
@@ -170,13 +180,15 @@ void Pile::Modulo()
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Signe()
+void Pile::Signe(QString mode)
 {
+    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Constante* res = new Entier(-*a);
-        Empiler(res);
+        Constante& tmp = -*a;
+        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+        Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -278,13 +290,15 @@ void Pile::LogaDec()
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Inverse()
+void Pile::Inverse(QString mode)
 {
+    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Constante* res = new Reel(a->inverse());
-        Empiler(res);
+        Constante& tmp = a->inverse();
+        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+        Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -302,37 +316,41 @@ void Pile::Racine()
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Carree()
+void Pile::Carree(QString mode)
 {
+    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Constante* res = new Reel(a->carree());
-        Empiler(res);
+        Constante& tmp = a->carree();
+        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+        Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Cube()
+void Pile::Cube(QString mode)
 {
+    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Constante* res = new Reel(a->cube());
-        Empiler(res);
+        Constante& tmp = a->cube();
+        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+        Empiler(c);
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Factorielle()
+void Pile::Factorielle(QString mode)
 {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
         const Entier* e = dynamic_cast<const Entier*>(a);
-        if(e!=0)
+        if(e!=0 && mode == "Entier")
         {
             Constante* res = new Entier(!(Entier)*a);
             Empiler(res);
@@ -498,22 +516,22 @@ void Pile::Parser(QString s)
 
 
         else if(elements[i] == "+")//besoin du mode
-            Plus();//besoin du mode
+             Plus("Entier");//besoin du mode
 
         else if(elements[i] == "-")
-            Moins();
+            Moins("Entier");
 
         else if(elements[i] == "*")
-            Multiplier();
+            Multiplier("Entier");
 
         else if(elements[i] == "POW")
-            Puissance();
+            Puissance("Entier");
 
          else if(elements[i] == "MOD")
-             Modulo();
+             Modulo("Entier");
 
          else if(elements[i] == "SIGN")
-            Signe();
+            Signe("Entier");
 
          else if(elements[i] == "SIN")
              Sinus();
@@ -540,26 +558,18 @@ void Pile::Parser(QString s)
              LogaNep();
 
          else if(elements[i] == "INV")
-             Inverse();
+             Inverse("Entier");
 
          else if(elements[i] == "SQRT")
              Racine();
 
          else if(elements[i] == "SQR")
-             Carree();
+             Carree("Entier");
 
          else if(elements[i] == "CUBE")
-             Cube();
+             Cube("Entier");
 
          else if(elements[i] == "!")
-             Factorielle();
-
-
-
-
+             Factorielle("Entier");
     }
-
-
-
-
 }

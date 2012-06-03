@@ -15,10 +15,14 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(Pile *P, QWidget *parent = 0);
     ~MainWindow();
+    static QString getMode() {return mode;}
+    static void setMode(QString s) { mode = s;}
     
 private:
     Ui::MainWindow *ui;
     Pile* p;
+    static QString mode;
+
 
 private slots:
 
@@ -69,7 +73,14 @@ private slots:
     void affichage_standard();
     void btnAnnulerpressed();
     void btnRetablirpressed();
+    void MODE_COMPLEXES();
+    void MODE_REELS();
+    void MODE_RATIONNELS();
+    void MODE_ENTIERS();
     void envoi_pile();
+
+    void btnRAZpressed();
+    void btnPLUSpressed();
 };
 
 #endif // MAINWINDOW_H

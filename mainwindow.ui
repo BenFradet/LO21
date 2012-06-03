@@ -362,7 +362,7 @@
         <string>$</string>
        </property>
        <property name="shortcut">
-        <string>Enter</string>
+        <string>$</string>
        </property>
       </widget>
      </item>
@@ -541,14 +541,17 @@
    <widget class="QPushButton" name="btnSENDSTACK">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>110</x>
       <y>270</y>
-      <width>371</width>
+      <width>301</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Envoyer dans la pile</string>
+    </property>
+    <property name="shortcut">
+     <string>Enter</string>
     </property>
    </widget>
    <widget class="QListView" name="listView">
@@ -733,6 +736,19 @@
      <string>Pile</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnRAZ">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>270</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RAZ</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -803,21 +819,42 @@
    </property>
   </action>
   <action name="action_Entiers">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>&amp;Entiers</string>
    </property>
   </action>
   <action name="action_Rationnels">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>&amp;Rationnels</string>
    </property>
   </action>
   <action name="action_Reels">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>&amp;Réels</string>
    </property>
   </action>
   <action name="action_Complexes">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Complexes</string>
    </property>

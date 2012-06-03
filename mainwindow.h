@@ -68,9 +68,8 @@ private slots:
     void affichage_scientifique();
     void affichage_standard();
     void btnAnnulerpressed();
+    void btnRetablirpressed();
     void envoi_pile();
-
-
 };
 
 #endif // MAINWINDOW_H

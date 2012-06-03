@@ -76,32 +76,20 @@ void Pile::releaseInstance()
     instance = 0;
 }
 
-void Pile::createMemento()const
-{
-    Memento* m = new Memento(taille, sommet, tabElmt);
-    mem->Empiler(m);
-}
-
-void Pile::reinstateMemento()//a voir si ça marche avec le tabElmt
-{
-    Memento* m = mem->Depiler();
-    taille = m->taille;
-    sommet = m->sommet;
-    tabElmt = m->tabElmt;
-}
-
 Pile::Pile(int dim)
 {
     taille = dim;
     sommet = 0;
     tabElmt = new Constante*[taille]();
-    mem = new Mementos(dim);
+    undos = new Mementos(dim);
+    redos = new Mementos(dim);
 }
 
 Pile::~Pile()
 {
     delete[] tabElmt;
-    delete mem;
+    delete undos;
+    delete redos;
 }
 
 void Pile::Empiler(Constante* c)
@@ -152,6 +140,35 @@ void Pile::Drop()
         sommet--;
 }
 
+void Pile::createMemento()const
+{
+    Memento* m = new Memento(taille, sommet, tabElmt);
+    undos->Empiler(m);
+}
+
+void Pile::retrieveMemento()const
+{
+    Memento* m = new Memento(taille, sommet, tabElmt);
+    redos->Empiler(m);
+}
+
+void Pile::Annuler()
+{
+    Memento* m = undos->Depiler();
+    retrieveMemento();
+    taille = m->taille;
+    sommet = m->sommet;
+    tabElmt = m->tabElmt;
+}
+
+void Pile::Retablir()
+{
+    Memento* m = redos->Depiler();
+    taille = m->taille;
+    sommet = m->sommet;
+    tabElmt = m->tabElmt;
+}
+
 void Pile::Plus(QString mode)
 {
     ConstanteFactory* factory = new ConstanteFactory();
@@ -166,11 +183,6 @@ void Pile::Plus(QString mode)
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
-}
-
-void Pile::Annuler()
-{
-    reinstateMemento();
 }
 
 void Pile::Moins(QString mode)

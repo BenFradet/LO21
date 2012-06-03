@@ -78,8 +78,8 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QObject::connect(ui->btnPOW, SIGNAL (clicked()), this, SLOT(btnPOWpressed()));
     QObject::connect(ui->btnMOD, SIGNAL (clicked()), this, SLOT(btnMODpressed()));
 
-
     QObject::connect(ui->btnAnnuler, SIGNAL(clicked()), this, SLOT(btnAnnulerpressed()));
+    QObject::connect(ui->btnRetablir, SIGNAL(clicked()), this, SLOT(btnRetablirpressed()));
     QObject::connect(ui->actionScientifique, SIGNAL(triggered()), this, SLOT(affichage_scientifique()));
     QObject::connect(ui->actionStandard, SIGNAL(triggered()), this, SLOT(affichage_standard()));
     QObject::connect(ui->btnSENDSTACK, SIGNAL (clicked()), this, SLOT(envoi_pile()));
@@ -91,17 +91,11 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QObject::connect(ui->btnDROP, SIGNAL (clicked()), this, SLOT(btnDROPpressed()));
     QObject::connect(ui->btnPOINT, SIGNAL (clicked()), this, SLOT(btnPOINTpressed()));
 
-
-
     ui->arg1_SWAP->setText("1");
     ui->arg2_SWAP->setText("1");
     ui->arg_SUM->setText("1");
     ui->arg_MEAN->setText("1");
     ui->listView->setModel(p);
-
-
-
-
 }
 
 MainWindow::~MainWindow()
@@ -354,35 +348,22 @@ void MainWindow::btnDROPpressed()
    ui->listView->reset();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void MainWindow::btnAnnulerpressed()
 {
     p->Annuler();
-    //ui->le_entree->setText(ui->le_entree->text().append("Annuler"));
+    ui->le_entree->setText(ui->le_entree->text().append("Annuler"));
+}
+
+void MainWindow::btnRetablirpressed()
+{
+    p->Retablir();
+    ui->le_entree->setText(ui->le_entree->text().append("Retablir"));
 }
 
 void MainWindow::affichage_scientifique()
 {
-
-
     if (ui->actionScientifique->isChecked() == true)
-{
+    {
     ui->actionStandard->setCheckable(true);
     ui->actionStandard->setChecked(false);
     ui->actionStandard->setEnabled(true);
@@ -391,8 +372,6 @@ void MainWindow::affichage_scientifique()
 
     MainWindow::setMinimumHeight(500);
     MainWindow::setMinimumWidth(916);
-
-
 
     ui->btnCOS->setDisabled(false);
     ui->btnCOS->setHidden(false);
@@ -421,65 +400,52 @@ void MainWindow::affichage_scientifique()
     ui->btnLOG->setDisabled(false);
     ui->btnLOG->setHidden(false);
     }
-
 }
 
 void MainWindow::affichage_standard()
 {
     {
         if (ui->actionStandard->isChecked() == true)
-    {
+        {
+            ui->actionScientifique->setCheckable(true);
+            ui->actionScientifique->setChecked(false);
+            ui->actionScientifique->setEnabled(true);
+            ui->actionStandard->setChecked(true);
+            ui->actionStandard->setDisabled(true);
+            MainWindow::setMinimumHeight(370);
+            MainWindow::setMinimumWidth(916);
 
-        ui->actionScientifique->setCheckable(true);
-        ui->actionScientifique->setChecked(false);
-        ui->actionScientifique->setEnabled(true);
-        ui->actionStandard->setChecked(true);
-        ui->actionStandard->setDisabled(true);
-        MainWindow::setMinimumHeight(370);
-        MainWindow::setMinimumWidth(916);
+            MainWindow::setGeometry(geometry().left(),geometry().top(), 916, 370);
 
-        MainWindow::setGeometry(geometry().left(),geometry().top(), 916, 370);
-
-
-
-        ui->btnCOS->setDisabled(true);
-        ui->btnCOS->setHidden(true);
-        ui->btnSIN->setDisabled(true);
-        ui->btnSIN->setHidden(true);
-        ui->btnTAN->setDisabled(true);
-        ui->btnTAN->setHidden(true);
-        ui->btnCOSH->setDisabled(true);
-        ui->btnCOSH->setHidden(true);
-        ui->btnSINH->setDisabled(true);
-        ui->btnSINH->setHidden(true);
-        ui->btnTANH->setDisabled(true);
-        ui->btnTANH->setHidden(true);
-        ui->btnINV->setDisabled(true);
-        ui->btnINV->setHidden(true);
-        ui->btnCUBE->setDisabled(true);
-        ui->btnCUBE->setHidden(true);
-        ui->btnSQR->setDisabled(true);
-        ui->btnSQR->setHidden(true);
-        ui->btnSQRT->setDisabled(true);
-        ui->btnSQRT->setHidden(true);
-        ui->btnFACTO->setDisabled(true);
-        ui->btnFACTO->setHidden(true);
-        ui->btnLN->setDisabled(true);
-        ui->btnLN->setHidden(true);
-        ui->btnLOG->setDisabled(true);
-        ui->btnLOG->setHidden(true);
+            ui->btnCOS->setDisabled(true);
+            ui->btnCOS->setHidden(true);
+            ui->btnSIN->setDisabled(true);
+            ui->btnSIN->setHidden(true);
+            ui->btnTAN->setDisabled(true);
+            ui->btnTAN->setHidden(true);
+            ui->btnCOSH->setDisabled(true);
+            ui->btnCOSH->setHidden(true);
+            ui->btnSINH->setDisabled(true);
+            ui->btnSINH->setHidden(true);
+            ui->btnTANH->setDisabled(true);
+            ui->btnTANH->setHidden(true);
+            ui->btnINV->setDisabled(true);
+            ui->btnINV->setHidden(true);
+            ui->btnCUBE->setDisabled(true);
+            ui->btnCUBE->setHidden(true);
+            ui->btnSQR->setDisabled(true);
+            ui->btnSQR->setHidden(true);
+            ui->btnSQRT->setDisabled(true);
+            ui->btnSQRT->setHidden(true);
+            ui->btnFACTO->setDisabled(true);
+            ui->btnFACTO->setHidden(true);
+            ui->btnLN->setDisabled(true);
+            ui->btnLN->setHidden(true);
+            ui->btnLOG->setDisabled(true);
+            ui->btnLOG->setHidden(true);
         }
-
     }
-
 }
-
-
-
-
-
-
-
 
 void MainWindow::envoi_pile()
 {
@@ -491,4 +457,3 @@ void MainWindow::envoi_pile()
 
  //   p->emitLayoutChanged();
 }
-

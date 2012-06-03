@@ -58,7 +58,8 @@ class Pile: public QAbstractListModel
     int sommet;
     Constante** tabElmt;
 
-    Mementos* mem;
+    Mementos* undos;
+    Mementos* redos;
 
     static Pile* instance;
     Pile(int dim);
@@ -73,7 +74,7 @@ public:
     static void releaseInstance();
 
     void createMemento()const;
-    void reinstateMemento();
+    void retrieveMemento()const;
 
     void Empiler(Constante* c);
     Constante* Depiler();
@@ -109,6 +110,7 @@ public:
     void Factorielle(QString mode);
 
     void Annuler();
+    void Retablir();
 
     void Parser (QString s); // découpe un QString en Constantes ou opérateur et les empile
 

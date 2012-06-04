@@ -3,21 +3,36 @@
 #include "QRegExp"
 #include "QString"
 
-/*Mementos* Mementos::instance = 0;
+Mementos* Mementos::instance1 = 0;
+Mementos* Mementos::instance2 = 0;
 
-Mementos& Mementos::getInstance(int dim)
+Mementos& Mementos::getInstance1(int dim)
 {
-    if(instance == 0)
-        instance = new Mementos(dim);
-    return *instance;
+    if(instance1 == 0)
+        instance1 = new Mementos(dim);
+    return *instance1;
 }
 
-void Mementos::releaseInstance()
+void Mementos::releaseInstance1()
 {
-    if(instance != 0)
-        delete instance;
-    instance = 0;
-}*/
+    if(instance1 != 0)
+        delete instance1;
+    instance1 = 0;
+}
+
+Mementos& Mementos::getInstance2(int dim)
+{
+    if(instance2 == 0)
+        instance2 = new Mementos(dim);
+    return *instance2;
+}
+
+void Mementos::releaseInstance2()
+{
+    if(instance2 != 0)
+        delete instance2;
+    instance2 = 0;
+}
 
 Mementos::Mementos(int dim)
 {

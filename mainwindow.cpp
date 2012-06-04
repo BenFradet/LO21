@@ -5,7 +5,7 @@
 #include <QListView>
 #include <QRegExp>
 
-QString MainWindow::mode = "Complexe";
+QString MainWindow::mode = "Entier";
 
 MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QMainWindow(parent),

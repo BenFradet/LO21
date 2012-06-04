@@ -183,6 +183,18 @@ void Pile::Plus(QString mode)
             Constante* c = factory->GetConstante(tmp.ToQString(), mode);
             Empiler(c);
         }
+        else if(mode == "Rationnel")
+        {
+            Constante& tmp = (Rationnel)*b + (Rationnel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Reel")
+        {
+            Constante& tmp = (Reel)*b + (Reel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
@@ -196,9 +208,24 @@ void Pile::Moins(QString mode)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        Constante& tmp = *b - *a;
-        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-        Empiler(c);
+        if(mode == "Entier")
+        {
+            Constante& tmp = (Entier)*b - (Entier)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Rationnel")
+        {
+            Constante& tmp = (Rationnel)*b - (Rationnel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Reel")
+        {
+            Constante& tmp = (Reel)*b - (Reel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
@@ -212,9 +239,24 @@ void Pile::Multiplier(QString mode)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        Constante& tmp = *b * *a;
-        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-        Empiler(c);
+        if(mode == "Entier")
+        {
+            Constante& tmp = (Entier)*b * (Entier)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Rationnel")
+        {
+            Constante& tmp = (Rationnel)*b * (Rationnel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Reel")
+        {
+            Constante& tmp = (Reel)*b * (Reel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
@@ -228,9 +270,24 @@ void Pile::Diviser(QString mode)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        Constante& tmp = *b / *a;
-        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-        Empiler(c);
+        if(mode == "Entier")
+        {
+            Constante& tmp = (Entier)*b / (Entier)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Rationnel")
+        {
+            Constante& tmp = (Rationnel)*b / (Rationnel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Reel")
+        {
+            Constante& tmp = (Reel)*b / (Reel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
@@ -244,9 +301,24 @@ void Pile::Puissance(QString mode)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        Constante& tmp = *b ^ *a;
-        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-        Empiler(c);
+        if(mode == "Entier")
+        {
+            Constante& tmp = (Entier)*b ^ (Entier)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Rationnel")
+        {
+            Constante& tmp = (Rationnel)*b ^ (Rationnel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Reel")
+        {
+            Constante& tmp = (Reel)*b ^ (Reel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
@@ -263,7 +335,7 @@ void Pile::Modulo(QString mode)
         if(e1 != NULL && e2 != NULL && mode == "Entier")
         {
             createMemento();
-            Constante* c = new Entier(*b % *a);
+            Constante* c = new Entier((Entier)*b % (Entier)*a);
             Empiler(c);
         }
         else
@@ -280,9 +352,24 @@ void Pile::Signe(QString mode)
     {
         Constante* a = this->Depiler();
         createMemento();
-        Constante& tmp = -*a;
-        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-        Empiler(c);
+        if(mode == "Entier")
+        {
+            Constante& tmp = -(Entier)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Rationnel")
+        {
+            Constante& tmp = -(Rationnel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Reel")
+        {
+            Constante& tmp = -(Reel)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -392,16 +479,15 @@ void Pile::LogaDec()
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Inverse(QString mode)
+void Pile::Inverse()
 {
     ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
     {
         Constante* a = this->Depiler();        
         createMemento();
-        Constante& tmp = a->inverse();
-        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-        Empiler(c);
+        Constante* res = &a->inverse();
+        Empiler(res);
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -427,9 +513,24 @@ void Pile::Carree(QString mode)
     {
         Constante* a = this->Depiler();
         createMemento();
-        Constante& tmp = a->carree();
-        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-        Empiler(c);
+        if(mode == "Entier")
+        {
+            Constante& tmp = (Entier)a->carree();
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Rationnel")
+        {
+            Constante& tmp = (Rationnel)a->carree();
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Reel")
+        {
+            Constante& tmp = (Reel)a->carree();
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -442,9 +543,24 @@ void Pile::Cube(QString mode)
     {
         Constante* a = this->Depiler();
         createMemento();
-        Constante& tmp = a->cube();
-        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-        Empiler(c);
+        if(mode == "Entier")
+        {
+            Constante& tmp = (Entier)a->cube();
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Rationnel")
+        {
+            Constante& tmp = (Rationnel)a->cube();
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
+        else if(mode == "Reel")
+        {
+            Constante& tmp = (Reel)a->cube();
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -668,7 +784,7 @@ void Pile::Parser(QString s)
              LogaNep();
 
          else if(elements[i] == "INV")
-             Inverse(MainWindow::getMode());
+             Inverse();
 
          else if(elements[i] == "SQRT")
              Racine();

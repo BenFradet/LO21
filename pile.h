@@ -105,7 +105,7 @@ public:
     void Tangenteh();
     void LogaNep();
     void LogaDec();
-    void Inverse(QString mode);
+    void Inverse();
     void Racine();
     void Carree(QString mode);
     void Cube(QString mode);

@@ -249,7 +249,7 @@ Constante& Entier::operator!()const
     int e = (int)*this;
     if(e>0)
     {
-        for(int i = 1; i<e; i++)
+        for(int i = e-1; i>1; i--)
             e *= i;
         Entier* res = new Entier(e);
         return *res;

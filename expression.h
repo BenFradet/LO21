@@ -14,6 +14,12 @@ public:
     Expression(string s): Constante(), exp(s){}
     ~Expression(){}
 
+    operator int()const;
+    operator float()const;
+    operator Entier()const;
+    operator Rationnel()const;
+    operator Reel()const;
+
     Constante& GetVal()const;
     QString ToQString(); // crée un QString à partir d'une expression
 };

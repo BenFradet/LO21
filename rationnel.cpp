@@ -22,6 +22,11 @@ Rationnel::operator Entier()const
     return Entier(num/den);
 }
 
+Rationnel::operator Rationnel()const
+{
+    return *this;
+}
+
 Rationnel::operator Reel()const
 {
     return Reel((float)num/den);

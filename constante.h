@@ -4,6 +4,10 @@
 #include "calcexception.h"
 #include <QString>
 
+class Entier;
+class Rationnel;
+class Reel;
+
 class Constante
 {
 public:
@@ -11,8 +15,11 @@ public:
 
     virtual Constante& GetVal()const = 0;
 
-    virtual operator int()const;
-    virtual operator float()const;
+    virtual operator int()const = 0;
+    virtual operator float()const = 0;
+    virtual operator Entier()const = 0;
+    virtual operator Rationnel()const = 0;
+    virtual operator Reel()const = 0;
 
     virtual void operator=(const Constante& c);
     virtual Constante& operator+(const Constante& c)const;

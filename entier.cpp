@@ -27,6 +27,11 @@ Entier::operator Rationnel()const
     return Rationnel(value, 1);
 }
 
+Entier::operator Entier()const
+{
+    return *this;
+}
+
 void Entier::operator=(const Constante& c)
 {
     const Entier* e = dynamic_cast<const Entier*>(&c);

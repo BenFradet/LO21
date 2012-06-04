@@ -2,12 +2,14 @@
 #define PILE_H
 #include "include.h"
 #include "constantefactory.h"
+#include "mainwindow.h"
 #include <string>
 #include <QAbstractListModel>
 #include <typeinfo>
 #include <QVariant>
 #include <QList>
 
+class MainWindow;
 
 class Memento
 {

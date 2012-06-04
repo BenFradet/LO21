@@ -177,9 +177,12 @@ void Pile::Plus(QString mode)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        Constante& tmp = *a + *b;
-        Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-        Empiler(c);
+        if(mode == "Entier")
+        {
+            Constante& tmp = (Entier)*b + (Entier)*a;
+            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
+            Empiler(c);
+        }
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
@@ -193,7 +196,7 @@ void Pile::Moins(QString mode)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        Constante& tmp = *a - *b;
+        Constante& tmp = *b - *a;
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
     }
@@ -209,7 +212,7 @@ void Pile::Multiplier(QString mode)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        Constante& tmp = *a * *b;
+        Constante& tmp = *b * *a;
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
     }
@@ -225,7 +228,7 @@ void Pile::Diviser(QString mode)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        Constante& tmp = *a / *b;
+        Constante& tmp = *b / *a;
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
     }
@@ -241,7 +244,7 @@ void Pile::Puissance(QString mode)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        Constante& tmp = *a ^ *b;
+        Constante& tmp = *b ^ *a;
         Constante* c = factory->GetConstante(tmp.ToQString(), mode);
         Empiler(c);
     }
@@ -260,7 +263,7 @@ void Pile::Modulo(QString mode)
         if(e1 != NULL && e2 != NULL && mode == "Entier")
         {
             createMemento();
-            Constante* c = new Entier(*a % *b);
+            Constante* c = new Entier(*b % *a);
             Empiler(c);
         }
         else
@@ -623,22 +626,22 @@ void Pile::Parser(QString s)
 
 
         else if(elements[i] == "+")//besoin du mode
-             Plus("Rationnel");//besoin du mode
+             Plus(MainWindow::getMode());//besoin du mode
 
         else if(elements[i] == "-")
-            Moins("Entier");
+            Moins(MainWindow::getMode());
 
         else if(elements[i] == "*")
-            Multiplier("Entier");
+            Multiplier(MainWindow::getMode());
 
         else if(elements[i] == "POW")
-            Puissance("Entier");
+            Puissance(MainWindow::getMode());
 
          else if(elements[i] == "MOD")
-             Modulo("Entier");
+             Modulo(MainWindow::getMode());
 
          else if(elements[i] == "SIGN")
-            Signe("Entier");
+            Signe(MainWindow::getMode());
 
          else if(elements[i] == "SIN")
              Sinus();
@@ -665,18 +668,18 @@ void Pile::Parser(QString s)
              LogaNep();
 
          else if(elements[i] == "INV")
-             Inverse("Entier");
+             Inverse(MainWindow::getMode());
 
          else if(elements[i] == "SQRT")
              Racine();
 
          else if(elements[i] == "SQR")
-             Carree("Entier");
+             Carree(MainWindow::getMode());
 
          else if(elements[i] == "CUBE")
-             Cube("Entier");
+             Cube(MainWindow::getMode());
 
          else if(elements[i] == "!")
-             Factorielle("Entier");
+             Factorielle(MainWindow::getMode());
     }
 }

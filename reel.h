@@ -27,6 +27,7 @@ public:
     operator float()const;
     operator Entier()const;
     operator Rationnel()const;
+    operator Reel()const;
 
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;

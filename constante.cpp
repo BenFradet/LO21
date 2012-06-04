@@ -1,15 +1,5 @@
 #include "constante.h"
 
-Constante::operator int()const
-{
-    throw CalcException("On ne peut pas convertir ce type en int");
-}
-
-Constante::operator float()const
-{
-    throw CalcException("On ne peut pas convertir ce type en float");
-}
-
 void Constante::operator =(const Constante& c)
 {
     throw CalcException("On ne peut pas affecter");

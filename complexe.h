@@ -24,6 +24,12 @@ public:
     Constante& GetIm()const{return pIm;}
     Constante& GetVal()const;
 
+    operator int()const;
+    operator float()const;
+    operator Entier()const;
+    operator Rationnel()const;
+    operator Reel()const;
+
     void SetRe(Constante& r){pRe = r;}
     void SetIm(Constante& i){pIm = i;}
 

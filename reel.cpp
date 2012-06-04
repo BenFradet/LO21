@@ -35,6 +35,11 @@ Reel::operator Rationnel()const
     return Rationnel(e, (int)pow((float)10, i));
 }
 
+Reel::operator Reel()const
+{
+    return *this;
+}
+
 Constante& Reel::operator+(const Constante& c)const
 {
     const Reel* r = dynamic_cast<const Reel*>(&c);

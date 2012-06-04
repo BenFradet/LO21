@@ -7,6 +7,36 @@ Constante& Complexe::GetVal()const
     return c;
 }
 
+Complexe::operator int()const
+{
+    //exception
+    return 0;
+}
+
+Complexe::operator float()const
+{
+    //exception
+    return 0;
+}
+
+Complexe::operator Entier()const
+{
+    //exception
+    return Entier(0);
+}
+
+Complexe::operator Rationnel()const
+{
+    //exception
+    return Rationnel(0,1);
+}
+
+Complexe::operator Reel()const
+{
+    //exception
+    return Reel(0);
+}
+
 Constante& Complexe::operator+(const Constante& c)const
 {
     const Complexe* co = dynamic_cast<const Complexe*>(&c);

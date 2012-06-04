@@ -8,7 +8,5 @@ Constante* ConstanteFactory::GetConstante(QString val, QString mode)
         return new Reel(val);
     if(mode == "Rationnel")
         return new Rationnel(val);
-    /*if(mode == "Complexe")
-      return new Complexe(val);*/
     return 0;
 }

@@ -623,7 +623,7 @@ void Pile::Parser(QString s)
 
 
         else if(elements[i] == "+")//besoin du mode
-             Plus("Entier");//besoin du mode
+             Plus("Rationnel");//besoin du mode
 
         else if(elements[i] == "-")
             Moins("Entier");

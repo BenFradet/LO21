@@ -192,23 +192,64 @@ void Pile::Plus(QString mode, bool complexe)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        if(mode == "Entier")
+        if(mode == "Entier" && complexe == false)
         {
             Constante& tmp = (Entier)*b + (Entier)*a;
             Constante* c = factory->GetConstante(tmp.ToQString(), mode);
             Empiler(c);
         }
-        else if(mode == "Rationnel")
+        else if(mode == "Entier")
+        {
+            const Complexe* c1 = dynamic_cast<const Complexe*>(a);
+            const Complexe* c2 = dynamic_cast<const Complexe*>(b);
+            if(c1 != 0 && c2 != 0)
+            {
+                Constante& re = (Entier)c1->GetRe() + (Entier)c2->GetRe();
+                Constante& im = (Entier)c1->GetIm() + (Entier)c2->GetIm();
+                Complexe* c = new Complexe(re, im);
+                Empiler(c);
+            }
+            else
+                throw CalcException("Le mode complexe nécessite des complexes");
+        }
+        else if(mode == "Rationnel" && complexe == false)
         {
             Constante& tmp = (Rationnel)*b + (Rationnel)*a;
             Constante* c = factory->GetConstante(tmp.ToQString(), mode);
             Empiler(c);
         }
-        else if(mode == "Reel")
+        else if(mode == "Rationnel")
+        {
+            const Complexe* c1 = dynamic_cast<const Complexe*>(a);
+            const Complexe* c2 = dynamic_cast<const Complexe*>(b);
+            if(c1 != 0 && c2 != 0)
+            {
+                Constante& re = (Rationnel)c2->GetRe() - (Rationnel)c1->GetRe();
+                Constante& im = (Rationnel)c2->GetIm() - (Rationnel)c1->GetIm();
+                Complexe* c = new Complexe(re, im);
+                Empiler(c);
+            }
+            else
+                throw CalcException("Le mode complexe nécessite des complexes");
+        }
+        else if(mode == "Reel" && complexe == false)
         {
             Constante& tmp = (Reel)*b + (Reel)*a;
             Constante* c = factory->GetConstante(tmp.ToQString(), mode);
             Empiler(c);
+        }
+        else if(mode == "Reel")
+        {
+            const Complexe* c1 = dynamic_cast<const Complexe*>(a);
+            const Complexe* c2 = dynamic_cast<const Complexe*>(b);
+            if(c1 != 0 && c2!= 0)
+            {
+                Constante& re = (Reel)c2->GetRe() - (Reel)c1->GetRe();
+                Constante& im = (Reel)c2->GetIm() - (Reel)c1->GetIm();
+                Complexe* c = new Complexe(re, im);
+                Empiler(c);
+            }
+            else throw CalcException("Le mode complexe nécessite des complexes");
         }
     }
     else
@@ -698,7 +739,7 @@ void Pile::Parser(QString s)
 
     for (int i = 0; i< elements.size(); i++)
     {
-    /*    if(elements[i].contains(complexe))
+        /*if(elements[i].contains(complexe))
             nouveau = &Complexe(elements[i]);*/
 
          if(elements[i].contains(rationnel))

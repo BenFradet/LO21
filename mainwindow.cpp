@@ -315,7 +315,7 @@ void MainWindow::btnSUMpressed()
    if (arg1.contains(test))
    {
        int i = ui->arg_SUM->text().toInt();
-       p->Sum(i);
+       p->Sum(i, MainWindow::getMode());
        ui->arg_SUM->setText("1");
        ui->listView->reset();
    }
@@ -332,7 +332,7 @@ void MainWindow::btnMEANpressed()
    if (arg1.contains(test))
    {
        int i = ui->arg_MEAN->text().toInt();
-       p->Mean(i);
+       p->Mean(i, MainWindow::getMode());
        ui->arg_MEAN->setText("1");
        ui->listView->reset();
    }
@@ -482,10 +482,6 @@ void MainWindow::MODE_COMPLEXES()
     ui->action_Rationnels->setChecked(false);
     ui->action_Reels->setEnabled(true);
     ui->action_Reels->setChecked(false);
-
-
-
-
 }
 
 void MainWindow::MODE_RATIONNELS()
@@ -501,8 +497,6 @@ void MainWindow::MODE_RATIONNELS()
     ui->action_Reels->setChecked(false);
     ui->action_Entiers->setEnabled(true);
     ui->action_Entiers->setChecked(false);
-
-
 }
 
 
@@ -519,9 +513,6 @@ void MainWindow::MODE_REELS()
     ui->action_Rationnels->setChecked(false);
     ui->action_Complexes->setEnabled(true);
     ui->action_Complexes->setChecked(false);
-
-
-
 }
 
 
@@ -538,9 +529,6 @@ void MainWindow::MODE_ENTIERS()
     ui->action_Reels->setChecked(false);
     ui->action_Rationnels->setEnabled(true);
     ui->action_Rationnels->setChecked(false);
-
-
-
 }
 
 void MainWindow::btnRAZpressed()

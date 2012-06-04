@@ -83,8 +83,8 @@ public:
     Constante* Tete()const;
 
     void Swap(int x, int y);
-    Constante& Sum(int x);
-    Constante& Mean(int x);
+    Constante& Sum(int x, QString mode);
+    void Mean(int x, QString mode);
 
     void Clear();
     void Dup();//duplique le dernier élément
@@ -136,6 +136,12 @@ public:
             elements++;
             return *this;
         }
+        Iterator& operator--()
+        {
+            elements--;
+            return *this;
+        }
+
         bool operator!=(const Iterator& it)
         {
             return it.elements != elements;

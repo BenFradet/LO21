@@ -587,114 +587,75 @@ void Pile::Factorielle(QString mode)
 
 void Pile::Swap(int x, int y)
 {
-    if(sommet>x && sommet>y)
+    if(sommet>x-1 && sommet>y-1)
     {
         createMemento();
         Constante* tmp;
-        tmp = tabElmt[x];
-        tabElmt[x] = tabElmt[y];
-        tabElmt[y] = tmp;
+        tmp = tabElmt[x-1];
+        tabElmt[x-1] = tabElmt[y-1];
+        tabElmt[y-1] = tmp;
     }
     else
         throw CalcException("Les indices doivent être dans la pile");
 }
 
-Constante& Pile::Sum(int x)
+Constante& Pile::Sum(int x, QString mode)
 {
-    if(x<sommet)
+    if(x-1<sommet && x-1>=0)
     {
-        createMemento();
-        Constante* sum;
-        sum = tabElmt[sommet];
-        const Entier* e = dynamic_cast<const Entier*>(sum);
-        const Reel* r = dynamic_cast<const Reel*>(sum);
-        const Rationnel* f = dynamic_cast<const Rationnel*>(sum);
-        const Complexe* c = dynamic_cast<const Complexe*>(sum);
-        if(e!=0)
+        if(mode == "Entier")
         {
-            for(int i = 1; i<x; i++)
-            {
-                const Entier* p = dynamic_cast<const Entier*>(tabElmt[sommet-i]);
-                if(p!=0)
-                    *sum = *sum + *tabElmt[sommet-i];
-                else
-                    throw CalcException("On ne peut pas faire la somme sur des constantes de type différent");
-            }
-            return *sum;
+            createMemento();
+            Entier* e = new Entier(0);
+            for(int i = 0; i<=x-1; i++)
+                *e = *e + (Entier)**(tabElmt + sommet - 1 - i);
+            Empiler(e);
+            return *e;
         }
-        else if(r!=0)
+        else if(mode == "Rationnel")
         {
-            for(int i = 1; i<x; i++)
-            {
-                const Reel* p = dynamic_cast<const Reel*>(tabElmt[sommet-i]);
-                if(p!=0)
-                    *sum = *sum + *tabElmt[sommet-i];
-                else
-                    throw CalcException("On ne peut pas faire la somme sur des constantes de type différent");
-            }
-            return *sum;
+            createMemento();
+            Rationnel* r = new Rationnel(0, 1);
+            for(int i = 0; i<x-1; i++)
+                *r = *r + (Rationnel)**(tabElmt + sommet - 1 - i);
+            Empiler(r);
+            return *r;
         }
-        else if(f!=0)
+        else if(mode == "Reel")
         {
-            for(int i = 1; i<x; i++)
-            {
-                const Rationnel* p = dynamic_cast<const Rationnel*>(tabElmt[sommet-i]);
-                if(p!=0)
-                    *sum = *sum + *tabElmt[sommet-i];
-                else
-                    throw CalcException("On ne peut pas faire la somme sur des constantes de type différent");
-            }
-            return *sum;
-        }
-        else if(c!=0)
-        {
-            for(int i = 0; i<x; i++)
-            {
-                const Complexe* p = dynamic_cast<const Complexe*>(tabElmt[sommet-i]);
-                if(p!=0)
-                    *sum = *sum + *tabElmt[sommet-i];
-                else
-                    throw CalcException("On ne peut pas faire la somme sur des constantes de type différent");
-            }
-            return *sum;
+            createMemento();
+            Reel* r = new Reel(0);
+            for(int i = 0; i<x-1; i++)
+                *r = *r + (Reel)**(tabElmt + sommet - 1 - i);
+            Empiler(r);
+            return *r;
         }
     }
     else
-        throw CalcException("Cet indice est trop grand par rapport au nombre d'éléments contenus dans la pile");
+        throw CalcException("Indice en dehors des bornes autorisées");
 }
 
-Constante& Pile::Mean(int x)
+void Pile::Mean(int x, QString mode)
 {
-    createMemento();
-    Constante& mean = Sum(x);
-    const Entier* e = dynamic_cast<const Entier*>(&mean);
-    const Reel* r = dynamic_cast<const Reel*>(&mean);
-    const Rationnel* f = dynamic_cast<const Rationnel*>(&mean);
-    const Complexe* c = dynamic_cast<const Complexe*>(&mean);
-
-    if(e!=0)
+    if(x-1<sommet && x-1>=0)
     {
-        Entier tmp(x);
-        return mean / tmp;
-    }
-    else if(r!=0)
-    {
-        Reel tmp(x);
-        return mean / tmp;
-    }
-    else if(f!=0)
-    {
-        Rationnel tmp(x, 1);
-        return mean / tmp;
-    }
-    else if(c!=0)
-    {
-        Entier e(x);
-        Complexe tmp(e, e);
-        return mean / tmp;
+        if(mode == "Entier" || mode == "Rationnel")
+        {
+            Constante* e = &Sum(x, mode);
+            Constante* c = Depiler();
+            Constante& res = *e / Entier(x);
+            Empiler(&res);
+        }
+        else if (mode == "Reel")
+        {
+            Constante* e = &Sum(x, mode);
+            Constante* c = Depiler();
+            Constante& res = *e / Reel(x);
+            Empiler(&res);
+        }
     }
     else
-        throw CalcException("Mauvais type");
+        throw CalcException("Indice en dehors des bornes autorisées");
 }
 
 int Pile::rowCount (const QModelIndex &parent) const
@@ -726,20 +687,21 @@ void Pile::Parser(QString s)
             nouveau = &Complexe(elements[i]);*/
 
          if(elements[i].contains(rationnel))
-         {      Constante* nouveau2 = new Rationnel(elements[i]);
-              Empiler(nouveau2);
+         {
+             Constante* nouveau2 = new Rationnel(elements[i]);
+             Empiler(nouveau2);
          }
 
         else if(elements[i].contains(reel))
-         {      Constante* nouveau2 = new Reel(elements[i]);
-              Empiler(nouveau2);
+         {
+             Constante* nouveau2 = new Reel(elements[i]);
+             Empiler(nouveau2);
          }
         else if(elements[i].contains(entier))
-         {      Constante* nouveau2 = new Entier(elements[i]);
-              Empiler(nouveau2);
+         {
+             Constante* nouveau2 = new Entier(elements[i]);
+             Empiler(nouveau2);
          }
-
-
 
         else if(elements[i] == "+")//besoin du mode
              Plus(MainWindow::getMode());//besoin du mode

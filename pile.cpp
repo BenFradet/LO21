@@ -169,7 +169,7 @@ void Pile::Retablir()
     tabElmt = m->tabElmt;
 }
 
-void Pile::Plus(QString mode)
+void Pile::Plus(QString mode, bool complexe)
 {
     ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
@@ -200,7 +200,7 @@ void Pile::Plus(QString mode)
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Moins(QString mode)
+void Pile::Moins(QString mode, bool complexe)
 {
     ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
@@ -231,7 +231,7 @@ void Pile::Moins(QString mode)
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Multiplier(QString mode)
+void Pile::Multiplier(QString mode, bool complexe)
 {
     ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
@@ -262,7 +262,7 @@ void Pile::Multiplier(QString mode)
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Diviser(QString mode)
+void Pile::Diviser(QString mode, bool complexe)
 {
     ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
@@ -345,7 +345,7 @@ void Pile::Modulo(QString mode)
         throw CalcException("Cette opération nécessite deux opérandes");
 }
 
-void Pile::Signe(QString mode)
+void Pile::Signe(QString mode, bool complexe)
 {
     ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
@@ -506,7 +506,7 @@ void Pile::Racine()
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Carree(QString mode)
+void Pile::Carree(QString mode, bool complexe)
 {
     ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
@@ -536,7 +536,7 @@ void Pile::Carree(QString mode)
         throw CalcException("Cette opération nécessite une opérande");
 }
 
-void Pile::Cube(QString mode)
+void Pile::Cube(QString mode, bool complexe)
 {
     ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
@@ -704,13 +704,16 @@ void Pile::Parser(QString s)
          }
 
         else if(elements[i] == "+")//besoin du mode
-             Plus(MainWindow::getMode());//besoin du mode
+             Plus(MainWindow::getMode(), false);//besoin du mode
 
         else if(elements[i] == "-")
-            Moins(MainWindow::getMode());
+            Moins(MainWindow::getMode(), false);
 
         else if(elements[i] == "*")
-            Multiplier(MainWindow::getMode());
+            Multiplier(MainWindow::getMode(), false);
+
+         else if(elements[i] == "/")
+             Diviser(MainWindow::getMode(), false);
 
         else if(elements[i] == "POW")
             Puissance(MainWindow::getMode());
@@ -719,7 +722,7 @@ void Pile::Parser(QString s)
              Modulo(MainWindow::getMode());
 
          else if(elements[i] == "SIGN")
-            Signe(MainWindow::getMode());
+            Signe(MainWindow::getMode(), false);
 
          else if(elements[i] == "SIN")
              Sinus();
@@ -752,10 +755,10 @@ void Pile::Parser(QString s)
              Racine();
 
          else if(elements[i] == "SQR")
-             Carree(MainWindow::getMode());
+             Carree(MainWindow::getMode(), false);
 
          else if(elements[i] == "CUBE")
-             Cube(MainWindow::getMode());
+             Cube(MainWindow::getMode(), false);
 
          else if(elements[i] == "!")
              Factorielle(MainWindow::getMode());

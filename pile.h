@@ -33,20 +33,24 @@ class Mementos
     Memento** mementos;
     friend class Pile;
 
-    /*static Mementos* instance;
+    static Mementos* instance1;
+    static Mementos* instance2;
     Mementos(int dim);
     ~Mementos();
     Mementos& operator=(const Mementos& m)
     {
         return *this;
-    }*/
+    }
 
 public:
-    /*static Mementos& getInstance(int dim);
-    static void releaseInstance();*/
+    static Mementos& getInstance1(int dim);
+    static void releaseInstance1();
 
-    Mementos(int dim);
-    ~Mementos();
+    static Mementos& getInstance2(int dim);
+    static void releaseInstance2();
+
+    /*Mementos(int dim);
+    ~Mementos();*/
 
     void Empiler(Memento* m);
     Memento* Depiler();
@@ -90,13 +94,13 @@ public:
     void Dup();//duplique le dernier élément
     void Drop();//supprime le dernier élément
 
-    void Plus(QString mode);
-    void Moins(QString mode);
-    void Multiplier(QString mode);
-    void Diviser(QString mode);
+    void Plus(QString mode, bool complexe);
+    void Moins(QString mode, bool complexe);
+    void Multiplier(QString mode, bool complexe);
+    void Diviser(QString mode, bool complexe);
     void Puissance(QString mode);
     void Modulo(QString mode);
-    void Signe(QString mode);
+    void Signe(QString mode, bool complexe);
     void Sinus();
     void Cosinus();
     void Tangente();
@@ -107,8 +111,8 @@ public:
     void LogaDec();
     void Inverse();
     void Racine();
-    void Carree(QString mode);
-    void Cube(QString mode);
+    void Carree(QString mode, bool complexe);
+    void Cube(QString mode, bool complexe);
     void Factorielle(QString mode);
 
     void Annuler();

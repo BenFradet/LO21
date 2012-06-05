@@ -125,8 +125,6 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
 
     QDomDocument doc ("CONFIGURATION");
     QFile file ("PILE.xml");
-    if( !file.open( QIODevice::ReadOnly ) )
-        throw CalcException("Pas de fichier");
     if( !doc.setContent( &file ) )
     {
       file.close();

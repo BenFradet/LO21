@@ -1,6 +1,15 @@
 #include "complexe.h"
 #include <QTextStream>
 
+Complexe* Complexe::newComplexe(QString &s, QString mode)
+{
+    ConstanteFactory* factory = new ConstanteFactory();
+    QStringList list = s.split("$");
+    Constante* re = factory->GetConstante(list[0], mode);
+    Constante* im = factory->GetConstante(list[1], mode);
+    return new Complexe(*re, *im);
+}
+
 Constante& Complexe::GetVal()const
 {
     Complexe c(pRe, pIm);

@@ -2,6 +2,7 @@
 #define COMPLEXE_H
 
 #include "include.h"
+#include "constantefactory.h"
 #include <QString>
 #include <QStringList>
 
@@ -13,12 +14,7 @@ public:
     Complexe(Constante& r, Constante& i): Constante(), pRe(r), pIm(i){}
     ~Complexe(){}
 
-/*    Complexe(QString &s)  // crée un rationnel a partir d'un QString (a voir plus compliqué)
-    {
-        QStringList liste = s.split("$");
-        pRe = Entier(liste[0].toInt());
-        pIm = Entier(liste[1].toInt());
-    }*/
+    static Complexe* newComplexe(QString &s, QString mode);
 
     Constante& GetRe()const{return pRe;}
     Constante& GetIm()const{return pIm;}

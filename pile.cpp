@@ -192,64 +192,30 @@ void Pile::Plus(QString mode, bool complexe)
         Constante* a = this->Depiler();
         Constante* b = this->Depiler();
         createMemento();
-        if(mode == "Entier" && complexe == false)
+        if(complexe == false)
         {
-            Constante& tmp = (Entier)*b + (Entier)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-            Empiler(c);
-        }
-        else if(mode == "Entier")
-        {
-            const Complexe* c1 = dynamic_cast<const Complexe*>(a);
-            const Complexe* c2 = dynamic_cast<const Complexe*>(b);
-            if(c1 != 0 && c2 != 0)
+            if(mode == "Entier")
             {
-                Constante& re = (Entier)c1->GetRe() + (Entier)c2->GetRe();
-                Constante& im = (Entier)c1->GetIm() + (Entier)c2->GetIm();
-                Complexe* c = new Complexe(re, im);
+                Constante& tmp = (Entier)*b + (Entier)*a;
+                Constante* c = factory->GetConstante(tmp.ToQString(), mode);
                 Empiler(c);
             }
-            else
-                throw CalcException("Le mode complexe nécessite des complexes");
-        }
-        else if(mode == "Rationnel" && complexe == false)
-        {
-            Constante& tmp = (Rationnel)*b + (Rationnel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-            Empiler(c);
-        }
-        else if(mode == "Rationnel")
-        {
-            const Complexe* c1 = dynamic_cast<const Complexe*>(a);
-            const Complexe* c2 = dynamic_cast<const Complexe*>(b);
-            if(c1 != 0 && c2 != 0)
+            else if(mode == "Rationnel")
             {
-                Constante& re = (Rationnel)c2->GetRe() - (Rationnel)c1->GetRe();
-                Constante& im = (Rationnel)c2->GetIm() - (Rationnel)c1->GetIm();
-                Complexe* c = new Complexe(re, im);
+                Constante& tmp = (Rationnel)*b + (Rationnel)*a;
+                Constante* c = factory->GetConstante(tmp.ToQString(), mode);
                 Empiler(c);
             }
-            else
-                throw CalcException("Le mode complexe nécessite des complexes");
-        }
-        else if(mode == "Reel" && complexe == false)
-        {
-            Constante& tmp = (Reel)*b + (Reel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode);
-            Empiler(c);
-        }
-        else if(mode == "Reel")
-        {
-            const Complexe* c1 = dynamic_cast<const Complexe*>(a);
-            const Complexe* c2 = dynamic_cast<const Complexe*>(b);
-            if(c1 != 0 && c2!= 0)
+            else if(mode == "Reel")
             {
-                Constante& re = (Reel)c2->GetRe() - (Reel)c1->GetRe();
-                Constante& im = (Reel)c2->GetIm() - (Reel)c1->GetIm();
-                Complexe* c = new Complexe(re, im);
+                Constante& tmp = (Reel)*b + (Reel)*a;
+                Constante* c = factory->GetConstante(tmp.ToQString(), mode);
                 Empiler(c);
             }
-            else throw CalcException("Le mode complexe nécessite des complexes");
+        }
+        else
+        {
+
         }
     }
     else
@@ -759,17 +725,17 @@ void Pile::Parser(QString s)
              Empiler(nouveau2);
          }
 
-        else if(elements[i] == "+")//besoin du mode
-             Plus(MainWindow::getMode(), false);//besoin du mode
+        else if(elements[i] == "+")
+             Plus(MainWindow::getMode(), MainWindow::getComplexeMode());
 
         else if(elements[i] == "-")
-            Moins(MainWindow::getMode(), false);
+            Moins(MainWindow::getMode(), MainWindow::getComplexeMode());
 
         else if(elements[i] == "*")
-            Multiplier(MainWindow::getMode(), false);
+            Multiplier(MainWindow::getMode(), MainWindow::getComplexeMode());
 
          else if(elements[i] == "/")
-             Diviser(MainWindow::getMode(), false);
+             Diviser(MainWindow::getMode(), MainWindow::getComplexeMode());
 
         else if(elements[i] == "POW")
             Puissance(MainWindow::getMode());
@@ -778,7 +744,7 @@ void Pile::Parser(QString s)
              Modulo(MainWindow::getMode());
 
          else if(elements[i] == "SIGN")
-            Signe(MainWindow::getMode(), false);
+            Signe(MainWindow::getMode(), MainWindow::getComplexeMode());
 
          else if(elements[i] == "SIN")
              Sinus();
@@ -811,10 +777,10 @@ void Pile::Parser(QString s)
              Racine();
 
          else if(elements[i] == "SQR")
-             Carree(MainWindow::getMode(), false);
+             Carree(MainWindow::getMode(), MainWindow::getComplexeMode());
 
          else if(elements[i] == "CUBE")
-             Cube(MainWindow::getMode(), false);
+             Cube(MainWindow::getMode(), MainWindow::getComplexeMode());
 
          else if(elements[i] == "!")
              Factorielle(MainWindow::getMode());

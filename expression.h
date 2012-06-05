@@ -19,6 +19,7 @@ public:
     operator Entier()const;
     operator Rationnel()const;
     operator Reel()const;
+    operator Complexe()const;
 
     Constante& GetVal()const;
     QString ToQString(); // crée un QString à partir d'une expression

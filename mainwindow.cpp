@@ -13,7 +13,7 @@
 #include <QIODevice>
 #include <QtXml/QDomDocument>
 
-QString MainWindow::mode = "Reel";
+QString MainWindow::mode = "Entier";
 bool MainWindow::ComplexeMode = true;
 
 MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
@@ -22,15 +22,10 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
 {
     ui->setupUi(this);
 
-
     ui->actionStandard->setDisabled(true);
 
     ui->action_Reels->setChecked(true);
     ui->action_Reels->setDisabled(true);
-
-
-
-
 
     ui->btnCOS->setDisabled(true);
     ui->btnCOS->setHidden(true);
@@ -115,13 +110,11 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QObject::connect(ui->btnRAZ, SIGNAL (clicked()), this, SLOT(btnRAZpressed()));
     QObject::connect(ui->checkComplexe, SIGNAL (stateChanged(int)), this, SLOT (COMPLEXE_MODE(int)));
 
-
     ui->arg1_SWAP->setText("1");
     ui->arg2_SWAP->setText("1");
     ui->arg_SUM->setText("1");
     ui->arg_MEAN->setText("1");
     ui->listView->setModel(p);
-
 
     QDomDocument doc ("CONFIGURATION");
     QFile file ("PILE.xml");
@@ -231,14 +224,7 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
         ui->btnLN->setHidden(false);
         ui->btnLOG->setDisabled(false);
         ui->btnLOG->setHidden(false);
-
-
     }
-
-
-
-
-
 }
 
 MainWindow::~MainWindow()
@@ -717,7 +703,6 @@ void MainWindow::closeEvent(QCloseEvent * event)
     affich.appendChild(affi);
     racine.appendChild(affich);
 
-
     QFile file( "PILE.xml" );
     if( !file.open( QIODevice::WriteOnly ) )
         throw CalcException("Le Fichier n'existe pas.");
@@ -727,12 +712,5 @@ void MainWindow::closeEvent(QCloseEvent * event)
 
     file.close();
 
-
-
-
-
    QMainWindow::closeEvent(event);
-
-
-
 }

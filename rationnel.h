@@ -53,6 +53,7 @@ public:
     operator Entier()const;
     operator Rationnel()const;
     operator Reel()const;
+    operator Complexe()const;
 
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;

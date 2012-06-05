@@ -37,6 +37,11 @@ Complexe::operator Reel()const
     return Reel(0);
 }
 
+Complexe::operator Complexe()const
+{
+    return *this;
+}
+
 Constante& Complexe::operator+(const Constante& c)const
 {
     const Complexe* co = dynamic_cast<const Complexe*>(&c);

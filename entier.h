@@ -25,6 +25,7 @@ public:
     operator Reel()const;
     operator Rationnel()const;
     operator Entier()const;
+    operator Complexe()const;
 
     void operator=(const Constante& c);
     Constante& operator+(const Constante& c)const;

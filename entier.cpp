@@ -32,6 +32,11 @@ Entier::operator Entier()const
     return *this;
 }
 
+Entier::operator Complexe()const
+{
+    return Complexe(Entier(value), Entier(0));
+}
+
 void Entier::operator=(const Constante& c)
 {
     const Entier* e = dynamic_cast<const Entier*>(&c);

@@ -40,6 +40,11 @@ Reel::operator Reel()const
     return *this;
 }
 
+Reel::operator Complexe()const
+{
+    return Complexe(Reel(value), Entier(0));
+}
+
 Constante& Reel::operator+(const Constante& c)const
 {
     const Reel* r = dynamic_cast<const Reel*>(&c);

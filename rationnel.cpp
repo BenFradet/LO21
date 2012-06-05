@@ -32,6 +32,11 @@ Rationnel::operator Reel()const
     return Reel((float)num/den);
 }
 
+Rationnel::operator Complexe()const
+{
+    return Complexe(Rationnel(num, den), Entier(0));
+}
+
 Constante& Rationnel::operator+(const Constante& c)const//ADAPTER A FAIRE
 {
     const Rationnel* r = dynamic_cast<const Rationnel*>(&c);

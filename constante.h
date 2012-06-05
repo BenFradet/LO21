@@ -7,6 +7,7 @@
 class Entier;
 class Rationnel;
 class Reel;
+class Complexe;
 
 class Constante
 {
@@ -20,6 +21,7 @@ public:
     virtual operator Entier()const = 0;
     virtual operator Rationnel()const = 0;
     virtual operator Reel()const = 0;
+    virtual operator Complexe()const = 0;
 
     virtual void operator=(const Constante& c);
     virtual Constante& operator+(const Constante& c)const;

@@ -29,6 +29,7 @@ public:
     operator Entier()const;
     operator Rationnel()const;
     operator Reel()const;
+    operator Complexe()const;
 
     void SetRe(Constante& r){pRe = r;}
     void SetIm(Constante& i){pIm = i;}

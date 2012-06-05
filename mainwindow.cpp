@@ -6,6 +6,7 @@
 #include <QRegExp>
 
 QString MainWindow::mode = "Entier";
+bool MainWindow::ComplexeMode = true;
 
 MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QMainWindow(parent),
@@ -14,8 +15,9 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     ui->setupUi(this);
 
     ui->actionStandard->setDisabled(true);
-    ui->action_Complexes->setChecked(true);
-    ui->action_Complexes->setDisabled(true);
+
+    ui->action_Reels->setChecked(true);
+    ui->action_Reels->setDisabled(true);
 
     ui->btnCOS->setDisabled(true);
     ui->btnCOS->setHidden(true);
@@ -94,13 +96,12 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QObject::connect(ui->btnDUP, SIGNAL (clicked()), this, SLOT(btnDUPpressed()));
     QObject::connect(ui->btnDROP, SIGNAL (clicked()), this, SLOT(btnDROPpressed()));
     QObject::connect(ui->btnPOINT, SIGNAL (clicked()), this, SLOT(btnPOINTpressed()));
-    QObject::connect(ui->action_Complexes, SIGNAL (triggered()), this, SLOT(MODE_COMPLEXES()));
     QObject::connect(ui->action_Reels, SIGNAL (triggered()), this, SLOT(MODE_REELS()));
     QObject::connect(ui->action_Rationnels, SIGNAL (triggered()), this, SLOT(MODE_RATIONNELS()));
     QObject::connect(ui->action_Entiers, SIGNAL (triggered()), this, SLOT(MODE_ENTIERS()));
     QObject::connect(ui->btnRAZ, SIGNAL (clicked()), this, SLOT(btnRAZpressed()));
+    QObject::connect(ui->checkComplexe, SIGNAL (stateChanged(int)), this, SLOT (COMPLEXE_MODE(int)));
 
-    QObject::connect(ui->btnPLUS, SIGNAL(clicked()), this, SLOT(btnPLUSpressed()));
 
     ui->arg1_SWAP->setText("1");
     ui->arg2_SWAP->setText("1");
@@ -469,20 +470,7 @@ void MainWindow::envoi_pile()
  //   p->emitLayoutChanged();
 }
 
-void MainWindow::MODE_COMPLEXES()
-{
-    QString M = "Complexe";
-    MainWindow::setMode(M);
-    ui->action_Complexes->setChecked(true);
-    ui->action_Complexes->setDisabled(true);
 
-    ui->action_Entiers->setEnabled(true);
-    ui->action_Entiers->setChecked(false);
-    ui->action_Rationnels->setEnabled(true);
-    ui->action_Rationnels->setChecked(false);
-    ui->action_Reels->setEnabled(true);
-    ui->action_Reels->setChecked(false);
-}
 
 void MainWindow::MODE_RATIONNELS()
 {
@@ -491,8 +479,6 @@ void MainWindow::MODE_RATIONNELS()
     ui->action_Rationnels->setChecked(true);
     ui->action_Rationnels->setDisabled(true);
 
-    ui->action_Complexes->setEnabled(true);
-    ui->action_Complexes->setChecked(false);
     ui->action_Reels->setEnabled(true);
     ui->action_Reels->setChecked(false);
     ui->action_Entiers->setEnabled(true);
@@ -511,8 +497,7 @@ void MainWindow::MODE_REELS()
     ui->action_Entiers->setChecked(false);
     ui->action_Rationnels->setEnabled(true);
     ui->action_Rationnels->setChecked(false);
-    ui->action_Complexes->setEnabled(true);
-    ui->action_Complexes->setChecked(false);
+
 }
 
 
@@ -523,21 +508,33 @@ void MainWindow::MODE_ENTIERS()
     ui->action_Entiers->setChecked(true);
     ui->action_Entiers->setDisabled(true);
 
-    ui->action_Complexes->setEnabled(true);
-    ui->action_Complexes->setChecked(false);
+
     ui->action_Reels->setEnabled(true);
     ui->action_Reels->setChecked(false);
     ui->action_Rationnels->setEnabled(true);
     ui->action_Rationnels->setChecked(false);
 }
 
+void MainWindow::COMPLEXE_MODE(int b)
+{
+    if (b)
+        setComplexeMode(true);
+
+    else
+      setComplexeMode(false);
+
+}
+
 void MainWindow::btnRAZpressed()
 {
     ui->le_entree->clear();
-}
 
-void MainWindow::btnPLUSpressed()
-{
-  //  ui->listView->setEnabled(false);
+    if (getComplexeMode())
+
+        ui->le_entree->setText("true");
+
+    else
+
+        ui->le_entree->setText("false");
 
 }

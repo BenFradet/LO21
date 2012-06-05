@@ -18,12 +18,15 @@ public:
     explicit MainWindow(Pile *P, QWidget *parent = 0);
     ~MainWindow();
     static QString getMode() {return mode;}
+    static bool getComplexeMode() {return ComplexeMode;}
     static void setMode(QString s) { mode = s;}
+    static void setComplexeMode(bool b) { ComplexeMode = b;}
     
 private:
     Ui::MainWindow *ui;
     Pile* p;
     static QString mode;
+    static bool ComplexeMode;
 
 
 private slots:
@@ -75,14 +78,13 @@ private slots:
     void affichage_standard();
     void btnAnnulerpressed();
     void btnRetablirpressed();
-    void MODE_COMPLEXES();
     void MODE_REELS();
     void MODE_RATIONNELS();
     void MODE_ENTIERS();
     void envoi_pile();
+    void COMPLEXE_MODE(int b);
 
     void btnRAZpressed();
-    void btnPLUSpressed();
 };
 
 #endif // MAINWINDOW_H

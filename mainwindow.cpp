@@ -529,12 +529,5 @@ void MainWindow::btnRAZpressed()
 {
     ui->le_entree->clear();
 
-    if (getComplexeMode())
-
-        ui->le_entree->setText("true");
-
-    else
-
-        ui->le_entree->setText("false");
 
 }

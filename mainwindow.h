@@ -21,6 +21,7 @@ public:
     static bool getComplexeMode() {return ComplexeMode;}
     static void setMode(QString s) { mode = s;}
     static void setComplexeMode(bool b) { ComplexeMode = b;}
+    void closeEvent(QCloseEvent * event);
     
 private:
     Ui::MainWindow *ui;

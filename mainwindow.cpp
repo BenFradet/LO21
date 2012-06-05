@@ -4,8 +4,16 @@
 #include <QDirModel>
 #include <QListView>
 #include <QRegExp>
+#include <QMessageBox>
+#include <QEvent>
+#include <QFile>
+#include <QtXml/QtXml>
+#include <io.h>
+#include <qfile.h>
+#include <QIODevice>
+#include <QtXml/QDomDocument>
 
-QString MainWindow::mode = "Entier";
+QString MainWindow::mode = "Reel";
 bool MainWindow::ComplexeMode = true;
 
 MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
@@ -14,10 +22,15 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
 {
     ui->setupUi(this);
 
+
     ui->actionStandard->setDisabled(true);
 
     ui->action_Reels->setChecked(true);
     ui->action_Reels->setDisabled(true);
+
+
+
+
 
     ui->btnCOS->setDisabled(true);
     ui->btnCOS->setHidden(true);
@@ -108,6 +121,126 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     ui->arg_SUM->setText("1");
     ui->arg_MEAN->setText("1");
     ui->listView->setModel(p);
+
+
+    QDomDocument doc ("CONFIGURATION");
+    QFile file ("PILE.xml");
+    if( !file.open( QIODevice::ReadOnly ) )
+        throw CalcException("Pas de fichier");
+    if( !doc.setContent( &file ) )
+    {
+      file.close();
+    }
+    file.close();
+
+    p->Parser(doc.firstChild().firstChild().firstChild().nodeValue());
+
+    ui->le_entree->setText(doc.firstChild().childNodes().at(1).firstChild().nodeValue());
+
+    QString moderecup = doc.firstChild().childNodes().at(2).firstChild().nodeValue();
+    if(moderecup == "Entier")
+    {
+      setMode("Entier");
+      ui->action_Entiers->setChecked(true);
+      ui->action_Entiers->setDisabled(true);
+      ui->action_Reels->setEnabled(true);
+      ui->action_Reels->setChecked(false);
+      ui->action_Rationnels->setEnabled(true);
+      ui->action_Rationnels->setChecked(false);
+    }
+    else if (moderecup == "Rationnel")
+    {
+      setMode("Rationnel");
+      ui->action_Rationnels->setChecked(true);
+      ui->action_Rationnels->setDisabled(true);
+      ui->action_Reels->setEnabled(true);
+      ui->action_Reels->setChecked(false);
+      ui->action_Entiers->setEnabled(true);
+      ui->action_Entiers->setChecked(false);
+    }
+    else if (moderecup == "Reel")
+    {
+      setMode("Reel");
+      ui->action_Reels->setChecked(true);
+      ui->action_Reels->setDisabled(true);
+      ui->action_Entiers->setEnabled(true);
+      ui->action_Entiers->setChecked(false);
+      ui->action_Rationnels->setEnabled(true);
+      ui->action_Rationnels->setChecked(false);
+    }
+    else
+    {
+    setMode("Reel");
+    ui->action_Reels->setChecked(true);
+    ui->action_Reels->setDisabled(true);
+    ui->action_Entiers->setEnabled(true);
+    ui->action_Entiers->setChecked(false);
+    ui->action_Rationnels->setEnabled(true);
+    ui->action_Rationnels->setChecked(false);}
+
+    QString cxmod = doc.firstChild().childNodes().at(3).firstChild().nodeValue();
+    if (cxmod == "true")
+    {
+            setComplexeMode(true);
+            ui->checkComplexe->setChecked(true);
+    }
+    else if (cxmod == "false")
+    {
+        setComplexeMode(false);
+        ui->checkComplexe->setChecked(false);
+    }
+    else
+    {
+        setComplexeMode(true);
+        ui->checkComplexe->setChecked(true);
+    }
+
+    QString mode_affichage = doc.firstChild().childNodes().at(4).firstChild().nodeValue();
+    if (mode_affichage == "Scientifique")
+    {
+        ui->actionStandard->setCheckable(true);
+        ui->actionStandard->setChecked(false);
+        ui->actionStandard->setEnabled(true);
+        ui->actionScientifique->setChecked(true);
+        ui->actionScientifique->setDisabled(true);
+
+        MainWindow::setMinimumHeight(500);
+        MainWindow::setMinimumWidth(916);
+
+        ui->btnCOS->setDisabled(false);
+        ui->btnCOS->setHidden(false);
+        ui->btnSIN->setDisabled(false);
+        ui->btnSIN->setHidden(false);
+        ui->btnTAN->setDisabled(false);
+        ui->btnTAN->setHidden(false);
+        ui->btnCOSH->setDisabled(false);
+        ui->btnCOSH->setHidden(false);
+        ui->btnSINH->setDisabled(false);
+        ui->btnSINH->setHidden(false);
+        ui->btnTANH->setDisabled(false);
+        ui->btnTANH->setHidden(false);
+        ui->btnINV->setDisabled(false);
+        ui->btnINV->setHidden(false);
+        ui->btnCUBE->setDisabled(false);
+        ui->btnCUBE->setHidden(false);
+        ui->btnSQR->setDisabled(false);
+        ui->btnSQR->setHidden(false);
+        ui->btnSQRT->setDisabled(false);
+        ui->btnSQRT->setHidden(false);
+        ui->btnFACTO->setDisabled(false);
+        ui->btnFACTO->setHidden(false);
+        ui->btnLN->setDisabled(false);
+        ui->btnLN->setHidden(false);
+        ui->btnLOG->setDisabled(false);
+        ui->btnLOG->setHidden(false);
+
+
+    }
+
+
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -528,6 +661,80 @@ void MainWindow::COMPLEXE_MODE(int b)
 void MainWindow::btnRAZpressed()
 {
     ui->le_entree->clear();
+
+
+}
+
+void MainWindow::closeEvent(QCloseEvent * event)
+{
+    QMessageBox msgBox(this);
+    msgBox.setText("Les informations vont être enregistrées.");
+    msgBox.setStandardButtons(QMessageBox::Ok );
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    msgBox.exec();
+
+    QString etatpile;
+
+    for ( int i =0; i < p->getSommet(); i++)
+    {
+        etatpile.append(p->getElement(i)->ToQString());
+        etatpile.append(" ");
+    }
+
+    QDomDocument filesave ("CONFIGURATION");
+    QDomElement racine = filesave.createElement("Pile");
+    filesave.appendChild(racine);
+
+    QDomElement pile = filesave.createElement("Etat");
+    QDomText text = filesave.createTextNode(etatpile);
+    pile.appendChild(text);
+    racine.appendChild(pile);
+
+    QDomElement lineedit = filesave.createElement("LigneEdit");
+    QDomText le_entree = filesave.createTextNode(ui->le_entree->text());
+    lineedit.appendChild(le_entree);
+    racine.appendChild(lineedit);
+
+    QDomElement modedeconstante = filesave.createElement("Mode");
+    QDomText mdcst = filesave.createTextNode(getMode());
+    modedeconstante.appendChild(mdcst);
+    racine.appendChild(modedeconstante);
+
+    QDomElement cx = filesave.createElement("Complexes");
+    QString P;
+    if (getComplexeMode())
+        P = "true";
+    else P = "false";
+    QDomText cxx = filesave.createTextNode(P);
+    cx.appendChild(cxx);
+    racine.appendChild(cx);
+
+    QDomElement affich = filesave.createElement("Affichage");
+    QString Aff;
+    if (ui->actionScientifique->isChecked())
+        Aff = "Scientifique";
+    else if (ui->actionStandard->isChecked())
+        Aff = "Standard";
+    QDomText affi = filesave.createTextNode(Aff);
+    affich.appendChild(affi);
+    racine.appendChild(affich);
+
+
+    QFile file( "PILE.xml" );
+    if( !file.open( QIODevice::WriteOnly ) )
+        throw CalcException("Le Fichier n'existe pas.");
+
+    QTextStream ts( &file );
+    ts << filesave.toString();
+
+    file.close();
+
+
+
+
+
+   QMainWindow::closeEvent(event);
+
 
 
 }

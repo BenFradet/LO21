@@ -130,6 +130,11 @@ public:
         return tabElmt[i];
     }
 
+    int getSommet() const
+    {
+        return sommet;
+    }
+
     class Iterator
     {
         Constante** elements;

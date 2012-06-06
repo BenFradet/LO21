@@ -34,7 +34,7 @@ Entier::operator Entier()const
 
 Entier::operator Complexe()const
 {
-    return Complexe(Entier(value), Entier(0));
+    return Complexe(&Entier(value), &Entier(0));
 }
 
 void Entier::operator=(const Constante& c)

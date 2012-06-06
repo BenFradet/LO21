@@ -42,7 +42,7 @@ Reel::operator Reel()const
 
 Reel::operator Complexe()const
 {
-    return Complexe(Reel(value), Entier(0));
+    return Complexe(&Reel(value), &Entier(0));
 }
 
 Constante& Reel::operator+(const Constante& c)const

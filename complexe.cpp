@@ -1,13 +1,12 @@
 #include "complexe.h"
 #include <QTextStream>
 
-Complexe* Complexe::newComplexe(QString &s, QString mode)
+Complexe::Complexe(QString &s, QString mode)
 {
     ConstanteFactory* factory = new ConstanteFactory();
     QStringList list = s.split("$");
-    Constante* re = factory->GetConstante(list[0], mode);
-    Constante* im = factory->GetConstante(list[1], mode);
-    return new Complexe(*re, *im);
+    pRe = factory->GetConstante(list[0], mode);
+    pIm = factory->GetConstante(list[1], mode);
 }
 
 Constante& Complexe::GetVal()const
@@ -56,7 +55,7 @@ Constante& Complexe::operator+(const Constante& c)const
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
-        Complexe* res = new Complexe(pRe + co->GetRe(), pIm + co->GetIm());
+        Complexe* res = new Complexe(&(*pRe + *(co->GetRe())), &(*pIm + *(co->GetIm())));
         return *res;
     }
     else
@@ -70,7 +69,7 @@ Constante& Complexe::operator-(const Constante& c)const
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
-        Complexe* res = new Complexe(pRe - co->GetRe(), pIm - co->GetIm());
+        Complexe* res = new Complexe(&(*pRe - *(co->GetRe())), &(*pIm - *(co->GetIm())));
         return *res;
     }
     else
@@ -84,7 +83,7 @@ Constante& Complexe::operator*(const Constante& c)const
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
-        Complexe* res = new Complexe(pRe*co->GetRe()-pIm*co->GetIm(), pRe*co->GetIm()+pIm*co->GetRe());
+        Complexe* res = new Complexe(&(*pRe*(*(co->GetRe()))-*pIm*(*(co->GetIm()))), &(*pRe*(*(co->GetIm()))+*pIm*(*(co->GetRe()))));
         return *res;
     }
     else
@@ -109,7 +108,7 @@ Constante& Complexe::operator/(const Constante& c)const
 
 Constante& Complexe::operator-()const
 {
-    Complexe* c = new Complexe(pRe - Entier(2)*pRe, pIm-Entier(2)*pIm);
+    Complexe* c = new Complexe(&(*pRe - Entier(2)*(*pRe)), &(*pIm-Entier(2)*(*pIm)));
     return *c;
 }
 
@@ -128,7 +127,7 @@ Constante& Complexe::cube()const
 QString Complexe::ToQString()
 {
     QString str;
-    /*QTextStream tx(&str);
-    tx << pRe << "$" << pIm;*/
+    QTextStream tx(&str);
+    tx << pRe->ToQString() <<"$"<< pIm->ToQString();
     return str;
 }

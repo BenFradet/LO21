@@ -48,6 +48,6 @@ Expression::operator Reel()const
 Expression::operator Complexe()const
 {
     //exception
-    return Complexe(Entier(0), Entier(0));
+    return Complexe(&Entier(0), &Entier(0));
 }
 

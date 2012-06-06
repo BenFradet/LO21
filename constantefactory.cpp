@@ -4,7 +4,7 @@ Constante* ConstanteFactory::GetConstante(QString val, QString mode, bool comple
 {
     if(complexe == true)
     {
-        return Complexe::newComplexe(val, mode);
+        return new Complexe(val, mode);
     }
     if(mode == "Entier")
         return new Entier(val);

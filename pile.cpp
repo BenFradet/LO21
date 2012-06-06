@@ -706,9 +706,14 @@ void Pile::Parser(QString s)
 
     for (int i = 0; i< elements.size(); i++)
     {
-        if(elements[i].contains(complexe))
+        if(elements[i].contains(complexe) && MainWindow::getComplexeMode() == true)
         {
-            Empiler(Complexe::newComplexe(elements[i], MainWindow::getMode()));
+            ConstanteFactory* factory = new ConstanteFactory();
+            QStringList comp = elements[i].split("$");
+            Constante* re = factory->GetConstante(comp[0], MainWindow::getMode());
+            Constante* im = factory->GetConstante(comp[1], MainWindow::getMode());
+            Complexe* c = new Complexe(re, im);
+            Empiler(c);
         }
 
          if(elements[i].contains(rationnel))

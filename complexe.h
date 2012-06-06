@@ -8,16 +8,16 @@
 
 class Complexe: public Constante
 {
-    Constante& pRe;
-    Constante& pIm;
+    Constante* pRe;
+    Constante* pIm;
 public:
-    Complexe(Constante& r, Constante& i): Constante(), pRe(r), pIm(i){}
+    Complexe(Constante* r, Constante* i): Constante(), pRe(r), pIm(i){}
     ~Complexe(){}
 
-    static Complexe* newComplexe(QString &s, QString mode);
+    Complexe(QString &s, QString mode);
 
-    Constante& GetRe()const{return pRe;}
-    Constante& GetIm()const{return pIm;}
+    Constante* GetRe()const{return pRe;}
+    Constante* GetIm()const{return pIm;}
     Constante& GetVal()const;
 
     operator int()const;
@@ -27,8 +27,8 @@ public:
     operator Reel()const;
     operator Complexe()const;
 
-    void SetRe(Constante& r){pRe = r;}
-    void SetIm(Constante& i){pIm = i;}
+    void SetRe(Constante* r){pRe = r;}
+    void SetIm(Constante* i){pIm = i;}
 
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;

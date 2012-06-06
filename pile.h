@@ -98,7 +98,7 @@ public:
     void Moins(QString mode, bool complexe);
     void Multiplier(QString mode, bool complexe);
     void Diviser(QString mode, bool complexe);
-    void Puissance(QString mode, bool complexe);
+    void Puissance(QString mode);
     void Modulo(QString mode);
     void Signe(QString mode, bool complexe);
     void Sinus();

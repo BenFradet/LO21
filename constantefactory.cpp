@@ -12,7 +12,7 @@ Constante* ConstanteFactory::GetConstante(QString val, QString mode, bool comple
         return new Reel(val);
     if(mode == "Rationnel")
         return new Rationnel(val);
-    //return 0;
+    return 0;
 }
 
 Constante* ConstanteFactory::GetConstante(QString val, QString mode)

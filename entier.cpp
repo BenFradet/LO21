@@ -270,7 +270,7 @@ Constante& Entier::operator!()const
     }
 }
 
-QString Entier::ToQString()
+Entier::operator QString()
 {
     QString res;
     QTextStream ss(&res);

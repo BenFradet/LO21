@@ -3,10 +3,9 @@
 
 Complexe::Complexe(QString &s, QString mode)
 {
-    ConstanteFactory* factory = new ConstanteFactory();
     QStringList list = s.split("$");
-    pRe = factory->GetConstante(list[0], mode);
-    pIm = factory->GetConstante(list[1], mode);
+    pRe = ConstanteFactory::GetConstante(list[0], mode);
+    pIm = ConstanteFactory::GetConstante(list[1], mode);
 }
 
 Constante& Complexe::GetVal()const
@@ -124,10 +123,10 @@ Constante& Complexe::cube()const
     return *e;
 }
 
-QString Complexe::ToQString()
+Complexe::operator QString()
 {
     QString str;
     QTextStream tx(&str);
-    tx << pRe->ToQString() <<"$"<< pIm->ToQString();
+    tx << (QString)*pRe <<"$"<< (QString)*pIm;
     return str;
 }

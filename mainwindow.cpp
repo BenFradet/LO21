@@ -661,7 +661,7 @@ void MainWindow::closeEvent(QCloseEvent * event)
 
     for ( int i =0; i < p->getSommet(); i++)
     {
-        etatpile.append(p->getElement(i)->ToQString());
+        etatpile.append((QString)*p->getElement(i));
         etatpile.append(" ");
     }
 

@@ -186,7 +186,6 @@ void Pile::Retablir()
 
 void Pile::Plus(QString mode, bool complexe)
 {
-    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -197,26 +196,26 @@ void Pile::Plus(QString mode, bool complexe)
             if(mode == "Entier")
             {
                 Constante& tmp = (Entier)*b + (Entier)*a;
-                Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
                 Empiler(c);
             }
             else if(mode == "Rationnel")
             {
                 Constante& tmp = (Rationnel)*b + (Rationnel)*a;
-                Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
                 Empiler(c);
             }
             else if(mode == "Reel")
             {
                 Constante& tmp = (Reel)*b + (Reel)*a;
-                Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
                 Empiler(c);
             }
         }
         else
         {
             Constante& tmp = (Complexe)*b + (Complexe)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
     }
@@ -226,7 +225,6 @@ void Pile::Plus(QString mode, bool complexe)
 
 void Pile::Moins(QString mode, bool complexe)
 {
-    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -235,19 +233,19 @@ void Pile::Moins(QString mode, bool complexe)
         if(mode == "Entier")
         {
             Constante& tmp = (Entier)*b - (Entier)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Rationnel")
         {
             Constante& tmp = (Rationnel)*b - (Rationnel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Reel")
         {
             Constante& tmp = (Reel)*b - (Reel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
     }
@@ -257,7 +255,6 @@ void Pile::Moins(QString mode, bool complexe)
 
 void Pile::Multiplier(QString mode, bool complexe)
 {
-    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -266,19 +263,19 @@ void Pile::Multiplier(QString mode, bool complexe)
         if(mode == "Entier")
         {
             Constante& tmp = (Entier)*b * (Entier)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Rationnel")
         {
             Constante& tmp = (Rationnel)*b * (Rationnel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Reel")
         {
             Constante& tmp = (Reel)*b * (Reel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
     }
@@ -288,7 +285,6 @@ void Pile::Multiplier(QString mode, bool complexe)
 
 void Pile::Diviser(QString mode, bool complexe)
 {
-    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -297,19 +293,19 @@ void Pile::Diviser(QString mode, bool complexe)
         if(mode == "Entier")
         {
             Constante& tmp = (Entier)*b / (Entier)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Rationnel")
         {
             Constante& tmp = (Rationnel)*b / (Rationnel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Reel")
         {
             Constante& tmp = (Reel)*b / (Reel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
     }
@@ -319,7 +315,6 @@ void Pile::Diviser(QString mode, bool complexe)
 
 void Pile::Puissance(QString mode, bool complexe)
 {
-    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -328,19 +323,19 @@ void Pile::Puissance(QString mode, bool complexe)
         if(mode == "Entier")
         {
             Constante& tmp = (Entier)*b ^ (Entier)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Rationnel")
         {
             Constante& tmp = (Rationnel)*b ^ (Rationnel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Reel")
         {
             Constante& tmp = (Reel)*b ^ (Reel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
     }
@@ -371,7 +366,6 @@ void Pile::Modulo(QString mode)
 
 void Pile::Signe(QString mode, bool complexe)
 {
-    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -379,19 +373,19 @@ void Pile::Signe(QString mode, bool complexe)
         if(mode == "Entier")
         {
             Constante& tmp = -(Entier)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Rationnel")
         {
             Constante& tmp = -(Rationnel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Reel")
         {
             Constante& tmp = -(Reel)*a;
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
     }
@@ -531,7 +525,6 @@ void Pile::Racine()
 
 void Pile::Carree(QString mode, bool complexe)
 {
-    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -539,19 +532,19 @@ void Pile::Carree(QString mode, bool complexe)
         if(mode == "Entier")
         {
             Constante& tmp = (Entier)a->carree();
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Rationnel")
         {
             Constante& tmp = (Rationnel)a->carree();
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Reel")
         {
             Constante& tmp = (Reel)a->carree();
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
     }
@@ -561,7 +554,6 @@ void Pile::Carree(QString mode, bool complexe)
 
 void Pile::Cube(QString mode, bool complexe)
 {
-    ConstanteFactory* factory = new ConstanteFactory();
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -569,19 +561,19 @@ void Pile::Cube(QString mode, bool complexe)
         if(mode == "Entier")
         {
             Constante& tmp = (Entier)a->cube();
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Rationnel")
         {
             Constante& tmp = (Rationnel)a->cube();
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
         else if(mode == "Reel")
         {
             Constante& tmp = (Reel)a->cube();
-            Constante* c = factory->GetConstante(tmp.ToQString(), mode, complexe);
+            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
             Empiler(c);
         }
     }
@@ -689,7 +681,7 @@ QVariant Pile::data (const QModelIndex &index, int role) const
     if (!index.isValid() || index.row() >= sommet)
         return QVariant();
     if (role == Qt::DisplayRole)
-       return tabElmt[index.row()]->ToQString();
+       return (QString)*tabElmt[index.row()];
     else
         return QVariant();
 }
@@ -708,10 +700,9 @@ void Pile::Parser(QString s)
     {
         if(elements[i].contains(complexe) && MainWindow::getComplexeMode() == true)
         {
-            ConstanteFactory* factory = new ConstanteFactory();
             QStringList comp = elements[i].split("$");
-            Constante* re = factory->GetConstante(comp[0], MainWindow::getMode());
-            Constante* im = factory->GetConstante(comp[1], MainWindow::getMode());
+            Constante* re = ConstanteFactory::GetConstante(comp[0], MainWindow::getMode());
+            Constante* im = ConstanteFactory::GetConstante(comp[1], MainWindow::getMode());
             Complexe* c = new Complexe(re, im);
             Empiler(c);
         }

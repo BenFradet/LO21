@@ -43,7 +43,7 @@ public:
     virtual Constante& carree()const;
     virtual Constante& cube()const;
 
-    virtual QString ToQString() = 0;
+    virtual operator QString() = 0;
 };
 
 #endif // CONSTANTE_H

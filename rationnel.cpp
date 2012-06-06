@@ -222,11 +222,10 @@ Constante& Rationnel::cube()const
     return *res;
 }
 
-QString Rationnel::ToQString()
+Rationnel::operator QString()
 {
     QString str;
     QTextStream tx(&str);
     tx << num << '/' << den ;
     return str;
-
 }

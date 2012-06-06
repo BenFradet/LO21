@@ -49,7 +49,7 @@ public:
     Constante& carree()const;
     Constante& cube()const;
 
-    QString ToQString(); // crée QString à partir d'un réel
+    operator QString(); // crée QString à partir d'un réel
 };
 
 #endif // REEL_H

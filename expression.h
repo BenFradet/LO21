@@ -22,7 +22,7 @@ public:
     operator Complexe()const;
 
     Constante& GetVal()const;
-    QString ToQString(); // crée un QString à partir d'une expression
+    operator QString(); // crée un QString à partir d'une expression
 };
 
 #endif // EXPRESSION_H

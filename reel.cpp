@@ -230,7 +230,7 @@ Constante& Reel::cube()const
     return *res;
 }
 
-QString Reel::ToQString()
+Reel::operator QString()
 {
     QString str;
     QTextStream tx(&str);

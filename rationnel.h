@@ -74,7 +74,7 @@ public:
     Constante& carree()const;
     Constante& cube()const;
 
-    QString ToQString();  //  crée un QString à partir d'un rationnel
+    operator QString();  //  crée un QString à partir d'un rationnel
 };
 
 #endif // RATIONNEL_H

@@ -8,8 +8,8 @@ class ConstanteFactory
 {
 public:
     ConstanteFactory(){}
-    Constante* GetConstante(QString val, QString mode, bool complexe);
-    Constante* GetConstante(QString val, QString mode);
+    static Constante* GetConstante(QString val, QString mode, bool complexe);
+    static Constante* GetConstante(QString val, QString mode);
 };
 
 #endif // CONSTANTEFACTORY_H

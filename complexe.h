@@ -38,7 +38,7 @@ public:
     Constante& carree()const;
     Constante& cube()const;
 
-    QString ToQString(); // crée un QString à partir d'un complexe
+    operator QString();
 };
 
 #endif // COMPLEXE_H

@@ -7,7 +7,7 @@ Constante& Expression::GetVal()const
     return e;
 }
 
-QString Expression::ToQString()
+Expression::operator QString()
 {
     QString str ="a";
    /* QTextStream tx(&str);

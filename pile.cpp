@@ -744,19 +744,21 @@ QVariant Pile::data (const QModelIndex &index, int role) const
 void Pile::Parser(QString s)
 {
     QStringList elements = s.split(" ");
-    QRegExp complexe("^[0-9]+\\${1}[0-9]+$");  // à compléter, complexe prend 2 constantes
-    QRegExp rationnel ("^[0-9]+/{1}[0-9]+$");
-    QRegExp reel ("^[0-9]+\.{1}[0-9]+$");
-    QRegExp entier ("^[0-9]+$");
-    QRegExp expdebut ("^'{1}");
-    QRegExp expfin ("'{1}$");
+    QRegExp complexei("^[0-9]+\\${1}[0-9]+$");
+    QRegExp complexer("^[0-9]+\.[0-9]+\\${1}[0-9]+\.[0-9]+$");
+    QRegExp complexef("^[0-9]+/[0-9]+\\${1}[0-9]+/[0-9]+$");
+    QRegExp rationnel("^[0-9]+/{1}[0-9]+$");
+    QRegExp reel("^[0-9]+\.{1}[0-9]+$");
+    QRegExp entier("^[0-9]+$");
+    QRegExp expdebut("^'{1}");
+    QRegExp expfin("'{1}$");
 
     QString expression("");
 
     for (int i = 0; i< elements.size(); i++)
     {
 
-        if (elements[i].contains(expfin))
+        if(elements[i].contains(expfin))
         {
             expression.append(elements[i]);
             Expression* exp = new Expression(expression);
@@ -764,53 +766,50 @@ void Pile::Parser(QString s)
             expression = "";
         }
 
-
-
-
-        if (expression != "")
+        if(expression != "")
         {
             expression.append(elements[i]);
             expression.append(" ");
         }
 
-        else
-
-        if(elements[i].contains(expdebut))
+        else if(elements[i].contains(expdebut))
         {
             expression.append(elements[i]);
             expression.append(" ");
         }
 
-        else
-
-        if(elements[i].contains(complexe) /*&& MainWindow::getComplexeMode() == true*/)
+        else if((elements[i].contains(complexei) && MainWindow::getMode() == "Entier") ||
+                (elements[i].contains(complexer) && MainWindow::getMode() == "Reel") ||
+                (elements[i].contains(complexef) && MainWindow::getMode() == "Rationnel") &&
+                MainWindow::getComplexeMode() == true)
         {
             QStringList comp = elements[i].split("$");
             Constante* re = ConstanteFactory::GetConstante(comp[0], MainWindow::getMode());
             Constante* im = ConstanteFactory::GetConstante(comp[1], MainWindow::getMode());
             Complexe* c = new Complexe(re, im);
-            Empiler(c);//besoin de l'exclusion mutuelle entre types
+            Empiler(c);
         }
 
-         else if(elements[i].contains(rationnel))
-         {
-             Constante* nouveau2 = new Rationnel(elements[i]);
-             Empiler(nouveau2);
-         }
+        else if(elements[i].contains(rationnel))
+        {
+            Constante* nouveau2 = new Rationnel(elements[i]);
+            Empiler(nouveau2);
+        }
 
         else if(elements[i].contains(reel))
-         {
-             Constante* nouveau2 = new Reel(elements[i]);
-             Empiler(nouveau2);
-         }
+        {
+            Constante* nouveau2 = new Reel(elements[i]);
+            Empiler(nouveau2);
+        }
+
         else if(elements[i].contains(entier))
-         {
-             Constante* nouveau2 = new Entier(elements[i]);
-             Empiler(nouveau2);
-         }
+        {
+            Constante* nouveau2 = new Entier(elements[i]);
+            Empiler(nouveau2);
+        }
 
         else if(elements[i] == "+")
-             Plus(MainWindow::getMode(), MainWindow::getComplexeMode());
+            Plus(MainWindow::getMode(), MainWindow::getComplexeMode());
 
         else if(elements[i] == "-")
             Moins(MainWindow::getMode(), MainWindow::getComplexeMode());
@@ -818,55 +817,55 @@ void Pile::Parser(QString s)
         else if(elements[i] == "*")
             Multiplier(MainWindow::getMode(), MainWindow::getComplexeMode());
 
-         else if(elements[i] == "/")
-             Diviser(MainWindow::getMode(), MainWindow::getComplexeMode());
+        else if(elements[i] == "/")
+            Diviser(MainWindow::getMode(), MainWindow::getComplexeMode());
 
         else if(elements[i] == "POW")
             Puissance(MainWindow::getMode());
 
-         else if(elements[i] == "MOD")
-             Modulo(MainWindow::getMode());
+        else if(elements[i] == "MOD")
+            Modulo(MainWindow::getMode());
 
-         else if(elements[i] == "SIGN")
+        else if(elements[i] == "SIGN")
             Signe(MainWindow::getMode(), MainWindow::getComplexeMode());
 
-         else if(elements[i] == "SIN")
-             Sinus();
+        else if(elements[i] == "SIN")
+            Sinus();
 
-         else if(elements[i] == "COS")
-             Cosinus();
+        else if(elements[i] == "COS")
+            Cosinus();
 
-         else if(elements[i] == "TAN")
-             Tangente();
+        else if(elements[i] == "TAN")
+            Tangente();
 
-         else if(elements[i] == "COSH")
-             Cosinush();
+        else if(elements[i] == "COSH")
+            Cosinush();
 
-         else if(elements[i] == "SINH")
-             Sinush();
+        else if(elements[i] == "SINH")
+            Sinush();
 
-         else if(elements[i] == "TANH")
-             Tangenteh();
+        else if(elements[i] == "TANH")
+            Tangenteh();
 
-         else if(elements[i] == "LOG")
-             LogaDec();
+        else if(elements[i] == "LOG")
+            LogaDec();
 
-         else if(elements[i] == "LN")
-             LogaNep();
+        else if(elements[i] == "LN")
+            LogaNep();
 
-         else if(elements[i] == "INV")
-             Inverse();
+        else if(elements[i] == "INV")
+            Inverse();
 
-         else if(elements[i] == "SQRT")
-             Racine();
+        else if(elements[i] == "SQRT")
+            Racine();
 
-         else if(elements[i] == "SQR")
-             Carree(MainWindow::getMode(), MainWindow::getComplexeMode());
+        else if(elements[i] == "SQR")
+            Carree(MainWindow::getMode(), MainWindow::getComplexeMode());
 
-         else if(elements[i] == "CUBE")
-             Cube(MainWindow::getMode(), MainWindow::getComplexeMode());
+        else if(elements[i] == "CUBE")
+            Cube(MainWindow::getMode(), MainWindow::getComplexeMode());
 
-         else if(elements[i] == "!")
-             Factorielle(MainWindow::getMode());
+        else if(elements[i] == "!")
+            Factorielle(MainWindow::getMode());
     }
 }

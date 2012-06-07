@@ -82,8 +82,9 @@ private slots:
     void MODE_REELS();
     void MODE_RATIONNELS();
     void MODE_ENTIERS();
-    void envoi_pile();
+    void eval();
     void COMPLEXE_MODE(int b);
+    void envoi_pile();
 
     void btnRAZpressed();
 };

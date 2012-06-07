@@ -5,13 +5,11 @@
 #include "include.h"
 #include <QString>
 
-using namespace std;
-
 class Expression: public Constante
 {
-    string exp;
+    QString exp;
 public:
-    Expression(string s): Constante(), exp(s){}
+    Expression(QString s): Constante(), exp(s){}
     ~Expression(){}
 
     operator int()const;

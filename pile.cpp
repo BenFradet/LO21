@@ -748,10 +748,41 @@ void Pile::Parser(QString s)
     QRegExp rationnel ("^[0-9]+/{1}[0-9]+$");
     QRegExp reel ("^[0-9]+\.{1}[0-9]+$");
     QRegExp entier ("^[0-9]+$");
+    QRegExp expdebut ("^'{1}");
+    QRegExp expfin ("'{1}$");
 
+    QString expression("");
 
     for (int i = 0; i< elements.size(); i++)
     {
+
+        if (elements[i].contains(expfin))
+        {
+            expression.append(elements[i]);
+            Expression* exp = new Expression(expression);
+            Empiler(exp);
+            expression = "";
+        }
+
+
+
+
+        if (expression != "")
+        {
+            expression.append(elements[i]);
+            expression.append(" ");
+        }
+
+        else
+
+        if(elements[i].contains(expdebut))
+        {
+            expression.append(elements[i]);
+            expression.append(" ");
+        }
+
+        else
+
         if(elements[i].contains(complexe) /*&& MainWindow::getComplexeMode() == true*/)
         {
             QStringList comp = elements[i].split("$");

@@ -9,10 +9,10 @@ Constante& Expression::GetVal()const
 
 Expression::operator QString()
 {
-    QString str ="a";
+    return exp;
    /* QTextStream tx(&str);
-    tx << exp;*/
-    return str;
+    tx << exp;
+    return str;*/
 }
 
 Expression::operator int()const

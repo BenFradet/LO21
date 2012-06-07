@@ -96,7 +96,7 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QObject::connect(ui->btnRetablir, SIGNAL(clicked()), this, SLOT(btnRetablirpressed()));
     QObject::connect(ui->actionScientifique, SIGNAL(triggered()), this, SLOT(affichage_scientifique()));
     QObject::connect(ui->actionStandard, SIGNAL(triggered()), this, SLOT(affichage_standard()));
-    QObject::connect(ui->btnSENDSTACK, SIGNAL (clicked()), this, SLOT(envoi_pile()));
+    QObject::connect(ui->btnEVAL, SIGNAL (clicked()), this, SLOT(eval()));
     QObject::connect(ui->btnSWAP, SIGNAL (clicked()), this, SLOT(btnSWAPpressed()));
     QObject::connect(ui->btnSUM, SIGNAL (clicked()), this, SLOT(btnSUMpressed()));
     QObject::connect(ui->btnMEAN, SIGNAL (clicked()), this, SLOT(btnMEANpressed()));
@@ -109,6 +109,7 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QObject::connect(ui->action_Entiers, SIGNAL (triggered()), this, SLOT(MODE_ENTIERS()));
     QObject::connect(ui->btnRAZ, SIGNAL (clicked()), this, SLOT(btnRAZpressed()));
     QObject::connect(ui->checkComplexe, SIGNAL (stateChanged(int)), this, SLOT (COMPLEXE_MODE(int)));
+    QObject::connect(ui->btnSENDSTACK, SIGNAL (clicked()), this, SLOT(envoi_pile()));
 
     ui->arg1_SWAP->setText("1");
     ui->arg2_SWAP->setText("1");
@@ -576,7 +577,7 @@ void MainWindow::affichage_standard()
     }
 }
 
-void MainWindow::envoi_pile()
+void MainWindow::eval()
 {
 
     p->Parser(ui->le_entree->text());
@@ -587,6 +588,24 @@ void MainWindow::envoi_pile()
  //   p->emitLayoutChanged();
 }
 
+void MainWindow::envoi_pile()
+{
+    QString entree(ui->le_entree->text());
+    QStringList verif(entree.split(" "));
+    if (verif.length() != 1)
+    {
+        QString sortie("'");
+        sortie.append(entree);
+        sortie.append("'");
+        ui->le_entree->setText(sortie);
+        p->Parser(sortie);
+    }
+    else
+        p->Parser(entree);
+    ui->listView->reset();
+    ui->le_entree->clear();
+
+}
 
 
 void MainWindow::MODE_RATIONNELS()

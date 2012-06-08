@@ -49,7 +49,7 @@ Mementos::~Mementos()
 void Mementos::Empiler(Memento* m)
 {
     if(sommet == taille)
-        throw CalcException("Pile pleine");
+        throw CalcException("Pile pleine.");
     else
         mementos[sommet++] = m;
 }
@@ -57,7 +57,7 @@ void Mementos::Empiler(Memento* m)
 Memento* Mementos::Depiler()
 {
     if(sommet == 0)
-        throw CalcException("Pile vide");
+        throw CalcException("Pile vide.");
     else
         return mementos[--sommet];
 }
@@ -65,7 +65,7 @@ Memento* Mementos::Depiler()
 Memento* Mementos::Tete()const
 {
     if(sommet == 0)
-        throw CalcException("Pile vide");
+        throw CalcException("Pile vide.");
     else
         return mementos[sommet-1];
 }
@@ -110,7 +110,7 @@ Pile::~Pile()
 void Pile::Empiler(Constante* c)
 {
     if(sommet == taille)
-        throw CalcException("Pile pleine");
+        throw CalcException("Pile pleine.");
     else
     {
         createMemento();
@@ -121,7 +121,7 @@ void Pile::Empiler(Constante* c)
 Constante* Pile::Depiler()
 {
     if(sommet == 0)
-        throw CalcException("Pile vide");
+        throw CalcException("Pile vide.");
     else
     {
         createMemento();
@@ -132,7 +132,7 @@ Constante* Pile::Depiler()
 Constante* Pile::Tete()const
 {
     if(sommet == 0)
-        throw CalcException("Pile vide");
+        throw CalcException("Pile vide.");
     else
         return tabElmt[sommet-1];
 }
@@ -146,7 +146,7 @@ void Pile::Clear()
 void Pile::Dup()
 {
     if(sommet == taille)
-        throw CalcException("Pile pleine");
+        throw CalcException("Pile pleine.");
     else
     {
         createMemento();
@@ -158,7 +158,7 @@ void Pile::Dup()
 void Pile::Drop()
 {
     if(sommet == 0)
-        throw CalcException("Pile vide");
+        throw CalcException("Pile vide.");
     else
     {
         createMemento();
@@ -230,7 +230,7 @@ void Pile::Plus(QString mode, bool complexe)
         }
     }
     else
-        throw CalcException("Cette opération nécessite deux opérandes");
+        throw CalcException("Cette opï¿½ration nï¿½cessite deux opï¿½randes");
 }
 
 void Pile::Moins(QString mode, bool complexe)
@@ -268,7 +268,7 @@ void Pile::Moins(QString mode, bool complexe)
         }
     }
     else
-        throw CalcException("Cette opération nécessite deux opérandes");
+        throw CalcException("Cette opï¿½ration nï¿½cessite deux opï¿½randes");
 }
 
 void Pile::Multiplier(QString mode, bool complexe)
@@ -306,7 +306,7 @@ void Pile::Multiplier(QString mode, bool complexe)
         }
     }
     else
-        throw CalcException("Cette opération nécessite deux opérandes");
+        throw CalcException("Cette opï¿½ration nï¿½cessite deux opï¿½randes");
 }
 
 void Pile::Diviser(QString mode, bool complexe)
@@ -344,7 +344,7 @@ void Pile::Diviser(QString mode, bool complexe)
         }
     }
     else
-        throw CalcException("Cette opération nécessite deux opérandes");
+        throw CalcException("Cette opï¿½ration nï¿½cessite deux opï¿½randes");
 }
 
 void Pile::Puissance(QString mode)
@@ -373,7 +373,7 @@ void Pile::Puissance(QString mode)
         }
     }
     else
-        throw CalcException("Cette opération nécessite deux opérandes");
+        throw CalcException("Cette opï¿½ration nï¿½cessite deux opï¿½randes");
 }
 
 void Pile::Modulo(QString mode)
@@ -390,10 +390,10 @@ void Pile::Modulo(QString mode)
             Empiler(c);
         }
         else
-            throw CalcException("Cette opération nécessite deux entiers");
+            throw CalcException("Cette opï¿½ration nï¿½cessite deux entiers");
     }
     else
-        throw CalcException("Cette opération nécessite deux opérandes");
+        throw CalcException("Cette opï¿½ration nï¿½cessite deux opï¿½randes");
 }
 
 void Pile::Signe(QString mode, bool complexe)
@@ -430,7 +430,7 @@ void Pile::Signe(QString mode, bool complexe)
         }
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Sinus()
@@ -442,7 +442,7 @@ void Pile::Sinus()
         Empiler(res);
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Cosinus()
@@ -454,7 +454,7 @@ void Pile::Cosinus()
         Empiler(res);
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Tangente()
@@ -466,7 +466,7 @@ void Pile::Tangente()
         Empiler(res);
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Sinush()
@@ -478,7 +478,7 @@ void Pile::Sinush()
         Empiler(res);
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Cosinush()
@@ -490,7 +490,7 @@ void Pile::Cosinush()
         Empiler(res);
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Tangenteh()
@@ -502,7 +502,7 @@ void Pile::Tangenteh()
         Empiler(res);
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::LogaNep()
@@ -514,7 +514,7 @@ void Pile::LogaNep()
         Empiler(res);
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::LogaDec()
@@ -526,7 +526,7 @@ void Pile::LogaDec()
         Empiler(res);
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Inverse()
@@ -538,7 +538,7 @@ void Pile::Inverse()
         Empiler(res);
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Racine()
@@ -550,7 +550,7 @@ void Pile::Racine()
         Empiler(res);
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Carree(QString mode, bool complexe)
@@ -587,7 +587,7 @@ void Pile::Carree(QString mode, bool complexe)
         }
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Cube(QString mode, bool complexe)
@@ -624,7 +624,7 @@ void Pile::Cube(QString mode, bool complexe)
         }
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Factorielle(QString mode)
@@ -639,10 +639,10 @@ void Pile::Factorielle(QString mode)
             Empiler(res);
         }
         else
-            throw CalcException("Cette opération nécessite un entier");
+            throw CalcException("Cette opï¿½ration nï¿½cessite un entier");
     }
     else
-        throw CalcException("Cette opération nécessite une opérande");
+        throw CalcException("Cette opï¿½ration nï¿½cessite une opï¿½rande");
 }
 
 void Pile::Swap(int x, int y)
@@ -655,7 +655,7 @@ void Pile::Swap(int x, int y)
         tabElmt[y-1] = tmp;
     }
     else
-        throw CalcException("Les indices doivent être dans la pile");
+        throw CalcException("Les indices doivent ï¿½tre dans la pile");
 }
 
 Constante& Pile::Sum(int x, QString mode)
@@ -688,7 +688,7 @@ Constante& Pile::Sum(int x, QString mode)
         }
     }
     else
-        throw CalcException("Indice en dehors des bornes autorisées");
+        throw CalcException("Indice en dehors des bornes autorisï¿½es");
 }
 
 void Pile::Mean(int x, QString mode)
@@ -711,7 +711,7 @@ void Pile::Mean(int x, QString mode)
         }
     }
     else
-        throw CalcException("Indice en dehors des bornes autorisées");
+        throw CalcException("Indice en dehors des bornes autorisï¿½es");
 }
 
 int Pile::rowCount (const QModelIndex &parent) const

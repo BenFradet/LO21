@@ -124,7 +124,7 @@ Constante* Pile::Depiler()
         throw CalcException("Pile vide");
     else
     {
-        createMemento();
+        //createMemento();
         return tabElmt[--sommet];
     }
 }
@@ -438,8 +438,19 @@ void Pile::Sinus()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Constante* res = new Reel(a->sinus());
-        Empiler(res);
+        if(MainWindow::getAngleMode() == "Radian")
+        {
+            Constante* res = new Reel(a->sinus());
+            Empiler(res);
+        }
+        else
+        {
+            float f = 3.141592/180;
+            Constante* tmp = new Reel(f);
+            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+            Constante* res = new Reel(tmp2.sinus());
+            Empiler(res);
+        }
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -450,8 +461,19 @@ void Pile::Cosinus()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Constante* res = new Reel(a->cosinus());
-        Empiler(res);
+        if(MainWindow::getAngleMode() == "Radian")
+        {
+            Constante* res = new Reel(a->cosinus());
+            Empiler(res);
+        }
+        else
+        {
+            float f = 3.141592/180;
+            Constante* tmp = new Reel(f);
+            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+            Constante* res = new Reel(tmp2.cosinus());
+            Empiler(res);
+        }
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -462,8 +484,19 @@ void Pile::Tangente()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Constante* res = new Reel(a->tangente());
-        Empiler(res);
+        if(MainWindow::getAngleMode() == "Radian")
+        {
+            Constante* res = new Reel(a->tangente());
+            Empiler(res);
+        }
+        else
+        {
+            float f = 3.141592/180;
+            Constante* tmp = new Reel(f);
+            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+            Constante* res = new Reel(tmp2.tangente());
+            Empiler(res);
+        }
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -474,8 +507,19 @@ void Pile::Sinush()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Constante* res = new Reel(a->sinush());
-        Empiler(res);
+        if(MainWindow::getAngleMode() == "Radian")
+        {
+            Constante* res = new Reel(a->sinush());
+            Empiler(res);
+        }
+        else
+        {
+            float f = 3.141592/180;
+            Constante* tmp = new Reel(f);
+            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+            Constante* res = new Reel(tmp2.sinush());
+            Empiler(res);
+        }
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -486,8 +530,19 @@ void Pile::Cosinush()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Constante* res = new Reel(a->cosinush());
-        Empiler(res);
+        if(MainWindow::getAngleMode() == "Radian")
+        {
+            Constante* res = new Reel(a->cosinush());
+            Empiler(res);
+        }
+        else
+        {
+            float f = 3.141592/180;
+            Constante* tmp = new Reel(f);
+            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+            Constante* res = new Reel(tmp2.cosinush());
+            Empiler(res);
+        }
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
@@ -498,8 +553,19 @@ void Pile::Tangenteh()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        Constante* res = new Reel(a->tangenteh());
-        Empiler(res);
+        if(MainWindow::getAngleMode() == "Radian")
+        {
+            Constante* res = new Reel(a->tangenteh());
+            Empiler(res);
+        }
+        else
+        {
+            float f = 3.141592/180;
+            Constante* tmp = new Reel(f);
+            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+            Constante* res = new Reel(tmp2.tangenteh());
+            Empiler(res);
+        }
     }
     else
         throw CalcException("Cette opération nécessite une opérande");

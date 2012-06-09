@@ -18,9 +18,7 @@ QString MainWindow::mode = "Entier";
 QString MainWindow::angleMode = "Degre";
 bool MainWindow::ComplexeMode = true;
 
-MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -29,9 +27,7 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     ui->action_Reels->setChecked(true);
     ui->action_Reels->setDisabled(true);
 
-    QShortcut* retour_arriere = new QShortcut(QKeySequence(Qt::Key_Backspace),
-                                             ui->le_entree);
-
+    QShortcut* retour_arriere = new QShortcut(QKeySequence(Qt::Key_Backspace), ui->le_entree);
 
     afficher_std();
 
@@ -92,7 +88,6 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QObject::connect(ui->action_Degres, SIGNAL (triggered()), this,SLOT (MODE_DEGRES()));
     QObject::connect(ui->action_Radians, SIGNAL (triggered()), this,SLOT (MODE_RADIANS()));
 
-
     ui->arg1_SWAP->setText("1");
     ui->arg2_SWAP->setText("1");
     ui->arg_SUM->setText("1");
@@ -114,19 +109,20 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P),
     QString moderecup = doc.firstChild().childNodes().at(2).firstChild().nodeValue();
     if(moderecup == "Entier")
     {
-      setModeEntier();
+        setModeEntier();
     }
     else if (moderecup == "Rationnel")
     {
-     setModeRationnel();
+        setModeRationnel();
     }
     else if (moderecup == "Reel")
     {
-    setModeReel();
+        setModeReel();
     }
     else
     {
-    setModeReel();}
+        setModeReel();
+    }
 
     QString cxmod = doc.firstChild().childNodes().at(3).firstChild().nodeValue();
     if (cxmod == "true")
@@ -428,17 +424,15 @@ void MainWindow::affichage_scientifique()
 
 void MainWindow::affichage_standard()
 {
-        if (ui->actionStandard->isChecked() == true)
-           afficher_std();
+    if (ui->actionStandard->isChecked() == true)
+       afficher_std();
 }
 
 void MainWindow::eval()
 {
-
     p->Parser(ui->le_entree->text());
     ui->listView->reset();
     ui->le_entree->clear();
-
 }
 
 void MainWindow::envoi_pile()
@@ -484,10 +478,10 @@ void MainWindow::MODE_ENTIERS()
 void MainWindow::COMPLEXE_MODE(int b)
 {
     if (b)
-       {
+   {
         setComplexeMode(true);
         ui->btnCOMPLEXE->setEnabled(true);
-       }
+   }
 
     else
      {
@@ -501,8 +495,6 @@ void MainWindow::COMPLEXE_MODE(int b)
 void MainWindow::btnRAZpressed()
 {
     ui->le_entree->clear();
-
-
 }
 
 void MainWindow::closeEvent(QCloseEvent * event)

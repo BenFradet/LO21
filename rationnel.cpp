@@ -34,7 +34,9 @@ Rationnel::operator Reel()const
 
 Rationnel::operator Complexe()const
 {
-    return Complexe(&Rationnel(num, den), &Entier(0));
+    Rationnel* r = new Rationnel(num, den);
+    Rationnel* zero = new Rationnel(0, 1);
+    return Complexe(r, zero);
 }
 
 Constante& Rationnel::operator+(const Constante& c)const//ADAPTER A FAIRE

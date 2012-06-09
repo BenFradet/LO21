@@ -16,6 +16,7 @@ public:
     Entier(QString s) // crée un entier a partir d'un QString
     {
         value = s.toInt();
+
     }
 
     Constante& GetVal()const;

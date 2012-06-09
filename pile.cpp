@@ -732,14 +732,14 @@ void Pile::Parser(QString s)
 {
     QStringList elements = s.split(" ");
     QRegExp complexeI("^[0-9]+\\${1}[0-9]+$");
-    QRegExp complexeR("^[0-9]+\.[0-9]+\\${1}[0-9]+\.[0-9]+$");
-    QRegExp complexeF("^[0-9]+/[0-9]+\\${1}[0-9]+/[0-9]+$");
-    QRegExp complexeIR("^[0-9]+\\${1}[0-9]+\.[0-9]+$");
-    QRegExp complexeRI("^[0-9]+\.[0-9]+\\${1}[0-9]+$");
-    QRegExp complexeIF("^[0-9]+\\${1}[0-9]+/[0-9]+$");
-    QRegExp complexeFI("^[0-9]+/[0-9]+\\${1}[0-9]+$");
-    QRegExp complexeFR("^[0-9]+/[0-9]+\\${1}[0-9]+\.[0-9]+$");
-    QRegExp complexeRF("^[0-9]+/[0-9]+\\${1}[0-9]+/[0-9]+$");
+    QRegExp complexeR("^[0-9]+\.{1}[0-9]+\\${1}[0-9]+\.{1}[0-9]+$");
+    QRegExp complexeF("^[0-9]+/{1}[0-9]+\\${1}[0-9]+/{1}[0-9]+$");
+    QRegExp complexeIR("^[0-9]+\\${1}[0-9]+\.{1}[0-9]+$");
+    QRegExp complexeRI("^[0-9]+\.{1}[0-9]+\\${1}[0-9]+$");
+    QRegExp complexeIF("^[0-9]+\\${1}[0-9]+/{1}[0-9]+$");
+    QRegExp complexeFI("^[0-9]+/{1}[0-9]+\\${1}[0-9]+$");
+    QRegExp complexeFR("^[0-9]+/{1}[0-9]+\\${1}[0-9]+\.{1}[0-9]+$");
+    QRegExp complexeRF("^[0-9]+\\.{1}[0-9]+\\${1}[0-9]+/{1}[0-9]+$");
     QRegExp rationnel("^[0-9]+/{1}[0-9]+$");
     QRegExp reel("^[0-9]+\.{1}[0-9]+$");
     QRegExp entier("^[0-9]+$");
@@ -771,12 +771,49 @@ void Pile::Parser(QString s)
             expression.append(" ");
         }
 
+        else if(elements[i].contains(complexeIF) && MainWindow::getComplexeMode() == true)
+        {
+            QStringList comp = elements[i].split("$");
+            Constante* re = ConstanteFactory::GetConstante(comp[0], "Entier");
+            Constante* im = ConstanteFactory::GetConstante(comp[1], "Rationnel");
+            Complexe* c = new Complexe(re, im);
+            Empiler(c);
+        }
+
+        else if(elements[i].contains(complexeFI) && MainWindow::getComplexeMode() == true)
+        {
+            QStringList comp = elements[i].split("$");
+            Constante* re = ConstanteFactory::GetConstante(comp[0], "Rationnel");
+            Constante* im = ConstanteFactory::GetConstante(comp[1], "Entier");
+            Complexe* c = new Complexe(re, im);
+            Empiler(c);
+        }
+
+        else if(elements[i].contains(complexeRF) && MainWindow::getComplexeMode() == true)
+        {
+            QStringList comp = elements[i].split("$");
+            Constante* re = ConstanteFactory::GetConstante(comp[0], "Reel");
+            Constante* im = ConstanteFactory::GetConstante(comp[1], "Rationnel");
+            Complexe* c = new Complexe(re, im);
+            Empiler(c);
+        }
+
+        else if(elements[i].contains(complexeFR) && MainWindow::getComplexeMode() == true)
+        {
+            QStringList comp = elements[i].split("$");
+            Constante* re = ConstanteFactory::GetConstante(comp[0], "Rationnel");
+            Constante* im = ConstanteFactory::GetConstante(comp[1], "Reel");
+            Complexe* c = new Complexe(re, im);
+            Empiler(c);
+        }
+
         else if(elements[i].contains(complexeI) && MainWindow::getComplexeMode() == true)
         {
             QStringList comp = elements[i].split("$");
             Constante* re = ConstanteFactory::GetConstante(comp[0], "Entier");
             Constante* im = ConstanteFactory::GetConstante(comp[1], "Entier");
             Complexe* c = new Complexe(re, im);
+
             Empiler(c);
         }
 
@@ -816,41 +853,7 @@ void Pile::Parser(QString s)
             Empiler(c);
         }
 
-        else if(elements[i].contains(complexeIF) && MainWindow::getComplexeMode() == true)
-        {
-            QStringList comp = elements[i].split("$");
-            Constante* re = ConstanteFactory::GetConstante(comp[0], "Entier");
-            Constante* im = ConstanteFactory::GetConstante(comp[1], "Rationnel");
-            Complexe* c = new Complexe(re, im);
-            Empiler(c);
-        }
 
-        else if(elements[i].contains(complexeFI) && MainWindow::getComplexeMode() == true)
-        {
-            QStringList comp = elements[i].split("$");
-            Constante* re = ConstanteFactory::GetConstante(comp[0], "Rationnel");
-            Constante* im = ConstanteFactory::GetConstante(comp[1], "Entier");
-            Complexe* c = new Complexe(re, im);
-            Empiler(c);
-        }
-
-        else if(elements[i].contains(complexeRF) && MainWindow::getComplexeMode() == true)
-        {
-            QStringList comp = elements[i].split("$");
-            Constante* re = ConstanteFactory::GetConstante(comp[0], "Reel");
-            Constante* im = ConstanteFactory::GetConstante(comp[1], "Rationnel");
-            Complexe* c = new Complexe(re, im);
-            Empiler(c);
-        }
-
-        else if(elements[i].contains(complexeFR) && MainWindow::getComplexeMode() == true)
-        {
-            QStringList comp = elements[i].split("$");
-            Constante* re = ConstanteFactory::GetConstante(comp[0], "Rationnel");
-            Constante* im = ConstanteFactory::GetConstante(comp[1], "Reel");
-            Complexe* c = new Complexe(re, im);
-            Empiler(c);
-        }
 
         else if(elements[i].contains(rationnel))
         {

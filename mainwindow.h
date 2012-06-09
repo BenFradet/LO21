@@ -21,13 +21,22 @@ public:
     static bool getComplexeMode() {return ComplexeMode;}
     static void setMode(QString s) { mode = s;}
     static void setComplexeMode(bool b) { ComplexeMode = b;}
+    static QString getAngleMode() {return angleMode;}
+    static void setAngleMode(QString s) {angleMode = s; }
     void closeEvent(QCloseEvent * event);
+    void afficher_sc ();
+    void afficher_std();
+    void setModeReel();
+    void setModeRationnel();
+    void setModeEntier();
+    void setModeRadian();
     
 private:
     Ui::MainWindow *ui;
     Pile* p;
     static QString mode;
     static bool ComplexeMode;
+    static QString angleMode;
 
 
 private slots:
@@ -85,6 +94,9 @@ private slots:
     void eval();
     void COMPLEXE_MODE(int b);
     void envoi_pile();
+    void backspace();
+    void MODE_DEGRES();
+    void MODE_RADIANS();
 
     void btnRAZpressed();
 };

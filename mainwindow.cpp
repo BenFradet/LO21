@@ -29,20 +29,56 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui
 
     QShortcut* retour_arriere = new QShortcut(QKeySequence(Qt::Key_Backspace), ui->le_entree);
 
+
     afficher_std();
 
     QRect R(120,130,916, 370);
     MainWindow::setGeometry(R);
-    QObject::connect(ui->btn0, SIGNAL(clicked()), this, SLOT(btn0pressed()));
-    QObject::connect(ui->btn1, SIGNAL(clicked()), this, SLOT(btn1pressed()));
-    QObject::connect(ui->btn2, SIGNAL(clicked()), this, SLOT(btn2pressed()));
-    QObject::connect(ui->btn3, SIGNAL(clicked()), this, SLOT(btn3pressed()));
-    QObject::connect(ui->btn4, SIGNAL(clicked()), this, SLOT(btn4pressed()));
-    QObject::connect(ui->btn5, SIGNAL(clicked()), this, SLOT(btn5pressed()));
-    QObject::connect(ui->btn6, SIGNAL(clicked()), this, SLOT(btn6pressed()));
-    QObject::connect(ui->btn7, SIGNAL(clicked()), this, SLOT(btn7pressed()));
-    QObject::connect(ui->btn8, SIGNAL(clicked()), this, SLOT(btn8pressed()));
-    QObject::connect(ui->btn9, SIGNAL(clicked()), this, SLOT(btn9pressed()));
+
+    QShortcut* bt0 = new QShortcut(QKeySequence(Qt::Key_0), ui->le_entree);
+    QObject::connect(bt0, SIGNAL (activated()), this, SLOT (btn0pressed()));
+    QObject::connect(ui->btn0, SIGNAL (clicked()), this, SLOT (btn0pressed()));
+
+    QShortcut* bt1 = new QShortcut(QKeySequence(Qt::Key_1), ui->le_entree);
+    QObject::connect(bt1, SIGNAL (activated()), this, SLOT (btn1pressed()));
+    QObject::connect(ui->btn1, SIGNAL (clicked()), this, SLOT (btn1pressed()));
+
+    QShortcut* bt2 = new QShortcut(QKeySequence(Qt::Key_2), ui->le_entree);
+    QObject::connect(bt2, SIGNAL (activated()), this, SLOT (btn2pressed()));
+    QObject::connect(ui->btn2, SIGNAL (clicked()), this, SLOT (btn2pressed()));
+
+    QShortcut* bt3 = new QShortcut(QKeySequence(Qt::Key_3), ui->le_entree);
+    QObject::connect(bt3, SIGNAL (activated()), this, SLOT (btn3pressed()));
+    QObject::connect(ui->btn3, SIGNAL (clicked()), this, SLOT (btn3pressed()));
+
+    QShortcut* bt4 = new QShortcut(QKeySequence(Qt::Key_4), ui->le_entree);
+    QObject::connect(bt4, SIGNAL (activated()), this, SLOT (btn4pressed()));
+    QObject::connect(ui->btn4, SIGNAL (clicked()), this, SLOT (btn4pressed()));
+
+    QShortcut* bt5 = new QShortcut(QKeySequence(Qt::Key_5), ui->le_entree);
+    QObject::connect(bt5, SIGNAL (activated()), this, SLOT (btn5pressed()));
+    QObject::connect(ui->btn5, SIGNAL (clicked()), this, SLOT (btn5pressed()));
+
+    QShortcut* bt6 = new QShortcut(QKeySequence(Qt::Key_6), ui->le_entree);
+    QObject::connect(bt6, SIGNAL (activated()), this, SLOT (btn6pressed()));
+    QObject::connect(ui->btn6, SIGNAL (clicked()), this, SLOT (btn6pressed()));
+
+    QShortcut* bt7 = new QShortcut(QKeySequence(Qt::Key_7), ui->le_entree);
+    QObject::connect(bt7, SIGNAL (activated()), this, SLOT (btn7pressed()));
+    QObject::connect(ui->btn7, SIGNAL (clicked()), this, SLOT (btn7pressed()));
+
+    QShortcut* bt8 = new QShortcut(QKeySequence(Qt::Key_8), ui->le_entree);
+    QObject::connect(bt8, SIGNAL (activated()), this, SLOT (btn8pressed()));
+    QObject::connect(ui->btn8, SIGNAL (clicked()), this, SLOT (btn8pressed()));
+
+    QShortcut* bt9 = new QShortcut(QKeySequence(Qt::Key_9), ui->le_entree);
+    QObject::connect(bt9, SIGNAL (activated()), this, SLOT (btn9pressed()));
+    QObject::connect(ui->btn9, SIGNAL (clicked()), this, SLOT (btn9pressed()));
+
+
+
+
+
     QObject::connect(ui->btnSPACE, SIGNAL (clicked()), this, SLOT(btnSPACEpressed()));
     QObject::connect(ui->btnAddi, SIGNAL (clicked()), this, SLOT(btnAddipressed()));
     QObject::connect(ui->btnSous, SIGNAL (clicked()), this, SLOT(btnSouspressed()));
@@ -87,6 +123,8 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui
     QObject::connect(retour_arriere,SIGNAL (activated()), this,SLOT (backspace()));
     QObject::connect(ui->action_Degres, SIGNAL (triggered()), this,SLOT (MODE_DEGRES()));
     QObject::connect(ui->action_Radians, SIGNAL (triggered()), this,SLOT (MODE_RADIANS()));
+    QObject::connect(ui->checkClavier, SIGNAL(stateChanged(int)), this, SLOT (CLAVIER(int)));
+
 
     ui->arg1_SWAP->setText("1");
     ui->arg2_SWAP->setText("1");
@@ -716,4 +754,57 @@ void MainWindow::setModeRadian()
     ui->action_Radians->setDisabled(true);
     ui->action_Degres->setChecked(false);
     ui->action_Degres->setEnabled(true);
+}
+
+void MainWindow::CLAVIER(int b)
+
+{
+    if (b)
+    {
+        setClavier();
+    }
+    else
+    {
+        unsetClavier();
+
+    }
+
+}
+
+void MainWindow::setClavier()
+{
+
+    ui->btn0->setHidden(false);
+    ui->btn1->setHidden(false);
+    ui->btn2->setHidden(false);
+    ui->btn3->setHidden(false);
+    ui->btn4->setHidden(false);
+    ui->btn5->setHidden(false);
+    ui->btn6->setHidden(false);
+    ui->btn7->setHidden(false);
+    ui->btn8->setHidden(false);
+    ui->btn9->setHidden(false);
+
+}
+
+void MainWindow::unsetClavier()
+{
+
+
+
+    ui->btn0->setHidden(true);
+    ui->btn1->setHidden(true);
+    ui->btn2->setHidden(true);
+    ui->btn3->setHidden(true);
+    ui->btn4->setHidden(true);
+    ui->btn5->setHidden(true);
+    ui->btn6->setHidden(true);
+    ui->btn7->setHidden(true);
+    ui->btn8->setHidden(true);
+    ui->btn9->setHidden(true);
+    ui->btnAnnuler->setGeometry(ui->btnAnnuler->geometry().x(),ui->btnAnnuler->geometry().y(),400,100);
+
+
+
+
 }

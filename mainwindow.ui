@@ -23,7 +23,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>80</y>
+      <y>90</y>
       <width>171</width>
       <height>181</height>
      </rect>
@@ -55,9 +55,6 @@
         </font>
        </property>
        <property name="text">
-        <string>7</string>
-       </property>
-       <property name="shortcut">
         <string>7</string>
        </property>
       </widget>
@@ -111,9 +108,6 @@
        <property name="text">
         <string>9</string>
        </property>
-       <property name="shortcut">
-        <string>9</string>
-       </property>
       </widget>
      </item>
      <item row="3" column="2">
@@ -165,9 +159,6 @@
        <property name="text">
         <string>3</string>
        </property>
-       <property name="shortcut">
-        <string>3</string>
-       </property>
       </widget>
      </item>
      <item row="2" column="0">
@@ -192,9 +183,6 @@
        <property name="text">
         <string>1</string>
        </property>
-       <property name="shortcut">
-        <string>1</string>
-       </property>
       </widget>
      </item>
      <item row="1" column="0">
@@ -217,9 +205,6 @@
         </font>
        </property>
        <property name="text">
-        <string>4</string>
-       </property>
-       <property name="shortcut">
         <string>4</string>
        </property>
       </widget>
@@ -252,9 +237,6 @@
          <height>16</height>
         </size>
        </property>
-       <property name="shortcut">
-        <string>8</string>
-       </property>
       </widget>
      </item>
      <item row="1" column="1">
@@ -277,9 +259,6 @@
         </font>
        </property>
        <property name="text">
-        <string>5</string>
-       </property>
-       <property name="shortcut">
         <string>5</string>
        </property>
       </widget>
@@ -306,9 +285,6 @@
        <property name="text">
         <string>6</string>
        </property>
-       <property name="shortcut">
-        <string>6</string>
-       </property>
       </widget>
      </item>
      <item row="2" column="1">
@@ -331,9 +307,6 @@
         </font>
        </property>
        <property name="text">
-        <string>2</string>
-       </property>
-       <property name="shortcut">
         <string>2</string>
        </property>
       </widget>
@@ -360,9 +333,6 @@
        <property name="text">
         <string>0</string>
        </property>
-       <property name="shortcut">
-        <string>0</string>
-       </property>
       </widget>
      </item>
     </layout>
@@ -370,8 +340,8 @@
    <widget class="QLineEdit" name="le_entree">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>20</y>
+      <x>20</x>
+      <y>40</y>
       <width>401</width>
       <height>41</height>
      </rect>
@@ -389,9 +359,9 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>80</y>
+      <y>90</y>
       <width>191</width>
-      <height>181</height>
+      <height>171</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
@@ -752,7 +722,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>270</y>
+      <y>280</y>
       <width>301</width>
       <height>41</height>
      </rect>
@@ -910,7 +880,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>270</y>
+      <y>280</y>
       <width>51</width>
       <height>41</height>
      </rect>
@@ -922,22 +892,6 @@
     </property>
     <property name="text">
      <string>RAZ</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkComplexe">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>290</y>
-      <width>81</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Complexes</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -953,6 +907,51 @@
      <string>Pile</string>
     </property>
    </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>160</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QCheckBox" name="checkClavier">
+       <property name="text">
+        <string>Clavier</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="checkComplexe">
+       <property name="text">
+        <string>Complexes</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <zorder>gridLayoutWidget</zorder>
+   <zorder>le_entree</zorder>
+   <zorder>gridLayoutWidget_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>gridLayoutWidget_3</zorder>
+   <zorder>btnSENDSTACK</zorder>
+   <zorder>listView</zorder>
+   <zorder>gridLayoutWidget_4</zorder>
+   <zorder>gridLayoutWidget_5</zorder>
+   <zorder>btnRAZ</zorder>
+   <zorder>label</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>checkClavier</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -960,7 +959,7 @@
      <x>0</x>
      <y>0</y>
      <width>916</width>
-     <height>19</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Menu">
@@ -1031,6 +1030,9 @@
    </property>
    <property name="text">
     <string>&amp;Entiers</string>
+   </property>
+   <property name="iconText">
+    <string>Entiers</string>
    </property>
   </action>
   <action name="action_Rationnels">

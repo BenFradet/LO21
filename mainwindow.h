@@ -30,6 +30,8 @@ public:
     void setModeRationnel();
     void setModeEntier();
     void setModeRadian();
+    void setClavier();
+    void unsetClavier();
     
 private:
     Ui::MainWindow *ui;
@@ -99,6 +101,7 @@ private slots:
     void MODE_RADIANS();
 
     void btnRAZpressed();
+    void CLAVIER(int);
 };
 
 #endif // MAINWINDOW_H

@@ -3,6 +3,7 @@
 
 #include "include.h"
 #include "constantefactory.h"
+#include "mainwindow.h"
 #include <QString>
 #include <QStringList>
 

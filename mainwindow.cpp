@@ -75,8 +75,32 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui
     QObject::connect(bt9, SIGNAL (activated()), this, SLOT (btn9pressed()));
     QObject::connect(ui->btn9, SIGNAL (clicked()), this, SLOT (btn9pressed()));
 
+    QShortcut* btAnn = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z), this);
+    QObject::connect(btAnn, SIGNAL (activated()), this, SLOT (btnAnnulerpressed()));
 
+    QShortcut* btRetab = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y), this);
+    QObject::connect(btRetab, SIGNAL (activated()), this, SLOT (btnRetablirpressed()));
 
+    QShortcut* mde = new QShortcut (QKeySequence(Qt::CTRL + Qt::Key_E), this);
+    QObject::connect(mde, SIGNAL (activated()), this, SLOT (MODE_ENTIERS()));
+
+    QShortcut* mdf = new QShortcut (QKeySequence(Qt::CTRL + Qt::Key_F), this);
+    QObject::connect(mdf, SIGNAL (activated()), this, SLOT (MODE_RATIONNELS()));
+
+    QShortcut* mdr = new QShortcut (QKeySequence(Qt::CTRL + Qt::Key_R), this);
+    QObject::connect(mdr, SIGNAL (activated()), this, SLOT (MODE_REELS()));
+
+    QShortcut* scien = new QShortcut (QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S), this);
+    QObject::connect(scien, SIGNAL (activated()), this, SLOT (affichage_scientifique()));
+
+    QShortcut* std = new QShortcut (QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W), this);
+    QObject::connect(std, SIGNAL (activated()), this, SLOT (affichage_standard()));
+
+    QShortcut* deg = new QShortcut (QKeySequence(Qt::CTRL + Qt::Key_D), this);
+    QObject::connect(deg, SIGNAL (activated()), this, SLOT (MODE_DEGRES()));
+
+    QShortcut* rad = new QShortcut (QKeySequence(Qt::CTRL + Qt::Key_A), this);
+    QObject::connect(rad, SIGNAL (activated()), this, SLOT (MODE_RADIANS()));
 
 
     QObject::connect(ui->btnSPACE, SIGNAL (clicked()), this, SLOT(btnSPACEpressed()));
@@ -101,8 +125,8 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui
     QObject::connect(ui->btnCOMPLEXE, SIGNAL (clicked()), this, SLOT(btnCOMPLEXEpressed()));
     QObject::connect(ui->btnPOW, SIGNAL (clicked()), this, SLOT(btnPOWpressed()));
     QObject::connect(ui->btnMOD, SIGNAL (clicked()), this, SLOT(btnMODpressed()));
-    QObject::connect(ui->btnAnnuler, SIGNAL(clicked()), this, SLOT(btnAnnulerpressed()));
-    QObject::connect(ui->btnRetablir, SIGNAL(clicked()), this, SLOT(btnRetablirpressed()));
+    QObject::connect(ui->actionAnnuler, SIGNAL(triggered()), this, SLOT(btnAnnulerpressed()));
+    QObject::connect(ui->actionRetablir, SIGNAL(triggered()), this, SLOT(btnRetablirpressed()));
     QObject::connect(ui->actionScientifique, SIGNAL(triggered()), this, SLOT(affichage_scientifique()));
     QObject::connect(ui->actionStandard, SIGNAL(triggered()), this, SLOT(affichage_standard()));
     QObject::connect(ui->btnEVAL, SIGNAL (clicked()), this, SLOT(eval()));
@@ -189,6 +213,13 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui
     if (mode_angles == "Radian")
     {
         setModeRadian();
+    }
+
+    QString mode_clavier = doc.firstChild().childNodes().at(6).firstChild().nodeValue();
+    if (mode_clavier == "Off")
+    {
+        ui->checkClavier->setChecked(false);
+        unsetClavier();
     }
 }
 
@@ -380,11 +411,15 @@ void MainWindow::btnSWAPpressed()
     int i = ui->arg1_SWAP->text().toInt();
     int j = ui->arg2_SWAP->text().toInt();
 
+    if (i != 0 && j != 0)
+    {
     p->Swap(i,j);
     ui->arg1_SWAP->setText("1");
     ui->arg2_SWAP->setText("1");
     ui->listView->reset();
-
+    }
+    ui->arg1_SWAP->setText("1");
+    ui->arg2_SWAP->setText("1");
     }
     else
         throw CalcException("Au moins un des arguments est invalide.");
@@ -456,13 +491,11 @@ void MainWindow::btnRetablirpressed()
 
 void MainWindow::affichage_scientifique()
 {
-    if (ui->actionScientifique->isChecked() == true)
         afficher_sc();
 }
 
 void MainWindow::affichage_standard()
 {
-    if (ui->actionStandard->isChecked() == true)
        afficher_std();
 }
 
@@ -477,18 +510,38 @@ void MainWindow::envoi_pile()
 {
     QString entree(ui->le_entree->text());
     QStringList verif(entree.split(" "));
+    bool test = false;
+    for (int i = 0; i<verif.length(); i++)
+        if (verif[i] == " " || verif[i] == "")
+            test = true;
+
+    if (!test)
+    {
+
     if (verif.length() != 1)
     {
+
+        if ( verif.length()%2 == 1  )
+        {
+
         QString sortie("'");
         sortie.append(entree);
         sortie.append("'");
         ui->le_entree->setText(sortie);
         p->Parser(sortie);
+
+        }
+        else ui->le_entree->clear();
     }
     else
         p->Parser(entree);
     ui->listView->reset();
     ui->le_entree->clear();
+    }
+    else
+        ui->le_entree->clear();
+
+
 
 }
 
@@ -594,6 +647,16 @@ void MainWindow::closeEvent(QCloseEvent * event)
     QDomText ang = filesave.createTextNode(getAngleMode());
     angles.appendChild(ang);
     racine.appendChild(angles);
+
+    QDomElement clavier = filesave.createElement("Clavier");
+    QString cla;
+    if (ui->checkClavier->isChecked())
+        cla = "On";
+    else cla = "Off";
+
+    QDomText keyb = filesave.createTextNode(cla);
+    clavier.appendChild(keyb);
+    racine.appendChild(clavier);
 
     QFile file( "PILE.xml" );
     if( !file.open( QIODevice::WriteOnly ) )
@@ -785,6 +848,7 @@ void MainWindow::setClavier()
     ui->btn8->setHidden(false);
     ui->btn9->setHidden(false);
 
+
 }
 
 void MainWindow::unsetClavier()
@@ -802,7 +866,7 @@ void MainWindow::unsetClavier()
     ui->btn7->setHidden(true);
     ui->btn8->setHidden(true);
     ui->btn9->setHidden(true);
-    ui->btnAnnuler->setGeometry(ui->btnAnnuler->geometry().x(),ui->btnAnnuler->geometry().y(),400,100);
+
 
 
 

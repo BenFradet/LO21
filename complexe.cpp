@@ -171,8 +171,21 @@ Constante& Complexe::operator/(const Constante& c)const
 
 Constante& Complexe::operator-()const
 {
-    Complexe* c = new Complexe(&(*pRe - Entier(2)*(*pRe)), &(*pIm-Entier(2)*(*pIm)));
-    return *c;
+    if(MainWindow::getMode() == "Entier")
+    {
+        Complexe* c = new Complexe(&((Entier)*pRe - Entier(2)*((Entier)*pRe)), &((Entier)*pIm-Entier(2)*((Entier)*pIm)));
+        return *c;
+    }
+    else if(MainWindow::getMode() == "Reel")
+    {
+        Complexe* c = new Complexe(&((Reel)*pRe - (Reel)Entier(2)*((Reel)*pRe)), &((Reel)*pIm-(Reel)Entier(2)*((Reel)*pIm)));
+        return *c;
+    }
+    else
+    {
+        Complexe* c = new Complexe(&((Rationnel)*pRe - (Rationnel)Entier(2)*((Rationnel)*pRe)), &((Rationnel)*pIm-(Rationnel)Entier(2)*((Rationnel)*pIm)));
+        return *c;
+    }
 }
 
 Constante& Complexe::carree()const

@@ -114,6 +114,7 @@ void Pile::Empiler(Constante* c)
     else
     {
         createMemento();
+        Log::WriteLogs("Empilement de:" + (QString)*c);
         tabElmt[sommet++] = c;
     }
 }
@@ -125,6 +126,7 @@ Constante* Pile::Depiler()
     else
     {
         //createMemento();
+        Log::WriteLogs("Dépilement de:" + (QString)*tabElmt[--sommet]);
         return tabElmt[--sommet];
     }
 }
@@ -134,12 +136,16 @@ Constante* Pile::Tete()const
     if(sommet == 0)
         throw CalcException("Pile vide");
     else
+    {
+        Log::WriteLogs("Renvoi de la tête:" + (QString)*tabElmt[sommet-1]);
         return tabElmt[sommet-1];
+    }
 }
 
 void Pile::Clear()
 {
     createMemento();
+    Log::WriteLogs("Clear de la pile");
     sommet = 0;
 }
 
@@ -151,6 +157,7 @@ void Pile::Dup()
     {
         createMemento();
         Constante* tmp = tabElmt[sommet-1];
+        Log::WriteLogs("Duplication de:" + (QString)*tmp);
         tabElmt[sommet++] = tmp;
     }
 }
@@ -162,6 +169,7 @@ void Pile::Drop()
     else
     {
         createMemento();
+        Log::WriteLogs("Drop de:" + (QString)*tabElmt[sommet]);
         sommet--;
     }
 }
@@ -180,6 +188,7 @@ void Pile::retrieveMemento()const
 
 void Pile::Annuler()
 {
+    Log::WriteLogs("Annulation");
     Memento* m = undos->Depiler();
     retrieveMemento();
     taille = m->taille;
@@ -189,6 +198,7 @@ void Pile::Annuler()
 
 void Pile::Retablir()
 {
+    Log::WriteLogs("Rétablissement");
     Memento* m = redos->Depiler();
     taille = m->taille;
     sommet = m->sommet;
@@ -205,6 +215,7 @@ void Pile::Plus(QString mode, bool complexe)
         {            
             Constante& tmp = (Complexe)*b + (Complexe)*a;
             Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+            Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
             Empiler(c);
         }
         else
@@ -213,18 +224,21 @@ void Pile::Plus(QString mode, bool complexe)
             {
                 Constante& tmp = (Entier)*b + (Entier)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Rationnel")
             {
                 Constante& tmp = (Rationnel)*b + (Rationnel)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Reel")
             {
                 Constante& tmp = (Reel)*b + (Reel)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
         }
@@ -245,18 +259,21 @@ void Pile::Moins(QString mode, bool complexe)
             {
                 Constante& tmp = (Entier)*b - (Entier)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Rationnel")
             {
                 Constante& tmp = (Rationnel)*b - (Rationnel)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Reel")
             {
                 Constante& tmp = (Reel)*b - (Reel)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
         }
@@ -264,6 +281,7 @@ void Pile::Moins(QString mode, bool complexe)
         {
             Constante& tmp = (Complexe)*b - (Complexe)*a;
             Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+            Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
             Empiler(c);
         }
     }
@@ -283,18 +301,21 @@ void Pile::Multiplier(QString mode, bool complexe)
             {
                 Constante& tmp = (Entier)*b * (Entier)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Rationnel")
             {
                 Constante& tmp = (Rationnel)*b * (Rationnel)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Reel")
             {
                 Constante& tmp = (Reel)*b * (Reel)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
         }
@@ -302,6 +323,7 @@ void Pile::Multiplier(QString mode, bool complexe)
         {
             Constante& tmp = (Complexe)*b * (Complexe)*a;
             Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+            Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
             Empiler(c);
         }
     }
@@ -321,18 +343,21 @@ void Pile::Diviser(QString mode, bool complexe)
             {
                 Constante& tmp = (Entier)*b / (Entier)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Division de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Rationnel")
             {
                 Constante& tmp = (Rationnel)*b / (Rationnel)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Reel")
             {
                 Constante& tmp = (Reel)*b / (Reel)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
                 Empiler(c);
             }
         }
@@ -340,6 +365,7 @@ void Pile::Diviser(QString mode, bool complexe)
         {
             Constante& tmp = (Complexe)*b / (Complexe)*a;
             Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+            Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
             Empiler(c);
         }
     }
@@ -357,18 +383,21 @@ void Pile::Puissance(QString mode)
         {
             Constante& tmp = (Entier)*b ^ (Entier)*a;
             Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode);
+            Log::WriteLogs("Puissance de:" + (QString)*b + " et " + (QString)*a);
             Empiler(c);
         }
         else if(mode == "Rationnel")
         {
             Constante& tmp = (Rationnel)*b ^ (Rationnel)*a;
             Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode);
+            Log::WriteLogs("Puissance de:" + (QString)*b + " et " + (QString)*a);
             Empiler(c);
         }
         else if(mode == "Reel")
         {
             Constante& tmp = (Reel)*b ^ (Reel)*a;
             Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode);
+            Log::WriteLogs("Puissance de:" + (QString)*b + " et " + (QString)*a);
             Empiler(c);
         }
     }
@@ -387,6 +416,7 @@ void Pile::Modulo(QString mode)
         if(e1 != NULL && e2 != NULL && mode == "Entier")
         {
             Constante* c = new Entier((Entier)*b % (Entier)*a);
+            Log::WriteLogs("Modulo de:" + (QString)*b + " et " + (QString)*a);
             Empiler(c);
         }
         else
@@ -407,18 +437,21 @@ void Pile::Signe(QString mode, bool complexe)
             {
                 Constante& tmp = -(Entier)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Inversion du signe de:" + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Rationnel")
             {
                 Constante& tmp = -(Rationnel)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Inversion du signe de:" + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Reel")
             {
                 Constante& tmp = -(Reel)*a;
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Inversion du signe de:" + (QString)*a);
                 Empiler(c);
             }
         }
@@ -426,6 +459,7 @@ void Pile::Signe(QString mode, bool complexe)
         {
             Constante& tmp = -(Complexe)*a;
             Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+            Log::WriteLogs("Inversion du signe de:" + (QString)*a);
             Empiler(c);
         }
     }
@@ -441,6 +475,7 @@ void Pile::Sinus()
         if(MainWindow::getAngleMode() == "Radian")
         {
             Constante* res = new Reel(a->sinus());
+            Log::WriteLogs("Sinus en radian de:" + (QString)*a);
             Empiler(res);
         }
         else
@@ -449,6 +484,7 @@ void Pile::Sinus()
             Constante* tmp = new Reel(f);
             Constante& tmp2 = (Reel)*tmp * (Reel)*a;
             Constante* res = new Reel(tmp2.sinus());
+            Log::WriteLogs("Sinus en degré de:" + (QString)*a);
             Empiler(res);
         }
     }
@@ -464,6 +500,7 @@ void Pile::Cosinus()
         if(MainWindow::getAngleMode() == "Radian")
         {
             Constante* res = new Reel(a->cosinus());
+            Log::WriteLogs("Cosinus en radian de:" + (QString)*a);
             Empiler(res);
         }
         else
@@ -472,6 +509,7 @@ void Pile::Cosinus()
             Constante* tmp = new Reel(f);
             Constante& tmp2 = (Reel)*tmp * (Reel)*a;
             Constante* res = new Reel(tmp2.cosinus());
+            Log::WriteLogs("Cosinus en degré de:" + (QString)*a);
             Empiler(res);
         }
     }
@@ -487,6 +525,7 @@ void Pile::Tangente()
         if(MainWindow::getAngleMode() == "Radian")
         {
             Constante* res = new Reel(a->tangente());
+            Log::WriteLogs("Tangente en radian de:" + (QString)*a);
             Empiler(res);
         }
         else
@@ -495,6 +534,7 @@ void Pile::Tangente()
             Constante* tmp = new Reel(f);
             Constante& tmp2 = (Reel)*tmp * (Reel)*a;
             Constante* res = new Reel(tmp2.tangente());
+            Log::WriteLogs("Tangente en degré de:" + (QString)*a);
             Empiler(res);
         }
     }
@@ -510,6 +550,7 @@ void Pile::Sinush()
         if(MainWindow::getAngleMode() == "Radian")
         {
             Constante* res = new Reel(a->sinush());
+            Log::WriteLogs("Sinus hyperbolique en radian de:" + (QString)*a);
             Empiler(res);
         }
         else
@@ -518,6 +559,7 @@ void Pile::Sinush()
             Constante* tmp = new Reel(f);
             Constante& tmp2 = (Reel)*tmp * (Reel)*a;
             Constante* res = new Reel(tmp2.sinush());
+            Log::WriteLogs("Sinus hyperbolique en degré de:" + (QString)*a);
             Empiler(res);
         }
     }
@@ -533,6 +575,7 @@ void Pile::Cosinush()
         if(MainWindow::getAngleMode() == "Radian")
         {
             Constante* res = new Reel(a->cosinush());
+            Log::WriteLogs("Cosinus hyperbolique en radian de:" + (QString)*a);
             Empiler(res);
         }
         else
@@ -541,6 +584,7 @@ void Pile::Cosinush()
             Constante* tmp = new Reel(f);
             Constante& tmp2 = (Reel)*tmp * (Reel)*a;
             Constante* res = new Reel(tmp2.cosinush());
+            Log::WriteLogs("Cosinus hyperbolique en radian de:" + (QString)*a);
             Empiler(res);
         }
     }
@@ -556,6 +600,7 @@ void Pile::Tangenteh()
         if(MainWindow::getAngleMode() == "Radian")
         {
             Constante* res = new Reel(a->tangenteh());
+            Log::WriteLogs("Tangente hyperbolique en radian de:" + (QString)*a);
             Empiler(res);
         }
         else
@@ -564,6 +609,7 @@ void Pile::Tangenteh()
             Constante* tmp = new Reel(f);
             Constante& tmp2 = (Reel)*tmp * (Reel)*a;
             Constante* res = new Reel(tmp2.tangenteh());
+            Log::WriteLogs("Tangente hyperbolique en radian de:" + (QString)*a);
             Empiler(res);
         }
     }
@@ -577,6 +623,7 @@ void Pile::LogaNep()
     {
         Constante* a = this->Depiler();
         Constante* res = new Reel(a->lognep());
+        Log::WriteLogs("Logarithme néperien de:" + (QString)*a);
         Empiler(res);
     }
     else
@@ -589,6 +636,7 @@ void Pile::LogaDec()
     {
         Constante* a = this->Depiler();
         Constante* res = new Reel(a->logdec());
+        Log::WriteLogs("Logarithme décimal de:" + (QString)*a);
         Empiler(res);
     }
     else
@@ -601,6 +649,7 @@ void Pile::Inverse()
     {
         Constante* a = this->Depiler();
         Constante* res = &a->inverse();
+        Log::WriteLogs("Inverse de:" + (QString)*a);
         Empiler(res);
     }
     else
@@ -613,6 +662,7 @@ void Pile::Racine()
     {
         Constante* a = this->Depiler();
         Constante* res = new Reel(a->racine());
+        Log::WriteLogs("Racine carrée de:" + (QString)*a);
         Empiler(res);
     }
     else
@@ -630,18 +680,21 @@ void Pile::Carree(QString mode, bool complexe)
             {
                 Constante& tmp = (Entier)a->carree();
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Carré de:" + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Rationnel")
             {
                 Constante& tmp = (Rationnel)a->carree();
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Carré de:" + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Reel")
             {
                 Constante& tmp = (Reel)a->carree();
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Carré de:" + (QString)*a);
                 Empiler(c);
             }
         }
@@ -649,6 +702,7 @@ void Pile::Carree(QString mode, bool complexe)
         {
             Constante& tmp = (Complexe)a->carree();
             Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+            Log::WriteLogs("Carré de:" + (QString)*a);
             Empiler(c);
         }
     }
@@ -667,18 +721,21 @@ void Pile::Cube(QString mode, bool complexe)
             {
                 Constante& tmp = (Entier)a->cube();
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Cube de:" + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Rationnel")
             {
                 Constante& tmp = (Rationnel)a->cube();
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Cube de:" + (QString)*a);
                 Empiler(c);
             }
             else if(mode == "Reel")
             {
                 Constante& tmp = (Reel)a->cube();
                 Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                Log::WriteLogs("Cube de:" + (QString)*a);
                 Empiler(c);
             }
         }
@@ -686,6 +743,7 @@ void Pile::Cube(QString mode, bool complexe)
         {
             Constante& tmp = (Complexe)a->cube();
             Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+            Log::WriteLogs("Cube de:" + (QString)*a);
             Empiler(c);
         }
     }
@@ -702,6 +760,7 @@ void Pile::Factorielle(QString mode)
         if(e!=0 && mode == "Entier")
         {
             Constante* res = new Entier(!(Entier)*a);
+            Log::WriteLogs("Factorielle de:" + (QString)*a);
             Empiler(res);
         }
         else
@@ -719,6 +778,7 @@ void Pile::Swap(int x, int y)
         tmp = tabElmt[x-1];
         tabElmt[x-1] = tabElmt[y-1];
         tabElmt[y-1] = tmp;
+        Log::WriteLogs("Swap de:" + (QString)*tabElmt[x-1] + " et " + (QString)*tabElmt[y-1]);
     }
     else
         throw CalcException("Les indices doivent être dans la pile");
@@ -733,6 +793,7 @@ Constante& Pile::Sum(int x, QString mode)
             Entier* e = new Entier(0);
             for(int i = 0; i<=x-1; i++)
                 *e = *e + (Entier)**(tabElmt + sommet - 1 - i);
+            Log::WriteLogs("Somme des:" + (QString)x + " premiers éléments de la pile");
             Empiler(e);
             return *e;
         }
@@ -741,6 +802,7 @@ Constante& Pile::Sum(int x, QString mode)
             Rationnel* r = new Rationnel(0, 1);
             for(int i = 0; i<x-1; i++)
                 *r = *r + (Rationnel)**(tabElmt + sommet - 1 - i);
+            Log::WriteLogs("Somme des:" + (QString)x + " premiers éléments de la pile");
             Empiler(r);
             return *r;
         }
@@ -749,6 +811,7 @@ Constante& Pile::Sum(int x, QString mode)
             Reel* r = new Reel(0);
             for(int i = 0; i<x-1; i++)
                 *r = *r + (Reel)**(tabElmt + sommet - 1 - i);
+            Log::WriteLogs("Somme des:" + (QString)x + " premiers éléments de la pile");
             Empiler(r);
             return *r;
         }
@@ -766,6 +829,7 @@ void Pile::Mean(int x, QString mode)
             Constante* e = &Sum(x, mode);
             Constante* c = Depiler();
             Constante& res = *e / Entier(x);
+            Log::WriteLogs("Moyenne des:" + (QString)x + " premiers éléments de la pile");
             Empiler(&res);
         }
         else if (mode == "Reel")
@@ -773,6 +837,7 @@ void Pile::Mean(int x, QString mode)
             Constante* e = &Sum(x, mode);
             Constante* c = Depiler();
             Constante& res = *e / Reel(x);
+            Log::WriteLogs("Moyenne des:" + (QString)x + " premiers éléments de la pile");
             Empiler(&res);
         }
     }

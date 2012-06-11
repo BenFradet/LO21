@@ -3,6 +3,7 @@
 #include "include.h"
 #include "constantefactory.h"
 #include "mainwindow.h"
+#include "log.h"
 #include <string>
 #include <QAbstractListModel>
 #include <typeinfo>

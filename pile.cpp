@@ -48,26 +48,47 @@ Mementos::~Mementos()
 
 void Mementos::Empiler(Memento* m)
 {
+    try
+    {
     if(sommet == taille)
-        throw CalcException("Pile pleine");
+        throw CalcException("La pile est pleine !");
     else
         mementos[sommet++] = m;
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Memento* Mementos::Depiler()
 {
-    if(sommet == 0)
-        throw CalcException("Pile vide");
+
+    try
+    {
+        if(sommet == 0)
+        throw CalcException("La pile est vide !");
     else
         return mementos[--sommet];
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Memento* Mementos::Tete()const
 {
+    try {
     if(sommet == 0)
-        throw CalcException("Pile vide");
+        throw CalcException("La pile est vide !");
     else
         return mementos[sommet-1];
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Mementos::Clear()
@@ -109,36 +130,57 @@ Pile::~Pile()
 
 void Pile::Empiler(Constante* c)
 {
+    try
+    {
     if(sommet == taille)
-        throw CalcException("Pile pleine");
+        throw CalcException("Impossible d'empiler, la pile est pleine.");
     else
     {
         createMemento();
         //Log::WriteLogs("Empilement de:" + (QString)*c);
         tabElmt[sommet++] = c;
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante* Pile::Depiler()
 {
+    try
+    {
     if(sommet == 0)
-        throw CalcException("Pile vide");
+        throw CalcException("La pile est vide !");
     else
     {
         //createMemento();
         Log::WriteLogs("Dépilement de:" + (QString)*tabElmt[sommet-1]);
         return tabElmt[--sommet];
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante* Pile::Tete()const
 {
+    try
+    {
     if(sommet == 0)
-        throw CalcException("Pile vide");
+        throw CalcException("La pile est vide !");
     else
     {
         Log::WriteLogs("Renvoi de la tête:" + (QString)*tabElmt[sommet-1]);
         return tabElmt[sommet-1];
+    }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
     }
 }
 
@@ -151,8 +193,12 @@ void Pile::Clear()
 
 void Pile::Dup()
 {
+   try
+    {
     if(sommet == taille)
-        throw CalcException("Pile pleine");
+        throw CalcException("La pile est pleine, il faut l'agrandir avant de dupliquer.");
+    else if (sommet == 0)
+        throw CalcException("Il n'y aucun élément à dupliquer !");
     else
     {
         createMemento();
@@ -160,18 +206,31 @@ void Pile::Dup()
         Log::WriteLogs("Duplication de:" + (QString)*tmp);
         tabElmt[sommet++] = tmp;
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Drop()
 {
-    if(sommet == 0)
-        throw CalcException("Pile vide");
-    else
+    try
     {
-        createMemento();
-        Log::WriteLogs("Drop de:" + (QString)*tabElmt[sommet]);
-        sommet--;
+        if (sommet != 0)
+        {
+            createMemento();
+            Log::WriteLogs("Drop de:" + (QString)*tabElmt[sommet-1]);
+            sommet--;
+        }
+        else
+            throw CalcException("La pile est vide ! Vous ne pouvez pas retirer d'éléments !");
     }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
+
 }
 
 void Pile::createMemento()const
@@ -207,6 +266,8 @@ void Pile::Retablir()
 
 void Pile::Plus(QString mode, bool complexe)
 {
+    try
+    {
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -244,11 +305,18 @@ void Pile::Plus(QString mode, bool complexe)
         }
     }
     else
-        throw CalcException("Cette opération nécessite deux opérandes");
+        throw CalcException("Cette opération nécessite deux opérandes !");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Moins(QString mode, bool complexe)
 {
+    try
+    {
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -286,11 +354,18 @@ void Pile::Moins(QString mode, bool complexe)
         }
     }
     else
-        throw CalcException("Cette opération nécessite deux opérandes");
+        throw CalcException("Cette opération nécessite deux opérandes !");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Multiplier(QString mode, bool complexe)
 {
+    try
+    {
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -329,10 +404,17 @@ void Pile::Multiplier(QString mode, bool complexe)
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Diviser(QString mode, bool complexe)
 {
+    try
+    {
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -371,10 +453,17 @@ void Pile::Diviser(QString mode, bool complexe)
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Puissance(QString mode)
 {
+   try
+    {
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -403,10 +492,18 @@ void Pile::Puissance(QString mode)
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
+
+
 }
 
 void Pile::Modulo(QString mode)
 {
+    try {
     if(sommet>=2)
     {
         Constante* a = this->Depiler();
@@ -424,10 +521,16 @@ void Pile::Modulo(QString mode)
     }
     else
         throw CalcException("Cette opération nécessite deux opérandes");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Signe(QString mode, bool complexe)
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -465,10 +568,16 @@ void Pile::Signe(QString mode, bool complexe)
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Sinus()
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -490,10 +599,16 @@ void Pile::Sinus()
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Cosinus()
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -515,10 +630,16 @@ void Pile::Cosinus()
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Tangente()
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -540,10 +661,16 @@ void Pile::Tangente()
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Sinush()
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -565,10 +692,16 @@ void Pile::Sinush()
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Cosinush()
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -590,10 +723,16 @@ void Pile::Cosinush()
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Tangenteh()
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -615,10 +754,16 @@ void Pile::Tangenteh()
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::LogaNep()
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -628,10 +773,16 @@ void Pile::LogaNep()
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::LogaDec()
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -641,10 +792,16 @@ void Pile::LogaDec()
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Inverse()
 {
+    try{
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -654,10 +811,16 @@ void Pile::Inverse()
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Racine()
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -667,10 +830,16 @@ void Pile::Racine()
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Carree(QString mode, bool complexe)
 {
+   try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -708,10 +877,16 @@ void Pile::Carree(QString mode, bool complexe)
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Cube(QString mode, bool complexe)
 {
+    try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -749,10 +924,16 @@ void Pile::Cube(QString mode, bool complexe)
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Factorielle(QString mode)
 {
+   try {
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
@@ -768,10 +949,16 @@ void Pile::Factorielle(QString mode)
     }
     else
         throw CalcException("Cette opération nécessite une opérande");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Swap(int x, int y)
 {
+    try {
     if(sommet>x-1 && sommet>y-1)
     {
         Constante* tmp;
@@ -782,10 +969,16 @@ void Pile::Swap(int x, int y)
     }
     else
         throw CalcException("Les indices doivent être dans la pile");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Pile::Sum(int x, QString mode)
 {
+    try {
     if(x-1<sommet && x-1>=0)
     {
         if(mode == "Entier")
@@ -818,10 +1011,16 @@ Constante& Pile::Sum(int x, QString mode)
     }
     else
         throw CalcException("Indice en dehors des bornes autorisées");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 void Pile::Mean(int x, QString mode)
 {
+    try {
     if(x-1<sommet && x-1>=0)
     {
         if(mode == "Entier" || mode == "Rationnel")
@@ -843,6 +1042,11 @@ void Pile::Mean(int x, QString mode)
     }
     else
         throw CalcException("Indice en dehors des bornes autorisées");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 int Pile::rowCount (const QModelIndex &parent) const

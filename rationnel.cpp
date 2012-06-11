@@ -41,6 +41,7 @@ Rationnel::operator Complexe()const
 
 Constante& Rationnel::operator+(const Constante& c)const//ADAPTER A FAIRE
 {
+    try {
     const Rationnel* r = dynamic_cast<const Rationnel*>(&c);
     if(r!=0)
     {
@@ -51,10 +52,16 @@ Constante& Rationnel::operator+(const Constante& c)const//ADAPTER A FAIRE
     {
         throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Rationnel::operator-(const Constante& c)const
 {
+    try {
     const Rationnel* r = dynamic_cast<const Rationnel*>(&c);
     if(r!=0)
     {
@@ -65,10 +72,16 @@ Constante& Rationnel::operator-(const Constante& c)const
     {
         throw CalcException("L'opération de soustraction nécessite que les deux opérateurs soient de même type");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Rationnel::operator*(const Constante& c)const
 {
+    try {
     const Rationnel* r = dynamic_cast<const Rationnel*>(&c);
     if(r!=0)
     {
@@ -79,10 +92,16 @@ Constante& Rationnel::operator*(const Constante& c)const
     {
         throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Rationnel::operator/(const Constante& c)const
 {
+    try {
     const Rationnel* r = dynamic_cast<const Rationnel*>(&c);
     if(r!=0)
     {
@@ -92,6 +111,11 @@ Constante& Rationnel::operator/(const Constante& c)const
     else
     {
         throw CalcException("L'opération de division nécessite que les deux opérateurs soient de même type");
+    }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
     }
 }
 
@@ -103,6 +127,7 @@ Constante& Rationnel::operator-()const
 
 Constante& Rationnel::operator^(const Constante& c)const//pas sûr
 {
+    try {
     const Entier* e = dynamic_cast<const Entier*>(&c);
     const Reel* r = dynamic_cast<const Reel*>(&c);
     const Rationnel* f = dynamic_cast<const Rationnel*>(&c);
@@ -125,6 +150,11 @@ Constante& Rationnel::operator^(const Constante& c)const//pas sûr
     else
     {
         throw CalcException("L'opération de puissance nécessite que l'exposant soit un entier, un rationnel ou un réel");
+    }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
     }
 }
 
@@ -166,6 +196,7 @@ Constante& Rationnel::tangenteh()const
 
 Constante& Rationnel::logdec()const
 {
+    try {
     if((num>0 && den>0) || (num<=0 && den<=0))
     {
         Reel* res = new Reel(log10((float)num/den));
@@ -175,11 +206,17 @@ Constante& Rationnel::logdec()const
     {
         throw CalcException("L'opération de logarithme nécessite que l'opérateur soit positif");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Rationnel::lognep()const
 {
-    if((num>0 && den>0) || (num<=0 && den<=0))
+
+    try {if((num>0 && den>0) || (num<=0 && den<=0))
     {
         Reel* res = new Reel(log((float)num/den));
         return *res;
@@ -188,10 +225,16 @@ Constante& Rationnel::lognep()const
     {
         throw CalcException("L'opération de logarithme nécessite que l'opérateur soit positif");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Rationnel::inverse()const
 {
+    try {
     if(num!=0)
     {
         Rationnel* res = new Rationnel(den, num);
@@ -199,10 +242,16 @@ Constante& Rationnel::inverse()const
     }
     else
         throw CalcException("L'opération d'inverse est impossible avec zéro");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Rationnel::racine()const
 {
+    try {
     if((num>0 && den>0) || (num<=0 && den<=0))
     {
         Reel* res = new Reel(sqrt((float)num/den));
@@ -210,6 +259,11 @@ Constante& Rationnel::racine()const
     }
     else
         throw CalcException("L'opération de racine carrée nécessite une valeur positive");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Rationnel::carree()const

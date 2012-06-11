@@ -593,6 +593,7 @@ void MainWindow::closeEvent(QCloseEvent * event)
     QMessageBox msgBox(this);
     msgBox.setWindowTitle("Fermeture..");
     msgBox.setText("Les informations vont être enregistrées.");
+    msgBox.setIcon(QMessageBox::Information);
     msgBox.setStandardButtons(QMessageBox::Ok );
     msgBox.setDefaultButton(QMessageBox::Ok);
     msgBox.exec();

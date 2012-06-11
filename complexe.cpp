@@ -51,6 +51,7 @@ Complexe::operator Complexe()const
 
 Constante& Complexe::operator+(const Constante& c)const
 {
+    try {
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
@@ -73,11 +74,18 @@ Constante& Complexe::operator+(const Constante& c)const
     else
     {
         throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
+
+    }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
     }
 }
 
 Constante& Complexe::operator-(const Constante& c)const
 {
+    try{
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
@@ -101,10 +109,16 @@ Constante& Complexe::operator-(const Constante& c)const
     {
         throw CalcException("L'opération de soustraction nécessite que les deux opérateurs soient de même type");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Complexe::operator*(const Constante& c)const
 {
+    try {
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
@@ -131,10 +145,16 @@ Constante& Complexe::operator*(const Constante& c)const
     {
         throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Complexe::operator/(const Constante& c)const
 {
+    try {
     const Complexe* co = dynamic_cast<const Complexe*>(&c);
     if(co!=0)
     {
@@ -166,6 +186,11 @@ Constante& Complexe::operator/(const Constante& c)const
     else
     {
         throw CalcException("L'opération de division nécessite que les deux opérateurs soient de même type");
+    }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
     }
 }
 

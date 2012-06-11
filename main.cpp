@@ -6,11 +6,10 @@
 
 int main(int argc, char *argv[])
 {
-    try
-    {
+
         QApplication a(argc, argv);
 
-        Pile& pile = Pile::getInstance(20);
+        Pile& pile = Pile::getInstance(50);
 
         MainWindow w(&pile, 0);
 
@@ -18,10 +17,6 @@ int main(int argc, char *argv[])
 
         return a.exec();
         Pile::releaseInstance();
-    }
-    catch(CalcException c)
-    {
 
-    }
 }
 

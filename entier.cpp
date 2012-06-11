@@ -41,6 +41,7 @@ Entier::operator Complexe()const
 
 void Entier::operator=(const Constante& c)
 {
+    try{
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
@@ -50,10 +51,16 @@ void Entier::operator=(const Constante& c)
     {
         throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Entier::operator+(const Constante& c)const
 {
+    try {
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
@@ -64,10 +71,16 @@ Constante& Entier::operator+(const Constante& c)const
     {
         throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Entier::operator-(const Constante& c)const
 {
+    try {
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
@@ -78,10 +91,16 @@ Constante& Entier::operator-(const Constante& c)const
     {
         throw CalcException("L'opération de soustraction nécessite que les deux opérateurs soient de même type");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Entier::operator*(const Constante& c)const
 {
+    try {
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
@@ -92,10 +111,16 @@ Constante& Entier::operator*(const Constante& c)const
     {
         throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Entier::operator/(const Constante& c)const
 {
+    try {
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
@@ -105,6 +130,11 @@ Constante& Entier::operator/(const Constante& c)const
     else
     {
         throw CalcException("L'opération de division nécessite que les deux opérateurs soient de même type");
+    }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
     }
 }
 
@@ -116,6 +146,7 @@ Constante& Entier::operator-()const
 
 Constante& Entier::operator^(const Constante& c)const
 {
+    try {
     const Entier* e = dynamic_cast<const Entier*>(&c);
     const Reel* r = dynamic_cast<const Reel*>(&c);
     const Rationnel* f = dynamic_cast<const Rationnel*>(&c);
@@ -138,6 +169,11 @@ Constante& Entier::operator^(const Constante& c)const
     else
     {
         throw CalcException("L'opération de puissance nécessite que l'exposant soit un entier, un rationnel ou un réel");
+    }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
     }
 }
 
@@ -179,32 +215,42 @@ Constante& Entier::tangenteh()const
 
 Constante& Entier::logdec()const
 {
+    try {
     if((int)*this>0)
     {
         Reel* res = new Reel(log10((float)value));
         return *res;
     }
     else
-    {
         throw CalcException("L'opération de logarithme nécessite que l'opérateur soit positif");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
     }
 }
 
 Constante& Entier::lognep()const
 {
+    try {
     if((int)*this>0)
     {
         Reel* res = new Reel(log((float)value));
         return *res;
     }
     else
-    {
         throw CalcException("L'opération de logarithme nécessite que l'opérateur soit positif");
+
+    }
+    catch (CalcException c)
+    {
+        c.alert();
     }
 }
 
 Constante& Entier::inverse()const
 {
+    try {
     if(value!=0)
     {
         Rationnel* res = new Rationnel(1, value);
@@ -212,10 +258,16 @@ Constante& Entier::inverse()const
     }
     else
         throw CalcException("L'opération d'inverse est impossible avec zéro");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Entier::operator%(const Constante& c)const
 {
+    try {
     const Entier* e = dynamic_cast<const Entier*>(&c);
     if(e!=0)
     {
@@ -226,10 +278,16 @@ Constante& Entier::operator%(const Constante& c)const
     {
         throw CalcException("L'opération de modulo nécessite que les deux opérateurs soient des entiers");
     }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Entier::racine()const
 {
+    try {
     if(value>=0)
     {
         Reel* res = new Reel(sqrt((float)value));
@@ -237,6 +295,11 @@ Constante& Entier::racine()const
     }
     else
         throw CalcException("L'opération de racine carrée nécessite une valeur positive");
+    }
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 }
 
 Constante& Entier::carree()const
@@ -253,6 +316,7 @@ Constante& Entier::cube()const
 
 Constante& Entier::operator!()const
 {
+   try {
     int e = (int)*this;
     if(e>0)
     {
@@ -269,6 +333,11 @@ Constante& Entier::operator!()const
     else
     {
         throw CalcException("L'opération factorielle nécessite une valeur positive");
+    }
+    }
+    catch (CalcException c)
+    {
+        c.alert();
     }
 }
 

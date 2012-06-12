@@ -649,29 +649,19 @@ void Pile::Modulo(QString mode)
             {
                 if(e1 != 0 && e2 != 0)
                 {
-                    QString s2 = (QString)*a;
-                    s2.replace(0, 1, " ");
-                    s2.remove(s2.length() - 1, 1);
-                    s2.append(" %'");
-                    QString s1 = (QString)*b;
-                    s1.remove(s1.length()-1, 1);
-                    Constante *e = new Expression(s1 + s2);
+                    Constante* e = ExpressionFactory::GetExpressionBinaire2Exp((QString)*a, (QString)*b, "%");
                     Empiler(e);
                 }
                 else
                 {
                     if(e2 != 0)
                     {
-                        QString s2 = (QString)*b;
-                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " %'");
-                        Constante* e = new Expression(s2);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*b, (QString)*a, "%");
                         Empiler(e);
                     }
                     else
                     {
-                        QString s1 = (QString)*a;
-                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " %'");
-                        Constante* e = new Expression(s1);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*a, (QString)*b, "%");
                         Empiler(e);
                     }
                 }
@@ -705,9 +695,7 @@ void Pile::Signe(QString mode, bool complexe)
             const Expression* e1 = dynamic_cast<const Expression*>(a);
             if(e1!=0)
             {
-                QString s1 = (QString)*a;
-                s1.replace(s1.length() - 1, 1, " SIGN'");
-                Constante* e = new Expression(s1);
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "SIGN");
                 Empiler(e);
             }
             else
@@ -764,9 +752,7 @@ void Pile::Sinus()
             const Expression* e1 = dynamic_cast<const Expression*>(a);
             if(e1!=0)
             {
-                QString s1 = (QString)*a;
-                s1.replace(s1.length() - 1, 1, " SIN'");
-                Constante* e = new Expression(s1);
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "SIN");
                 Empiler(e);
             }
             else
@@ -807,9 +793,7 @@ void Pile::Cosinus()
             const Expression* e1 = dynamic_cast<const Expression*>(a);
             if(e1!=0)
             {
-                QString s1 = (QString)*a;
-                s1.replace(s1.length() - 1, 1, " COS'");
-                Constante* e = new Expression(s1);
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "COS");
                 Empiler(e);
             }
             else
@@ -850,14 +834,12 @@ void Pile::Tangente()
             const Expression* e1 = dynamic_cast<const Expression*>(a);
             if(e1!=0)
             {
-                QString s1 = (QString)*a;
-                s1.replace(s1.length() - 1, 1, " TAN'");
-                Constante* e = new Expression(s1);
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "TAN");
                 Empiler(e);
             }
             else
             {
-                if(MainWindow::getAngleMode() == "Radian")
+               if(MainWindow::getAngleMode() == "Radian")
                 {
                     Constante* res = new Reel(a->tangente());
                     Log::WriteLogs("Tangente en radian de:" + (QString)*a);
@@ -889,20 +871,29 @@ void Pile::Sinush()
     if(sommet>=1)
     {
         Constante* a = this->Depiler();
-        if(MainWindow::getAngleMode() == "Radian")
+        const Expression* e1 = dynamic_cast<const Expression*>(a);
+        if(e1!=0)
         {
-            Constante* res = new Reel(a->sinush());
-            Log::WriteLogs("Sinus hyperbolique en radian de:" + (QString)*a);
-            Empiler(res);
+            Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "SINH");
+            Empiler(e);
         }
         else
         {
-            float f = 3.141592/180;
-            Constante* tmp = new Reel(f);
-            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
-            Constante* res = new Reel(tmp2.sinush());
-            Log::WriteLogs("Sinus hyperbolique en degré de:" + (QString)*a);
-            Empiler(res);
+            if(MainWindow::getAngleMode() == "Radian")
+            {
+                Constante* res = new Reel(a->sinush());
+                Log::WriteLogs("Sinus hyperbolique en radian de:" + (QString)*a);
+                Empiler(res);
+            }
+            else
+            {
+                float f = 3.141592/180;
+                Constante* tmp = new Reel(f);
+                Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+                Constante* res = new Reel(tmp2.sinush());
+                Log::WriteLogs("Sinus hyperbolique en degré de:" + (QString)*a);
+                Empiler(res);
+            }
         }
     }
     else
@@ -916,28 +907,38 @@ void Pile::Sinush()
 
 void Pile::Cosinush()
 {
-    try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        if(MainWindow::getAngleMode() == "Radian")
+        if(sommet>=1)
         {
-            Constante* res = new Reel(a->cosinush());
-            Log::WriteLogs("Cosinus hyperbolique en radian de:" + (QString)*a);
-            Empiler(res);
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
+            {
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "COSH");
+                Empiler(e);
+            }
+            else
+            {
+                if(MainWindow::getAngleMode() == "Radian")
+                {
+                    Constante* res = new Reel(a->cosinush());
+                    Log::WriteLogs("Cosinus hyperbolique en radian de:" + (QString)*a);
+                    Empiler(res);
+                }
+                else
+                {
+                    float f = 3.141592/180;
+                    Constante* tmp = new Reel(f);
+                    Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+                    Constante* res = new Reel(tmp2.cosinush());
+                    Log::WriteLogs("Cosinus hyperbolique en radian de:" + (QString)*a);
+                    Empiler(res);
+                }
+            }
         }
         else
-        {
-            float f = 3.141592/180;
-            Constante* tmp = new Reel(f);
-            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
-            Constante* res = new Reel(tmp2.cosinush());
-            Log::WriteLogs("Cosinus hyperbolique en radian de:" + (QString)*a);
-            Empiler(res);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -947,28 +948,38 @@ void Pile::Cosinush()
 
 void Pile::Tangenteh()
 {
-    try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        if(MainWindow::getAngleMode() == "Radian")
+        if(sommet>=1)
         {
-            Constante* res = new Reel(a->tangenteh());
-            Log::WriteLogs("Tangente hyperbolique en radian de:" + (QString)*a);
-            Empiler(res);
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
+            {
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "TANH");
+                Empiler(e);
+            }
+            else
+            {
+                if(MainWindow::getAngleMode() == "Radian")
+                {
+                    Constante* res = new Reel(a->tangenteh());
+                    Log::WriteLogs("Tangente hyperbolique en radian de:" + (QString)*a);
+                    Empiler(res);
+                }
+                else
+                {
+                    float f = 3.141592/180;
+                    Constante* tmp = new Reel(f);
+                    Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+                    Constante* res = new Reel(tmp2.tangenteh());
+                    Log::WriteLogs("Tangente hyperbolique en radian de:" + (QString)*a);
+                    Empiler(res);
+                }
+            }
         }
         else
-        {
-            float f = 3.141592/180;
-            Constante* tmp = new Reel(f);
-            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
-            Constante* res = new Reel(tmp2.tangenteh());
-            Log::WriteLogs("Tangente hyperbolique en radian de:" + (QString)*a);
-            Empiler(res);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -978,16 +989,26 @@ void Pile::Tangenteh()
 
 void Pile::LogaNep()
 {
-    try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        Constante* res = new Reel(a->lognep());
-        Log::WriteLogs("Logarithme néperien de:" + (QString)*a);
-        Empiler(res);
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+        if(sommet>=1)
+        {
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
+            {
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "LN");
+                Empiler(e);
+            }
+            else
+            {
+                Constante* res = new Reel(a->lognep());
+                Log::WriteLogs("Logarithme néperien de:" + (QString)*a);
+                Empiler(res);
+            }
+        }
+        else
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -997,16 +1018,26 @@ void Pile::LogaNep()
 
 void Pile::LogaDec()
 {
-    try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        Constante* res = new Reel(a->logdec());
-        Log::WriteLogs("Logarithme décimal de:" + (QString)*a);
-        Empiler(res);
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+        if(sommet>=1)
+        {
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
+            {
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "LOG");
+                Empiler(e);
+            }
+            else
+            {
+                Constante* res = new Reel(a->logdec());
+                Log::WriteLogs("Logarithme décimal de:" + (QString)*a);
+                Empiler(res);
+            }
+        }
+        else
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -1016,16 +1047,26 @@ void Pile::LogaDec()
 
 void Pile::Inverse()
 {
-    try{
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        Constante* res = &a->inverse();
-        Log::WriteLogs("Inverse de:" + (QString)*a);
-        Empiler(res);
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+        if(sommet>=1)
+        {
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
+            {
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "INV");
+                Empiler(e);
+            }
+            else
+            {
+                Constante* res = &a->inverse();
+                Log::WriteLogs("Inverse de:" + (QString)*a);
+                Empiler(res);
+            }
+        }
+        else
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -1035,16 +1076,26 @@ void Pile::Inverse()
 
 void Pile::Racine()
 {
-    try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        Constante* res = new Reel(a->racine());
-        Log::WriteLogs("Racine carrée de:" + (QString)*a);
-        Empiler(res);
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+        if(sommet>=1)
+        {
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
+            {
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "SQRT");
+                Empiler(e);
+            }
+            else
+            {
+                Constante* res = new Reel(a->racine());
+                Log::WriteLogs("Racine carrée de:" + (QString)*a);
+                Empiler(res);
+            }
+        }
+        else
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -1054,44 +1105,54 @@ void Pile::Racine()
 
 void Pile::Carree(QString mode, bool complexe)
 {
-   try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        if(complexe == false)
+        if(sommet>=1)
         {
-            if(mode == "Entier")
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
             {
-                Constante& tmp = (Entier)a->carree();
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Carré de:" + (QString)*a);
-                Empiler(c);
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "SQR");
+                Empiler(e);
             }
-            else if(mode == "Rationnel")
+            else
             {
-                Constante& tmp = (Rationnel)a->carree();
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Carré de:" + (QString)*a);
-                Empiler(c);
-            }
-            else if(mode == "Reel")
-            {
-                Constante& tmp = (Reel)a->carree();
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Carré de:" + (QString)*a);
-                Empiler(c);
+                if(complexe == false)
+                {
+                    if(mode == "Entier")
+                    {
+                        Constante& tmp = (Entier)a->carree();
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Carré de:" + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Rationnel")
+                    {
+                        Constante& tmp = (Rationnel)a->carree();
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Carré de:" + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Reel")
+                    {
+                        Constante& tmp = (Reel)a->carree();
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Carré de:" + (QString)*a);
+                        Empiler(c);
+                    }
+                }
+                else
+                {
+                    Constante& tmp = (Complexe)a->carree();
+                    Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                    Log::WriteLogs("Carré de:" + (QString)*a);
+                    Empiler(c);
+                }
             }
         }
         else
-        {
-            Constante& tmp = (Complexe)a->carree();
-            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-            Log::WriteLogs("Carré de:" + (QString)*a);
-            Empiler(c);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -1101,44 +1162,54 @@ void Pile::Carree(QString mode, bool complexe)
 
 void Pile::Cube(QString mode, bool complexe)
 {
-    try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        if(complexe == false)
+        if(sommet>=1)
         {
-            if(mode == "Entier")
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
             {
-                Constante& tmp = (Entier)a->cube();
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Cube de:" + (QString)*a);
-                Empiler(c);
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "CUBE");
+                Empiler(e);
             }
-            else if(mode == "Rationnel")
+            else
             {
-                Constante& tmp = (Rationnel)a->cube();
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Cube de:" + (QString)*a);
-                Empiler(c);
-            }
-            else if(mode == "Reel")
-            {
-                Constante& tmp = (Reel)a->cube();
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Cube de:" + (QString)*a);
-                Empiler(c);
+                if(complexe == false)
+                {
+                    if(mode == "Entier")
+                    {
+                        Constante& tmp = (Entier)a->cube();
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Cube de:" + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Rationnel")
+                    {
+                        Constante& tmp = (Rationnel)a->cube();
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Cube de:" + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Reel")
+                    {
+                        Constante& tmp = (Reel)a->cube();
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Cube de:" + (QString)*a);
+                        Empiler(c);
+                    }
+                }
+                else
+                {
+                    Constante& tmp = (Complexe)a->cube();
+                    Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                    Log::WriteLogs("Cube de:" + (QString)*a);
+                    Empiler(c);
+                }
             }
         }
         else
-        {
-            Constante& tmp = (Complexe)a->cube();
-            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-            Log::WriteLogs("Cube de:" + (QString)*a);
-            Empiler(c);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -1153,15 +1224,23 @@ void Pile::Factorielle(QString mode)
         if(sommet>=1)
         {
             Constante* a = this->Depiler();
-            const Entier* e = dynamic_cast<const Entier*>(a);
-            if(e!=0 && mode == "Entier")
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
             {
-                Constante* res = new Entier(!(Entier)*a);
-                Log::WriteLogs("Factorielle de:" + (QString)*a);
-                Empiler(res);
+                Constante* e = ExpressionFactory::GetExpressionUnaire((QString)*a, "!");
+                Empiler(e);
             }
             else
-                throw CalcException("Cette opération nécessite un entier");
+            {
+                if(mode == "Entier")
+                {
+                    Constante* res = new Entier(!(Entier)*a);
+                    Log::WriteLogs("Factorielle de:" + (QString)*a);
+                    Empiler(res);
+                }
+                else
+                    throw CalcException("Cette opération nécessite un entier");
+            }
         }
         else
             throw CalcException("Cette opération nécessite une opérande");
@@ -1174,17 +1253,18 @@ void Pile::Factorielle(QString mode)
 
 void Pile::Swap(int x, int y)
 {
-    try {
-    if(sommet>x-1 && sommet>y-1)
+    try
     {
-        Constante* tmp;
-        tmp = tabElmt[x-1];
-        tabElmt[x-1] = tabElmt[y-1];
-        tabElmt[y-1] = tmp;
-        Log::WriteLogs("Swap de:" + (QString)*tabElmt[x-1] + " et " + (QString)*tabElmt[y-1]);
-    }
-    else
-        throw CalcException("Les indices doivent être dans la pile");
+        if(sommet>x-1 && sommet>y-1)
+        {
+            Constante* tmp;
+            tmp = tabElmt[x-1];
+            tabElmt[x-1] = tabElmt[y-1];
+            tabElmt[y-1] = tmp;
+            Log::WriteLogs("Swap de:" + (QString)*tabElmt[x-1] + " et " + (QString)*tabElmt[y-1]);
+        }
+        else
+            throw CalcException("Les indices doivent être dans la pile");
     }
     catch (CalcException c)
     {
@@ -1194,39 +1274,40 @@ void Pile::Swap(int x, int y)
 
 Constante& Pile::Sum(int x, QString mode)
 {
-    try {
-    if(x-1<sommet && x-1>=0)
+    try
     {
-        if(mode == "Entier")
+        if(x-1<sommet && x-1>=0)
         {
-            Entier* e = new Entier(0);
-            for(int i = 0; i<=x-1; i++)
-                *e = *e + (Entier)**(tabElmt + sommet - 1 - i);
-            Log::WriteLogs("Somme des:" + (QString)x + " premiers éléments de la pile");
-            Empiler(e);
-            return *e;
+            if(mode == "Entier")
+            {
+                Entier* e = new Entier(0);
+                for(int i = 0; i<=x-1; i++)
+                    *e = *e + (Entier)**(tabElmt + sommet - 1 - i);
+                Log::WriteLogs("Somme des:" + (QString)x + " premiers éléments de la pile");
+                Empiler(e);
+                return *e;
+            }
+            else if(mode == "Rationnel")
+            {
+                Rationnel* r = new Rationnel(0, 1);
+                for(int i = 0; i<x-1; i++)
+                    *r = *r + (Rationnel)**(tabElmt + sommet - 1 - i);
+                Log::WriteLogs("Somme des:" + (QString)x + " premiers éléments de la pile");
+                Empiler(r);
+                return *r;
+            }
+            else if(mode == "Reel")
+            {
+                Reel* r = new Reel(0);
+                for(int i = 0; i<x-1; i++)
+                    *r = *r + (Reel)**(tabElmt + sommet - 1 - i);
+                Log::WriteLogs("Somme des:" + (QString)x + " premiers éléments de la pile");
+                Empiler(r);
+                return *r;
+            }
         }
-        else if(mode == "Rationnel")
-        {
-            Rationnel* r = new Rationnel(0, 1);
-            for(int i = 0; i<x-1; i++)
-                *r = *r + (Rationnel)**(tabElmt + sommet - 1 - i);
-            Log::WriteLogs("Somme des:" + (QString)x + " premiers éléments de la pile");
-            Empiler(r);
-            return *r;
-        }
-        else if(mode == "Reel")
-        {
-            Reel* r = new Reel(0);
-            for(int i = 0; i<x-1; i++)
-                *r = *r + (Reel)**(tabElmt + sommet - 1 - i);
-            Log::WriteLogs("Somme des:" + (QString)x + " premiers éléments de la pile");
-            Empiler(r);
-            return *r;
-        }
-    }
-    else
-        throw CalcException("Indice en dehors des bornes autorisées");
+        else
+            throw CalcException("Indice en dehors des bornes autorisées");
     }
     catch (CalcException c)
     {
@@ -1236,28 +1317,29 @@ Constante& Pile::Sum(int x, QString mode)
 
 void Pile::Mean(int x, QString mode)
 {
-    try {
-    if(x-1<sommet && x-1>=0)
+    try
     {
-        if(mode == "Entier" || mode == "Rationnel")
+        if(x-1<sommet && x-1>=0)
         {
-            Constante* e = &Sum(x, mode);
-            Constante* c = Depiler();
-            Constante& res = *e / Entier(x);
-            Log::WriteLogs("Moyenne des:" + (QString)x + " premiers éléments de la pile");
-            Empiler(&res);
+            if(mode == "Entier" || mode == "Rationnel")
+            {
+                Constante* e = &Sum(x, mode);
+                Constante* c = Depiler();
+                Constante& res = *e / Entier(x);
+                Log::WriteLogs("Moyenne des:" + (QString)x + " premiers éléments de la pile");
+                Empiler(&res);
+            }
+            else if (mode == "Reel")
+            {
+                Constante* e = &Sum(x, mode);
+                Constante* c = Depiler();
+                Constante& res = *e / Reel(x);
+                Log::WriteLogs("Moyenne des:" + (QString)x + " premiers éléments de la pile");
+                Empiler(&res);
+            }
         }
-        else if (mode == "Reel")
-        {
-            Constante* e = &Sum(x, mode);
-            Constante* c = Depiler();
-            Constante& res = *e / Reel(x);
-            Log::WriteLogs("Moyenne des:" + (QString)x + " premiers éléments de la pile");
-            Empiler(&res);
-        }
-    }
-    else
-        throw CalcException("Indice en dehors des bornes autorisées");
+        else
+            throw CalcException("Indice en dehors des bornes autorisées");
     }
     catch (CalcException c)
     {

@@ -51,6 +51,8 @@ public:
     static Mementos& getInstance2(int dim);
     static void releaseInstance2();
 
+    int GetTaille()const{return taille;}
+
     /*Mementos(int dim);
     ~Mementos();*/
 

@@ -279,29 +279,19 @@ void Pile::Plus(QString mode, bool complexe)
             {
                 if(e1 != 0 && e2 != 0)
                 {
-                    QString s2 = (QString)*a;
-                    s2.replace(0, 1, " ");
-                    s2.remove(s2.length() - 1, 1);
-                    s2.append(" +'");
-                    QString s1 = (QString)*b;
-                    s1.remove(s1.length()-1, 1);
-                    Constante *e = new Expression(s1 + s2);
+                    Constante* e = ExpressionFactory::GetExpressionBinaire2Exp((QString)*a, (QString)*b, "+");
                     Empiler(e);
                 }
                 else
                 {
                     if(e2 != 0)
                     {
-                        QString s2 = (QString)*b;
-                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " +'");
-                        Constante* e = new Expression(s2);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*b, (QString)*a, "+");
                         Empiler(e);
                     }
                     else
                     {
-                        QString s1 = (QString)*a;
-                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " +'");
-                        Constante* e = new Expression(s1);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*a, (QString)*b, "+");
                         Empiler(e);
                     }
                 }
@@ -364,29 +354,19 @@ void Pile::Moins(QString mode, bool complexe)
             {
                 if(e1 != 0 && e2 != 0)
                 {
-                    QString s2 = (QString)*a;
-                    s2.replace(0, 1, " ");
-                    s2.remove(s2.length() - 1, 1);
-                    s2.append(" -'");
-                    QString s1 = (QString)*b;
-                    s1.remove(s1.length()-1, 1);
-                    Constante *e = new Expression(s1 + s2);
+                    Constante* e = ExpressionFactory::GetExpressionBinaire2Exp((QString)*a, (QString)*b, "-");
                     Empiler(e);
                 }
                 else
                 {
                     if(e2 != 0)
                     {
-                        QString s2 = (QString)*b;
-                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " -'");
-                        Constante* e = new Expression(s2);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*b, (QString)*a, "-");
                         Empiler(e);
                     }
                     else
                     {
-                        QString s1 = (QString)*a;
-                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " -'");
-                        Constante* e = new Expression(s1);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*a, (QString)*b, "-");
                         Empiler(e);
                     }
                 }
@@ -450,29 +430,19 @@ void Pile::Multiplier(QString mode, bool complexe)
             {
                 if(e1 != 0 && e2 != 0)
                 {
-                    QString s2 = (QString)*a;
-                    s2.replace(0, 1, " ");
-                    s2.remove(s2.length() - 1, 1);
-                    s2.append(" *'");
-                    QString s1 = (QString)*b;
-                    s1.remove(s1.length()-1, 1);
-                    Constante *e = new Expression(s1 + s2);
+                    Constante* e = ExpressionFactory::GetExpressionBinaire2Exp((QString)*a, (QString)*b, "*");
                     Empiler(e);
                 }
                 else
                 {
                     if(e2 != 0)
                     {
-                        QString s2 = (QString)*b;
-                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " *'");
-                        Constante* e = new Expression(s2);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*b, (QString)*a, "*");
                         Empiler(e);
                     }
                     else
                     {
-                        QString s1 = (QString)*a;
-                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " *'");
-                        Constante* e = new Expression(s1);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*a, (QString)*b, "*");
                         Empiler(e);
                     }
                 }
@@ -536,29 +506,19 @@ void Pile::Diviser(QString mode, bool complexe)
             {
                 if(e1 != 0 && e2 != 0)
                 {
-                    QString s2 = (QString)*a;
-                    s2.replace(0, 1, " ");
-                    s2.remove(s2.length() - 1, 1);
-                    s2.append(" /'");
-                    QString s1 = (QString)*b;
-                    s1.remove(s1.length()-1, 1);
-                    Constante *e = new Expression(s1 + s2);
+                    Constante* e = ExpressionFactory::GetExpressionBinaire2Exp((QString)*a, (QString)*b, "/");
                     Empiler(e);
                 }
                 else
                 {
                     if(e2 != 0)
                     {
-                        QString s2 = (QString)*b;
-                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " /'");
-                        Constante* e = new Expression(s2);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*b, (QString)*a, "/");
                         Empiler(e);
                     }
                     else
                     {
-                        QString s1 = (QString)*a;
-                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " /'");
-                        Constante* e = new Expression(s1);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*a, (QString)*b, "/");
                         Empiler(e);
                     }
                 }
@@ -622,29 +582,19 @@ void Pile::Puissance(QString mode)
             {
                 if(e1 != 0 && e2 != 0)
                 {
-                    QString s2 = (QString)*a;
-                    s2.replace(0, 1, " ");
-                    s2.remove(s2.length() - 1, 1);
-                    s2.append(" ^'");
-                    QString s1 = (QString)*b;
-                    s1.remove(s1.length()-1, 1);
-                    Constante *e = new Expression(s1 + s2);
+                    Constante* e = ExpressionFactory::GetExpressionBinaire2Exp((QString)*a, (QString)*b, "^");
                     Empiler(e);
                 }
                 else
                 {
                     if(e2 != 0)
                     {
-                        QString s2 = (QString)*b;
-                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " ^'");
-                        Constante* e = new Expression(s2);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*b, (QString)*a, "^");
                         Empiler(e);
                     }
                     else
                     {
-                        QString s1 = (QString)*a;
-                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " ^'");
-                        Constante* e = new Expression(s1);
+                        Constante* e = ExpressionFactory::GetExpressionBinaire1Exp((QString)*a, (QString)*b, "^");
                         Empiler(e);
                     }
                 }

@@ -2,6 +2,7 @@
 #define PILE_H
 #include "include.h"
 #include "constantefactory.h"
+#include "expressionfactory.h"
 #include "mainwindow.h"
 #include "log.h"
 #include <string>

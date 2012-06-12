@@ -26,6 +26,11 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui
 
     ui->action_Reels->setChecked(true);
     ui->action_Reels->setDisabled(true);
+    ui->label_angles->setText("Angles : Degrés");
+    ui->label_mode->setText("Mode : Entiers");
+
+
+    ui->label_taille->setText("Taille pile: " + QString::number(p->getTaille()));
 
     QShortcut* retour_arriere = new QShortcut(QKeySequence(Qt::Key_Backspace), ui->le_entree);
 
@@ -209,6 +214,7 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui
     QObject::connect(ui->action_Radians, SIGNAL (triggered()), this,SLOT (MODE_RADIANS()));
     QObject::connect(ui->checkClavier, SIGNAL(stateChanged(int)), this, SLOT (CLAVIER(int)));
     QObject::connect(ui->btnEvalExp, SIGNAL (clicked()), this, SLOT(eval_expression()));
+    QObject::connect(ui->btnModifTaille, SIGNAL (clicked()), this, SLOT (modif_taille_pile()));
 
 
     ui->arg1_SWAP->setText("1");
@@ -809,6 +815,11 @@ void MainWindow::closeEvent(QCloseEvent * event)
     clavier.appendChild(keyb);
     racine.appendChild(clavier);
 
+    QDomElement taillepile = filesave.createElement("Taille_Pile");
+    QDomText tp = filesave.createTextNode(QString::number(p->getTaille()));
+    taillepile.appendChild(tp);
+    racine.appendChild(taillepile);
+
     QFile file( "PILE.xml" );
     if( !file.open( QIODevice::WriteOnly ) )
         throw CalcException("Le Fichier n'existe pas.");
@@ -904,6 +915,7 @@ void MainWindow::afficher_std()
 void MainWindow::setModeEntier()
 {
     MainWindow::setMode("Entier");
+    ui->label_mode->setText("Mode : Entiers");
     ui->action_Entiers->setChecked(true);
     ui->action_Entiers->setDisabled(true);
     ui->action_Reels->setEnabled(true);
@@ -915,6 +927,7 @@ void MainWindow::setModeEntier()
 void MainWindow::setModeRationnel()
 {
     MainWindow::setMode("Rationnel");
+    ui->label_mode->setText("Mode : Rationnels");
     ui->action_Rationnels->setChecked(true);
     ui->action_Rationnels->setDisabled(true);
     ui->action_Reels->setEnabled(true);
@@ -926,6 +939,7 @@ void MainWindow::setModeRationnel()
 void MainWindow::setModeReel()
 {
     MainWindow::setMode("Reel");
+    ui->label_mode->setText("Mode : Réels");
     ui->action_Reels->setChecked(true);
     ui->action_Reels->setDisabled(true);
     ui->action_Entiers->setEnabled(true);
@@ -947,6 +961,7 @@ void MainWindow::backspace()
 void MainWindow::MODE_DEGRES()
 {
     setAngleMode("Degre");
+    ui->label_angles->setText("Angles : Degrés");
     ui->action_Degres->setChecked(true);
     ui->action_Degres->setDisabled(true);
     ui->action_Radians->setChecked(false);
@@ -964,6 +979,7 @@ void MainWindow::MODE_RADIANS()
 void MainWindow::setModeRadian()
 {
     setAngleMode("Radian");
+    ui->label_angles->setText("Angles : Radians");
     ui->action_Radians->setChecked(true);
     ui->action_Radians->setDisabled(true);
     ui->action_Degres->setChecked(false);
@@ -1043,4 +1059,18 @@ void MainWindow::eval_expression()
         c.alert();
     }
 
+}
+
+void MainWindow::modif_taille_pile()
+{
+    QRegExp c ("^[0-9]+$");
+    if (ui->arg_pile->text().contains(c))
+    {
+    p->setTaille(ui->arg_pile->text().toInt());
+    ui->label_taille->setText("Taille pile: " + QString::number(p->getTaille()));
+    ui->listView->reset();
+    ui->arg_pile->clear();
+    }
+    else
+        ui->arg_pile->clear();
 }

@@ -1565,3 +1565,21 @@ void Pile::Parser(QString s)
             Factorielle(MainWindow::getMode());
     }
 }
+
+
+void Pile::setTaille(int i)
+{
+    if (i < taille)
+    {
+        taille = i;
+        if (sommet >= taille)
+            sommet = taille;
+
+
+
+    }
+    else
+        taille = i;
+
+
+}

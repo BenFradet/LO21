@@ -53,9 +53,9 @@
    <widget class="QWidget" name="gridLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>644</x>
       <y>30</y>
-      <width>255</width>
+      <width>221</width>
       <height>314</height>
      </rect>
     </property>
@@ -202,8 +202,8 @@
    <widget class="QListView" name="listView">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>40</y>
+      <x>480</x>
+      <y>50</y>
       <width>111</width>
       <height>241</height>
      </rect>
@@ -354,17 +354,17 @@
      <string>RAZ</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="label_taille">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>10</y>
-      <width>51</width>
+      <x>500</x>
+      <y>0</y>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pile</string>
+     <string>Taille pile : 12</string>
     </property>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
@@ -880,14 +880,63 @@
    <widget class="QPushButton" name="btnEvalExp">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>290</y>
+      <x>470</x>
+      <y>300</y>
       <width>131</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
      <string>Evaluer une expression</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>219</x>
+      <y>10</y>
+      <width>191</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_mode">
+       <property name="text">
+        <string>Mode: Entier</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_angles">
+       <property name="text">
+        <string>Angles : Degrés</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLineEdit" name="arg_pile">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>20</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnModifTaille">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>20</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Modifier</string>
     </property>
    </widget>
   </widget>

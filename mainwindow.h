@@ -126,6 +126,8 @@ private slots:
     void lettreVpressed();
     void lettreWpressed();
 
+    void modif_taille_pile();
+
 };
 
 #endif // MAINWINDOW_H

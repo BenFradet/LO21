@@ -208,6 +208,7 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui
     QObject::connect(ui->action_Degres, SIGNAL (triggered()), this,SLOT (MODE_DEGRES()));
     QObject::connect(ui->action_Radians, SIGNAL (triggered()), this,SLOT (MODE_RADIANS()));
     QObject::connect(ui->checkClavier, SIGNAL(stateChanged(int)), this, SLOT (CLAVIER(int)));
+    QObject::connect(ui->btnEvalExp, SIGNAL (clicked()), this, SLOT(eval_expression()));
 
 
     ui->arg1_SWAP->setText("1");
@@ -671,19 +672,11 @@ void MainWindow::envoi_pile()
 {
     QString entree(ui->le_entree->text());
     QStringList verif(entree.split(" "));
-    bool test = false;
-    for (int i = 0; i<verif.length(); i++)
-        if (verif[i] == " " || verif[i] == "")
-            test = true;
-
-    if (!test)
-    {
 
     if (verif.length() != 1)
     {
 
-        if ( verif.length()%2 == 1  )
-        {
+
 
         QString sortie("'");
         sortie.append(entree);
@@ -691,16 +684,12 @@ void MainWindow::envoi_pile()
         ui->le_entree->setText(sortie);
         p->Parser(sortie);
 
-        }
-        else ui->le_entree->clear();
     }
     else
         p->Parser(entree);
     ui->listView->reset();
     ui->le_entree->clear();
-    }
-    else
-        ui->le_entree->clear();
+
 
 
 
@@ -1029,8 +1018,29 @@ void MainWindow::unsetClavier()
     ui->btn8->setHidden(true);
     ui->btn9->setHidden(true);
 
+}
 
+void MainWindow::eval_expression()
+{
+    try {
+    Constante* expression = p->Depiler();
+    QString exp = (QString) *expression;
+    QStringList liste(exp.split("'"));
 
+    if (liste.length() != 0 || liste.length() != 1)
+    {
+        exp ="";
+        for (int i = 0; i < liste.length(); i++)
+            exp.append(liste[i] + " ");
+        p->Parser(exp);
+        ui->listView->reset();
 
+    }
+    else throw CalcException("Expression invalide.");
+}
+    catch (CalcException c)
+    {
+        c.alert();
+    }
 
 }

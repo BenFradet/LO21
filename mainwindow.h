@@ -103,6 +103,8 @@ private slots:
     void btnRAZpressed();
     void CLAVIER(int);
 
+    void eval_expression();
+
     void lettreApressed();
     void lettreBpressed();
     void lettreCpressed();

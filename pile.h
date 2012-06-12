@@ -129,6 +129,8 @@ public:
         return taille;
     }
 
+    void setTaille(int i);
+
     Constante* getElement(int i)
     {
         return tabElmt[i];

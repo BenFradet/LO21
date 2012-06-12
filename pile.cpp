@@ -50,10 +50,10 @@ void Mementos::Empiler(Memento* m)
 {
     try
     {
-    if(sommet == taille)
-        throw CalcException("La pile est pleine !");
-    else
-        mementos[sommet++] = m;
+        if(sommet == taille)
+            throw CalcException("La pile de memento est pleine !");
+        else
+            mementos[sommet++] = m;
     }
     catch (CalcException c)
     {
@@ -67,9 +67,9 @@ Memento* Mementos::Depiler()
     try
     {
         if(sommet == 0)
-        throw CalcException("La pile est vide !");
-    else
-        return mementos[--sommet];
+            throw CalcException("La pile de memento est vide !");
+        else
+            return mementos[--sommet];
     }
     catch (CalcException c)
     {
@@ -79,11 +79,12 @@ Memento* Mementos::Depiler()
 
 Memento* Mementos::Tete()const
 {
-    try {
-    if(sommet == 0)
-        throw CalcException("La pile est vide !");
-    else
-        return mementos[sommet-1];
+    try
+    {
+        if(sommet == 0)
+            throw CalcException("La pile est vide !");
+        else
+            return mementos[sommet-1];
     }
     catch (CalcException c)
     {
@@ -132,14 +133,14 @@ void Pile::Empiler(Constante* c)
 {
     try
     {
-    if(sommet == taille)
-        throw CalcException("Impossible d'empiler, la pile est pleine.");
-    else
-    {
-        createMemento();
-        Log::WriteLogs("Empilement de:" + (QString)*c);
-        tabElmt[sommet++] = c;
-    }
+        if(sommet == taille)
+            throw CalcException("Impossible d'empiler, la pile est pleine.");
+        else
+        {
+            createMemento();
+            Log::WriteLogs("Empilement de:" + (QString)*c);
+            tabElmt[sommet++] = c;
+        }
     }
     catch (CalcException c)
     {
@@ -151,14 +152,14 @@ Constante* Pile::Depiler()
 {
     try
     {
-    if(sommet == 0)
-        throw CalcException("La pile est vide !");
-    else
-    {
-        //createMemento();
-        Log::WriteLogs("Dépilement de:" + (QString)*tabElmt[sommet-1]);
-        return tabElmt[--sommet];
-    }
+        if(sommet == 0)
+            throw CalcException("La pile est vide !");
+        else
+        {
+            //createMemento();
+            Log::WriteLogs("Dépilement de:" + (QString)*tabElmt[sommet-1]);
+            return tabElmt[--sommet];
+        }
     }
     catch (CalcException c)
     {
@@ -170,13 +171,13 @@ Constante* Pile::Tete()const
 {
     try
     {
-    if(sommet == 0)
-        throw CalcException("La pile est vide !");
-    else
-    {
-        Log::WriteLogs("Renvoi de la tête:" + (QString)*tabElmt[sommet-1]);
-        return tabElmt[sommet-1];
-    }
+        if(sommet == 0)
+            throw CalcException("La pile est vide !");
+        else
+        {
+            Log::WriteLogs("Renvoi de la tête:" + (QString)*tabElmt[sommet-1]);
+            return tabElmt[sommet-1];
+        }
     }
     catch (CalcException c)
     {
@@ -268,44 +269,80 @@ void Pile::Plus(QString mode, bool complexe)
 {
     try
     {
-    if(sommet>=2)
-    {
-        Constante* a = this->Depiler();
-        Constante* b = this->Depiler();
-        if(complexe == true)
-        {            
-            Constante& tmp = (Complexe)*b + (Complexe)*a;
-            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-            Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
-            Empiler(c);
+        if(sommet>=2)
+        {
+            Constante* a = this->Depiler();
+            Constante* b = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            const Expression* e2 = dynamic_cast<const Expression*>(b);
+            if(e1 != 0 || e2 != 0)
+            {
+                if(e1 != 0 && e2 != 0)
+                {
+                    QString s2 = (QString)*a;
+                    s2.replace(0, 1, " ");
+                    s2.remove(s2.length() - 1, 1);
+                    s2.append(" +'");
+                    QString s1 = (QString)*b;
+                    s1.remove(s1.length()-1, 1);
+                    Constante *e = new Expression(s1 + s2);
+                    Empiler(e);
+                }
+                else
+                {
+                    if(e2 != 0)
+                    {
+                        QString s2 = (QString)*b;
+                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " +'");
+                        Constante* e = new Expression(s2);
+                        Empiler(e);
+                    }
+                    else
+                    {
+                        QString s1 = (QString)*a;
+                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " +'");
+                        Constante* e = new Expression(s1);
+                        Empiler(e);
+                    }
+                }
+            }
+            else
+            {
+                if(complexe == true)
+                {
+                    Constante& tmp = (Complexe)*b + (Complexe)*a;
+                    Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                    Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
+                    Empiler(c);
+                }
+                else
+                {
+                    if(mode == "Entier")
+                    {
+                        Constante& tmp = (Entier)*b + (Entier)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Rationnel")
+                    {
+                        Constante& tmp = (Rationnel)*b + (Rationnel)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Reel")
+                    {
+                        Constante& tmp = (Reel)*b + (Reel)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                }
+            }
         }
         else
-        {
-            if(mode == "Entier")
-            {
-                Constante& tmp = (Entier)*b + (Entier)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
-            }
-            else if(mode == "Rationnel")
-            {
-                Constante& tmp = (Rationnel)*b + (Rationnel)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
-            }
-            else if(mode == "Reel")
-            {
-                Constante& tmp = (Reel)*b + (Reel)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Ajout de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
-            }
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite deux opérandes !");
+            throw CalcException("Cette opération nécessite deux opérandes !");
     }
     catch (CalcException c)
     {
@@ -317,44 +354,80 @@ void Pile::Moins(QString mode, bool complexe)
 {
     try
     {
-    if(sommet>=2)
-    {
-        Constante* a = this->Depiler();
-        Constante* b = this->Depiler();
-        if(complexe == false)
+        if(sommet>=2)
         {
-            if(mode == "Entier")
+            Constante* a = this->Depiler();
+            Constante* b = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            const Expression* e2 = dynamic_cast<const Expression*>(b);
+            if(e1 != 0 || e2 != 0)
             {
-                Constante& tmp = (Entier)*b - (Entier)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
+                if(e1 != 0 && e2 != 0)
+                {
+                    QString s2 = (QString)*a;
+                    s2.replace(0, 1, " ");
+                    s2.remove(s2.length() - 1, 1);
+                    s2.append(" -'");
+                    QString s1 = (QString)*b;
+                    s1.remove(s1.length()-1, 1);
+                    Constante *e = new Expression(s1 + s2);
+                    Empiler(e);
+                }
+                else
+                {
+                    if(e2 != 0)
+                    {
+                        QString s2 = (QString)*b;
+                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " -'");
+                        Constante* e = new Expression(s2);
+                        Empiler(e);
+                    }
+                    else
+                    {
+                        QString s1 = (QString)*a;
+                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " -'");
+                        Constante* e = new Expression(s1);
+                        Empiler(e);
+                    }
+                }
             }
-            else if(mode == "Rationnel")
+            else
             {
-                Constante& tmp = (Rationnel)*b - (Rationnel)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
-            }
-            else if(mode == "Reel")
-            {
-                Constante& tmp = (Reel)*b - (Reel)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
+                if(complexe == false)
+                {
+                    if(mode == "Entier")
+                    {
+                        Constante& tmp = (Entier)*b - (Entier)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Rationnel")
+                    {
+                        Constante& tmp = (Rationnel)*b - (Rationnel)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Reel")
+                    {
+                        Constante& tmp = (Reel)*b - (Reel)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                }
+                else
+                {
+                    Constante& tmp = (Complexe)*b - (Complexe)*a;
+                    Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                    Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
+                    Empiler(c);
+                }
             }
         }
         else
-        {
-            Constante& tmp = (Complexe)*b - (Complexe)*a;
-            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-            Log::WriteLogs("Soustraction de:" + (QString)*b + " et " + (QString)*a);
-            Empiler(c);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite deux opérandes !");
+            throw CalcException("Cette opération nécessite deux opérandes !");
     }
     catch (CalcException c)
     {
@@ -366,44 +439,81 @@ void Pile::Multiplier(QString mode, bool complexe)
 {
     try
     {
-    if(sommet>=2)
-    {
-        Constante* a = this->Depiler();
-        Constante* b = this->Depiler();
-        if(complexe == false)
+        if(sommet>=2)
         {
-            if(mode == "Entier")
+            Constante* a = this->Depiler();
+            Constante* b = this->Depiler();
+
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            const Expression* e2 = dynamic_cast<const Expression*>(b);
+            if(e1 != 0 || e2 != 0)
             {
-                Constante& tmp = (Entier)*b * (Entier)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
+                if(e1 != 0 && e2 != 0)
+                {
+                    QString s2 = (QString)*a;
+                    s2.replace(0, 1, " ");
+                    s2.remove(s2.length() - 1, 1);
+                    s2.append(" *'");
+                    QString s1 = (QString)*b;
+                    s1.remove(s1.length()-1, 1);
+                    Constante *e = new Expression(s1 + s2);
+                    Empiler(e);
+                }
+                else
+                {
+                    if(e2 != 0)
+                    {
+                        QString s2 = (QString)*b;
+                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " *'");
+                        Constante* e = new Expression(s2);
+                        Empiler(e);
+                    }
+                    else
+                    {
+                        QString s1 = (QString)*a;
+                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " *'");
+                        Constante* e = new Expression(s1);
+                        Empiler(e);
+                    }
+                }
             }
-            else if(mode == "Rationnel")
+            else
             {
-                Constante& tmp = (Rationnel)*b * (Rationnel)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
-            }
-            else if(mode == "Reel")
-            {
-                Constante& tmp = (Reel)*b * (Reel)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
+                if(complexe == false)
+                {
+                    if(mode == "Entier")
+                    {
+                        Constante& tmp = (Entier)*b * (Entier)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Rationnel")
+                    {
+                        Constante& tmp = (Rationnel)*b * (Rationnel)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Reel")
+                    {
+                        Constante& tmp = (Reel)*b * (Reel)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                }
+                else
+                {
+                    Constante& tmp = (Complexe)*b * (Complexe)*a;
+                    Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                    Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
+                    Empiler(c);
+                }
             }
         }
         else
-        {
-            Constante& tmp = (Complexe)*b * (Complexe)*a;
-            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-            Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
-            Empiler(c);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite deux opérandes");
+            throw CalcException("Cette opération nécessite deux opérandes");
     }
     catch (CalcException c)
     {
@@ -415,44 +525,81 @@ void Pile::Diviser(QString mode, bool complexe)
 {
     try
     {
-    if(sommet>=2)
-    {
-        Constante* a = this->Depiler();
-        Constante* b = this->Depiler();
-        if(complexe == false)
+        if(sommet>=2)
         {
-            if(mode == "Entier")
+            Constante* a = this->Depiler();
+            Constante* b = this->Depiler();
+
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            const Expression* e2 = dynamic_cast<const Expression*>(b);
+            if(e1 != 0 || e2 != 0)
             {
-                Constante& tmp = (Entier)*b / (Entier)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Division de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
+                if(e1 != 0 && e2 != 0)
+                {
+                    QString s2 = (QString)*a;
+                    s2.replace(0, 1, " ");
+                    s2.remove(s2.length() - 1, 1);
+                    s2.append(" /'");
+                    QString s1 = (QString)*b;
+                    s1.remove(s1.length()-1, 1);
+                    Constante *e = new Expression(s1 + s2);
+                    Empiler(e);
+                }
+                else
+                {
+                    if(e2 != 0)
+                    {
+                        QString s2 = (QString)*b;
+                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " /'");
+                        Constante* e = new Expression(s2);
+                        Empiler(e);
+                    }
+                    else
+                    {
+                        QString s1 = (QString)*a;
+                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " /'");
+                        Constante* e = new Expression(s1);
+                        Empiler(e);
+                    }
+                }
             }
-            else if(mode == "Rationnel")
+            else
             {
-                Constante& tmp = (Rationnel)*b / (Rationnel)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
-            }
-            else if(mode == "Reel")
-            {
-                Constante& tmp = (Reel)*b / (Reel)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
-                Empiler(c);
+                if(complexe == false)
+                {
+                    if(mode == "Entier")
+                    {
+                        Constante& tmp = (Entier)*b / (Entier)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Division de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Rationnel")
+                    {
+                        Constante& tmp = (Rationnel)*b / (Rationnel)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Reel")
+                    {
+                        Constante& tmp = (Reel)*b / (Reel)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
+                        Empiler(c);
+                    }
+                }
+                else
+                {
+                    Constante& tmp = (Complexe)*b / (Complexe)*a;
+                    Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                    Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
+                    Empiler(c);
+                }
             }
         }
         else
-        {
-            Constante& tmp = (Complexe)*b / (Complexe)*a;
-            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-            Log::WriteLogs("Multiplication de:" + (QString)*b + " et " + (QString)*a);
-            Empiler(c);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite deux opérandes");
+            throw CalcException("Cette opération nécessite deux opérandes");
     }
     catch (CalcException c)
     {
@@ -464,34 +611,71 @@ void Pile::Puissance(QString mode)
 {
    try
     {
-    if(sommet>=2)
-    {
-        Constante* a = this->Depiler();
-        Constante* b = this->Depiler();
-        if(mode == "Entier")
+        if(sommet>=2)
         {
-            Constante& tmp = (Entier)*b ^ (Entier)*a;
-            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode);
-            Log::WriteLogs("Puissance de:" + (QString)*b + " et " + (QString)*a);
-            Empiler(c);
+            Constante* a = this->Depiler();
+            Constante* b = this->Depiler();
+
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            const Expression* e2 = dynamic_cast<const Expression*>(b);
+            if(e1 != 0 || e2 != 0)
+            {
+                if(e1 != 0 && e2 != 0)
+                {
+                    QString s2 = (QString)*a;
+                    s2.replace(0, 1, " ");
+                    s2.remove(s2.length() - 1, 1);
+                    s2.append(" ^'");
+                    QString s1 = (QString)*b;
+                    s1.remove(s1.length()-1, 1);
+                    Constante *e = new Expression(s1 + s2);
+                    Empiler(e);
+                }
+                else
+                {
+                    if(e2 != 0)
+                    {
+                        QString s2 = (QString)*b;
+                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " ^'");
+                        Constante* e = new Expression(s2);
+                        Empiler(e);
+                    }
+                    else
+                    {
+                        QString s1 = (QString)*a;
+                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " ^'");
+                        Constante* e = new Expression(s1);
+                        Empiler(e);
+                    }
+                }
+            }
+            else
+            {
+                if(mode == "Entier")
+                {
+                    Constante& tmp = (Entier)*b ^ (Entier)*a;
+                    Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode);
+                    Log::WriteLogs("Puissance de:" + (QString)*b + " et " + (QString)*a);
+                    Empiler(c);
+                }
+                else if(mode == "Rationnel")
+                {
+                    Constante& tmp = (Rationnel)*b ^ (Rationnel)*a;
+                    Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode);
+                    Log::WriteLogs("Puissance de:" + (QString)*b + " et " + (QString)*a);
+                    Empiler(c);
+                }
+                else if(mode == "Reel")
+                {
+                    Constante& tmp = (Reel)*b ^ (Reel)*a;
+                    Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode);
+                    Log::WriteLogs("Puissance de:" + (QString)*b + " et " + (QString)*a);
+                    Empiler(c);
+                }
+            }
         }
-        else if(mode == "Rationnel")
-        {
-            Constante& tmp = (Rationnel)*b ^ (Rationnel)*a;
-            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode);
-            Log::WriteLogs("Puissance de:" + (QString)*b + " et " + (QString)*a);
-            Empiler(c);
-        }
-        else if(mode == "Reel")
-        {
-            Constante& tmp = (Reel)*b ^ (Reel)*a;
-            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode);
-            Log::WriteLogs("Puissance de:" + (QString)*b + " et " + (QString)*a);
-            Empiler(c);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite deux opérandes");
+        else
+            throw CalcException("Cette opération nécessite deux opérandes");
     }
     catch (CalcException c)
     {
@@ -503,24 +687,57 @@ void Pile::Puissance(QString mode)
 
 void Pile::Modulo(QString mode)
 {
-    try {
-    if(sommet>=2)
+    try
     {
-        Constante* a = this->Depiler();
-        Constante* b = this->Depiler();
-        const Entier* e1 = dynamic_cast<const Entier*>(a);
-        const Entier* e2 = dynamic_cast<const Entier*>(b);
-        if(e1 != NULL && e2 != NULL && mode == "Entier")
+        if(sommet>=2)
         {
-            Constante* c = new Entier((Entier)*b % (Entier)*a);
-            Log::WriteLogs("Modulo de:" + (QString)*b + " et " + (QString)*a);
-            Empiler(c);
+            Constante* a = this->Depiler();
+            Constante* b = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            const Expression* e2 = dynamic_cast<const Expression*>(b);
+            if(e1 != 0 || e2 != 0)
+            {
+                if(e1 != 0 && e2 != 0)
+                {
+                    QString s2 = (QString)*a;
+                    s2.replace(0, 1, " ");
+                    s2.remove(s2.length() - 1, 1);
+                    s2.append(" %'");
+                    QString s1 = (QString)*b;
+                    s1.remove(s1.length()-1, 1);
+                    Constante *e = new Expression(s1 + s2);
+                    Empiler(e);
+                }
+                else
+                {
+                    if(e2 != 0)
+                    {
+                        QString s2 = (QString)*b;
+                        s2.replace(s2.length()-1, 1, " " + (QString)*a + " %'");
+                        Constante* e = new Expression(s2);
+                        Empiler(e);
+                    }
+                    else
+                    {
+                        QString s1 = (QString)*a;
+                        s1.replace(s1.length()-1, 1, " " + (QString)*b + " %'");
+                        Constante* e = new Expression(s1);
+                        Empiler(e);
+                    }
+                }
+            }
+            else
+            {
+                if(mode == "Entier")
+                {
+                    Constante* c = new Entier((Entier)*b % (Entier)*a);
+                    Log::WriteLogs("Modulo de:" + (QString)*b + " et " + (QString)*a);
+                    Empiler(c);
+                }
+            }
         }
         else
-            throw CalcException("Cette opération nécessite deux entiers");
-    }
-    else
-        throw CalcException("Cette opération nécessite deux opérandes");
+            throw CalcException("Cette opération nécessite deux opérandes");
     }
     catch (CalcException c)
     {
@@ -530,44 +747,56 @@ void Pile::Modulo(QString mode)
 
 void Pile::Signe(QString mode, bool complexe)
 {
-    try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        if(complexe == false)
+        if(sommet>=1)
         {
-            if(mode == "Entier")
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
             {
-                Constante& tmp = -(Entier)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Inversion du signe de:" + (QString)*a);
-                Empiler(c);
+                QString s1 = (QString)*a;
+                s1.replace(s1.length() - 1, 1, " SIGN'");
+                Constante* e = new Expression(s1);
+                Empiler(e);
             }
-            else if(mode == "Rationnel")
+            else
             {
-                Constante& tmp = -(Rationnel)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Inversion du signe de:" + (QString)*a);
-                Empiler(c);
-            }
-            else if(mode == "Reel")
-            {
-                Constante& tmp = -(Reel)*a;
-                Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-                Log::WriteLogs("Inversion du signe de:" + (QString)*a);
-                Empiler(c);
+                if(complexe == false)
+                {
+                    if(mode == "Entier")
+                    {
+                        Constante& tmp = -(Entier)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Inversion du signe de:" + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Rationnel")
+                    {
+                        Constante& tmp = -(Rationnel)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Inversion du signe de:" + (QString)*a);
+                        Empiler(c);
+                    }
+                    else if(mode == "Reel")
+                    {
+                        Constante& tmp = -(Reel)*a;
+                        Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                        Log::WriteLogs("Inversion du signe de:" + (QString)*a);
+                        Empiler(c);
+                    }
+                }
+                else
+                {
+                    Constante& tmp = -(Complexe)*a;
+                    Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
+                    Log::WriteLogs("Inversion du signe de:" + (QString)*a);
+                    Empiler(c);
+                }
             }
         }
         else
-        {
-            Constante& tmp = -(Complexe)*a;
-            Constante* c = ConstanteFactory::GetConstante((QString)tmp, mode, complexe);
-            Log::WriteLogs("Inversion du signe de:" + (QString)*a);
-            Empiler(c);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -577,28 +806,40 @@ void Pile::Signe(QString mode, bool complexe)
 
 void Pile::Sinus()
 {
-    try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        if(MainWindow::getAngleMode() == "Radian")
+        if(sommet>=1)
         {
-            Constante* res = new Reel(a->sinus());
-            Log::WriteLogs("Sinus en radian de:" + (QString)*a);
-            Empiler(res);
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
+            {
+                QString s1 = (QString)*a;
+                s1.replace(s1.length() - 1, 1, " SIN'");
+                Constante* e = new Expression(s1);
+                Empiler(e);
+            }
+            else
+            {
+                if(MainWindow::getAngleMode() == "Radian")
+                {
+                    Constante* res = new Reel(a->sinus());
+                    Log::WriteLogs("Sinus en radian de:" + (QString)*a);
+                    Empiler(res);
+                }
+                else
+                {
+                    float f = 3.141592/180;
+                    Constante* tmp = new Reel(f);
+                    Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+                    Constante* res = new Reel(tmp2.sinus());
+                    Log::WriteLogs("Sinus en degré de:" + (QString)*a);
+                    Empiler(res);
+                }
+            }
         }
         else
-        {
-            float f = 3.141592/180;
-            Constante* tmp = new Reel(f);
-            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
-            Constante* res = new Reel(tmp2.sinus());
-            Log::WriteLogs("Sinus en degré de:" + (QString)*a);
-            Empiler(res);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -608,28 +849,40 @@ void Pile::Sinus()
 
 void Pile::Cosinus()
 {
-    try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        if(MainWindow::getAngleMode() == "Radian")
+        if(sommet>=1)
         {
-            Constante* res = new Reel(a->cosinus());
-            Log::WriteLogs("Cosinus en radian de:" + (QString)*a);
-            Empiler(res);
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
+            {
+                QString s1 = (QString)*a;
+                s1.replace(s1.length() - 1, 1, " COS'");
+                Constante* e = new Expression(s1);
+                Empiler(e);
+            }
+            else
+            {
+                if(MainWindow::getAngleMode() == "Radian")
+                {
+                    Constante* res = new Reel(a->cosinus());
+                    Log::WriteLogs("Cosinus en radian de:" + (QString)*a);
+                    Empiler(res);
+                }
+                else
+                {
+                    float f = 3.141592/180;
+                    Constante* tmp = new Reel(f);
+                    Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+                    Constante* res = new Reel(tmp2.cosinus());
+                    Log::WriteLogs("Cosinus en degré de:" + (QString)*a);
+                    Empiler(res);
+                }
+            }
         }
         else
-        {
-            float f = 3.141592/180;
-            Constante* tmp = new Reel(f);
-            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
-            Constante* res = new Reel(tmp2.cosinus());
-            Log::WriteLogs("Cosinus en degré de:" + (QString)*a);
-            Empiler(res);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -639,28 +892,40 @@ void Pile::Cosinus()
 
 void Pile::Tangente()
 {
-    try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        if(MainWindow::getAngleMode() == "Radian")
+        if(sommet>=1)
         {
-            Constante* res = new Reel(a->tangente());
-            Log::WriteLogs("Tangente en radian de:" + (QString)*a);
-            Empiler(res);
+            Constante* a = this->Depiler();
+            const Expression* e1 = dynamic_cast<const Expression*>(a);
+            if(e1!=0)
+            {
+                QString s1 = (QString)*a;
+                s1.replace(s1.length() - 1, 1, " TAN'");
+                Constante* e = new Expression(s1);
+                Empiler(e);
+            }
+            else
+            {
+                if(MainWindow::getAngleMode() == "Radian")
+                {
+                    Constante* res = new Reel(a->tangente());
+                    Log::WriteLogs("Tangente en radian de:" + (QString)*a);
+                    Empiler(res);
+                }
+                else
+                {
+                    float f = 3.141592/180;
+                    Constante* tmp = new Reel(f);
+                    Constante& tmp2 = (Reel)*tmp * (Reel)*a;
+                    Constante* res = new Reel(tmp2.tangente());
+                    Log::WriteLogs("Tangente en degré de:" + (QString)*a);
+                    Empiler(res);
+                }
+            }
         }
         else
-        {
-            float f = 3.141592/180;
-            Constante* tmp = new Reel(f);
-            Constante& tmp2 = (Reel)*tmp * (Reel)*a;
-            Constante* res = new Reel(tmp2.tangente());
-            Log::WriteLogs("Tangente en degré de:" + (QString)*a);
-            Empiler(res);
-        }
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -933,22 +1198,23 @@ void Pile::Cube(QString mode, bool complexe)
 
 void Pile::Factorielle(QString mode)
 {
-   try {
-    if(sommet>=1)
+    try
     {
-        Constante* a = this->Depiler();
-        const Entier* e = dynamic_cast<const Entier*>(a);
-        if(e!=0 && mode == "Entier")
+        if(sommet>=1)
         {
-            Constante* res = new Entier(!(Entier)*a);
-            Log::WriteLogs("Factorielle de:" + (QString)*a);
-            Empiler(res);
+            Constante* a = this->Depiler();
+            const Entier* e = dynamic_cast<const Entier*>(a);
+            if(e!=0 && mode == "Entier")
+            {
+                Constante* res = new Entier(!(Entier)*a);
+                Log::WriteLogs("Factorielle de:" + (QString)*a);
+                Empiler(res);
+            }
+            else
+                throw CalcException("Cette opération nécessite un entier");
         }
         else
-            throw CalcException("Cette opération nécessite un entier");
-    }
-    else
-        throw CalcException("Cette opération nécessite une opérande");
+            throw CalcException("Cette opération nécessite une opérande");
     }
     catch (CalcException c)
     {
@@ -1187,8 +1453,6 @@ void Pile::Parser(QString s)
             Complexe* c = new Complexe(re, im);
             Empiler(c);
         }
-
-
 
         else if(elements[i].contains(rationnel))
         {

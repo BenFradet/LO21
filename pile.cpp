@@ -137,7 +137,7 @@ void Pile::Empiler(Constante* c)
     else
     {
         createMemento();
-        //Log::WriteLogs("Empilement de:" + (QString)*c);
+        Log::WriteLogs("Empilement de:" + (QString)*c);
         tabElmt[sommet++] = c;
     }
     }

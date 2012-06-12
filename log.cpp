@@ -3,7 +3,7 @@
 void Log::WriteLogs(QString string)
 {
     QFile file("logs.txt");
-    if(!file.open(QFile::WriteOnly | QFile::Append | QFile::Text))
+    if(!file.open(QFile::Append | QFile::Text))
         return;
     QTextStream stream(&file);
     stream.setCodec("UTF-8");

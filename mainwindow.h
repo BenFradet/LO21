@@ -102,6 +102,28 @@ private slots:
 
     void btnRAZpressed();
     void CLAVIER(int);
+
+    void lettreApressed();
+    void lettreBpressed();
+    void lettreCpressed();
+    void lettreDpressed();
+    void lettreEpressed();
+    void lettreGpressed();
+    void lettreHpressed();
+    void lettreIpressed();
+    void lettreLpressed();
+    void lettreMpressed();
+    void lettreNpressed();
+    void lettreOpressed();
+    void lettrePpressed();
+    void lettreQpressed();
+    void lettreRpressed();
+    void lettreSpressed();
+    void lettreTpressed();
+    void lettreUpressed();
+    void lettreVpressed();
+    void lettreWpressed();
+
 };
 
 #endif // MAINWINDOW_H

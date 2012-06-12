@@ -102,6 +102,66 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui
     QShortcut* rad = new QShortcut (QKeySequence(Qt::CTRL + Qt::Key_A), this);
     QObject::connect(rad, SIGNAL (activated()), this, SLOT (MODE_RADIANS()));
 
+    QShortcut* lettre_A = new QShortcut (QKeySequence(Qt::Key_A), this);
+    QObject::connect(lettre_A, SIGNAL (activated()), this, SLOT (lettreApressed()));
+
+    QShortcut* lettre_B = new QShortcut (QKeySequence(Qt::Key_B), this);
+    QObject::connect(lettre_B, SIGNAL (activated()), this, SLOT (lettreBpressed()));
+
+    QShortcut* lettre_C = new QShortcut (QKeySequence(Qt::Key_C), this);
+    QObject::connect(lettre_C, SIGNAL (activated()), this, SLOT (lettreCpressed()));
+
+    QShortcut* lettre_D = new QShortcut (QKeySequence(Qt::Key_D), this);
+    QObject::connect(lettre_D, SIGNAL (activated()), this, SLOT (lettreDpressed()));
+
+    QShortcut* lettre_E = new QShortcut (QKeySequence(Qt::Key_E), this);
+    QObject::connect(lettre_E, SIGNAL (activated()), this, SLOT (lettreEpressed()));
+
+    QShortcut* lettre_G = new QShortcut (QKeySequence(Qt::Key_G), this);
+    QObject::connect(lettre_G, SIGNAL (activated()), this, SLOT (lettreGpressed()));
+
+    QShortcut* lettre_H = new QShortcut (QKeySequence(Qt::Key_H), this);
+    QObject::connect(lettre_H, SIGNAL (activated()), this, SLOT (lettreHpressed()));
+
+    QShortcut* lettre_I = new QShortcut (QKeySequence(Qt::Key_I), this);
+    QObject::connect(lettre_I, SIGNAL (activated()), this, SLOT (lettreIpressed()));
+
+    QShortcut* lettre_L = new QShortcut (QKeySequence(Qt::Key_L), this);
+    QObject::connect(lettre_L, SIGNAL (activated()), this, SLOT (lettreLpressed()));
+
+    QShortcut* lettre_M = new QShortcut (QKeySequence(Qt::Key_M), this);
+    QObject::connect(lettre_M, SIGNAL (activated()), this, SLOT (lettreMpressed()));
+
+    QShortcut* lettre_N = new QShortcut (QKeySequence(Qt::Key_N), this);
+    QObject::connect(lettre_N, SIGNAL (activated()), this, SLOT (lettreNpressed()));
+
+    QShortcut* lettre_O = new QShortcut (QKeySequence(Qt::Key_O), this);
+    QObject::connect(lettre_O, SIGNAL (activated()), this, SLOT (lettreOpressed()));
+
+    QShortcut* lettre_P = new QShortcut (QKeySequence(Qt::Key_P), this);
+    QObject::connect(lettre_P, SIGNAL (activated()), this, SLOT (lettrePpressed()));
+
+    QShortcut* lettre_Q = new QShortcut (QKeySequence(Qt::Key_Q), this);
+    QObject::connect(lettre_Q, SIGNAL (activated()), this, SLOT (lettreQpressed()));
+
+    QShortcut* lettre_R = new QShortcut (QKeySequence(Qt::Key_R), this);
+    QObject::connect(lettre_R, SIGNAL (activated()), this, SLOT (lettreRpressed()));
+
+    QShortcut* lettre_S = new QShortcut (QKeySequence(Qt::Key_S), this);
+    QObject::connect(lettre_S, SIGNAL (activated()), this, SLOT (lettreSpressed()));
+
+    QShortcut* lettre_T = new QShortcut (QKeySequence(Qt::Key_T), this);
+    QObject::connect(lettre_T, SIGNAL (activated()), this, SLOT (lettreTpressed()));
+
+    QShortcut* lettre_U = new QShortcut (QKeySequence(Qt::Key_U), this);
+    QObject::connect(lettre_U, SIGNAL (activated()), this, SLOT (lettreUpressed()));
+
+    QShortcut* lettre_V = new QShortcut (QKeySequence(Qt::Key_V), this);
+    QObject::connect(lettre_V, SIGNAL (activated()), this, SLOT (lettreVpressed()));
+
+    QShortcut* lettre_W = new QShortcut (QKeySequence(Qt::Key_W), this);
+    QObject::connect(lettre_W, SIGNAL (activated()), this, SLOT (lettreWpressed()));
+
 
     QObject::connect(ui->btnSPACE, SIGNAL (clicked()), this, SLOT(btnSPACEpressed()));
     QObject::connect(ui->btnAddi, SIGNAL (clicked()), this, SLOT(btnAddipressed()));
@@ -399,6 +459,107 @@ void MainWindow::btnPOINTpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("."));
 }
+
+void MainWindow::lettreApressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("A"));
+}
+
+void MainWindow::lettreBpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("B"));
+}
+
+void MainWindow::lettreCpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("C"));
+}
+
+void MainWindow::lettreDpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("D"));
+}
+
+void MainWindow::lettreEpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("E"));
+}
+
+void MainWindow::lettreGpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("G"));
+}
+
+void MainWindow::lettreHpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("H"));
+}
+
+void MainWindow::lettreIpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("I"));
+}
+
+void MainWindow::lettreLpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("L"));
+}
+
+void MainWindow::lettreMpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("M"));
+}
+
+void MainWindow::lettreNpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("N"));
+}
+
+void MainWindow::lettreOpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("O"));
+}
+
+void MainWindow::lettrePpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("P"));
+}
+
+void MainWindow::lettreQpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("Q"));
+}
+
+void MainWindow::lettreRpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("R"));
+}
+
+void MainWindow::lettreSpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("S"));
+}
+
+void MainWindow::lettreTpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("T"));
+}
+
+void MainWindow::lettreUpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("U"));
+}
+
+void MainWindow::lettreVpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("V"));
+}
+
+void MainWindow::lettreWpressed()
+{
+    ui->le_entree->setText(ui->le_entree->text().append("W"));
+}
+
 
 void MainWindow::btnSWAPpressed()
 {

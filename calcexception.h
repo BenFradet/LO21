@@ -8,25 +8,39 @@
 
 using namespace std;
 
-class CalcException : public std::exception
+//! La classe gerant les Exceptions.
+
+/*! Elle repose sur la class exception de la bibliotheque standard.*/
+
+class CalcException : public exception
 {
+    //! La chaine de caracteres designant l'exception.
     QString info;
 public:
-    CalcException(const QString s)throw():info(s)
-    {
-    }
+    //! Le constructeur de la classe.
+    /*! Il prend en argument une string et grace au throw() ne peut renvoyer une exception.*/
+    CalcException(const QString s)throw():info(s){}
 
-    const char* what() const {return "";}
 
+    //const char* what() const {return "";}
+
+    //! Getter pour l'attribut info
+    /*! Acces en lecture, la valeur renvoyee n'est pas modifiable.
+      \return La QString de l'objet CalcException
+    */
     const QString GetInfo() const
     {
         return info;
     }
 
+    //! Affichage de l'exception
+    /*! L'affichage est fait sous la forme d'une QMessageBox affichant le message d'erreur.
+      \sa GetInfo()
+    */
     void alert()
     {
         QMessageBox msgBox(0);
-        msgBox.setWindowTitle("Erreur !");
+        msgBox.setWindowTitle("Erreur!");
         msgBox.setText(GetInfo());
         msgBox.setIcon(QMessageBox::Critical);
         msgBox.setStandardButtons(QMessageBox::Ok );

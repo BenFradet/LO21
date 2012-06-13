@@ -118,8 +118,8 @@ Pile::Pile(int dim)
     taille = dim;
     sommet = 0;
     tabElmt = new Constante*[taille]();
-    undos = new Mementos(dim);
-    redos = new Mementos(dim);
+    undos = new Mementos(50);
+    redos = new Mementos(50);
 }
 
 Pile::~Pile()
@@ -1569,17 +1569,15 @@ void Pile::Parser(QString s)
 
 void Pile::setTaille(int i)
 {
+    //createMemento();
     if (i < taille)
     {
         taille = i;
         if (sommet >= taille)
             sommet = taille;
-
-
-
     }
     else
+    {
         taille = i;
-
-
+    }
 }

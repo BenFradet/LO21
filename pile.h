@@ -39,7 +39,7 @@ class Mementos
     static Mementos* instance2;
     Mementos(int dim);
     ~Mementos();
-    Mementos& operator=(const Mementos& m)
+    Mementos& operator=(const Mementos&)
     {
         return *this;
     }
@@ -74,7 +74,7 @@ class Pile: public QAbstractListModel
     static Pile* instance;
     Pile(int dim);
     ~Pile();
-    Pile& operator=(const Pile& p)
+    Pile& operator=(const Pile&)
     {
         return *this;
     }
@@ -166,11 +166,11 @@ public:
             return **elements;
         }
     };
-    Iterator& Begin()const
+    Iterator Begin()const
     {
         return Iterator(tabElmt);
     }
-    Iterator& End()const
+    Iterator End()const
     {
         return Iterator(tabElmt + sommet);
     }

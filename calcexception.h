@@ -12,7 +12,7 @@ class CalcException : public std::exception
 {
     QString info;
 public:
-    CalcException(const QString s):info(s)
+    CalcException(const QString s)throw():info(s)
     {
     }
 

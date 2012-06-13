@@ -1,26 +1,26 @@
 #include "constante.h"
 
-void Constante::operator =(const Constante& c)
+void Constante::operator =(const Constante&)
 {
     throw CalcException("On ne peut pas affecter");
 }
 
-Constante& Constante::operator+(const Constante& c)const
+Constante& Constante::operator+(const Constante&)const
 {
     throw CalcException("On ne peut pas ajouter deux expressions");
 }
 
-Constante& Constante::operator-(const Constante& c)const
+Constante& Constante::operator-(const Constante&)const
 {
     throw CalcException("On ne peut pas soustraire deux expressions");
 }
 
-Constante& Constante::operator*(const Constante& c)const
+Constante& Constante::operator*(const Constante&)const
 {
     throw CalcException("On ne peut pas multiplier deux expressions");
 }
 
-Constante& Constante::operator/(const Constante& c)const
+Constante& Constante::operator/(const Constante&)const
 {
     throw CalcException("On ne peut pas diviser deux expressions");
 }
@@ -30,7 +30,7 @@ Constante& Constante::operator-()const
     throw CalcException("On ne peut pas inverser le signe d'une expression");
 }
 
-Constante& Constante::operator^(const Constante& c)const
+Constante& Constante::operator^(const Constante&)const
 {
     throw CalcException("On ne peut pas élever à la puissance deux expressions ou deux complexes");
 }

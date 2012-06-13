@@ -63,7 +63,6 @@ void Mementos::Empiler(Memento* m)
 
 Memento* Mementos::Depiler()
 {
-
     try
     {
         if(sommet == 0)
@@ -1324,7 +1323,7 @@ void Pile::Mean(int x, QString mode)
             if(mode == "Entier" || mode == "Rationnel")
             {
                 Constante* e = &Sum(x, mode);
-                Constante* c = Depiler();
+                //Constante* c = Depiler();
                 Constante& res = *e / Entier(x);
                 Log::WriteLogs("Moyenne des:" + (QString)x + " premiers éléments de la pile");
                 Empiler(&res);
@@ -1332,7 +1331,7 @@ void Pile::Mean(int x, QString mode)
             else if (mode == "Reel")
             {
                 Constante* e = &Sum(x, mode);
-                Constante* c = Depiler();
+                //Constante* c = Depiler();
                 Constante& res = *e / Reel(x);
                 Log::WriteLogs("Moyenne des:" + (QString)x + " premiers éléments de la pile");
                 Empiler(&res);

@@ -24,12 +24,12 @@ public:
     virtual operator Complexe()const = 0;
 
     virtual void operator=(const Constante& c);
-    virtual Constante& operator+(const Constante& c)const;
-    virtual Constante& operator-(const Constante& c)const;
-    virtual Constante& operator*(const Constante& c)const;
-    virtual Constante& operator/(const Constante& c)const;
+    virtual Constante& operator+(const Constante&)const;
+    virtual Constante& operator-(const Constante&)const;
+    virtual Constante& operator*(const Constante&)const;
+    virtual Constante& operator/(const Constante&)const;
     virtual Constante& operator-()const;
-    virtual Constante& operator^(const Constante& c)const;
+    virtual Constante& operator^(const Constante&)const;
     virtual Constante& sinus()const;
     virtual Constante& cosinus()const;
     virtual Constante& tangente()const;

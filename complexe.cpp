@@ -51,31 +51,32 @@ Complexe::operator Complexe()const
 
 Constante& Complexe::operator+(const Constante& c)const
 {
-    try {
-    const Complexe* co = dynamic_cast<const Complexe*>(&c);
-    if(co!=0)
+    try
     {
-        if(MainWindow::getMode() == "Entier")
+        const Complexe* co = dynamic_cast<const Complexe*>(&c);
+        if(co!=0)
         {
-            Complexe* res = new Complexe(&((Entier)*pRe + (Entier)*(co->GetRe())), &((Entier)*pIm + (Entier)*(co->GetIm())));
-            return *res;
-        }
-        else if(MainWindow::getMode() == "Reel")
-        {
-            Complexe* res = new Complexe(&((Reel)*pRe + (Reel)*(co->GetRe())), &((Reel)*pIm + (Reel)*(co->GetIm())));
-            return *res;
+            if(MainWindow::getMode() == "Entier")
+            {
+                Complexe* res = new Complexe(&((Entier)*pRe + (Entier)*(co->GetRe())), &((Entier)*pIm + (Entier)*(co->GetIm())));
+                return *res;
+            }
+            else if(MainWindow::getMode() == "Reel")
+            {
+                Complexe* res = new Complexe(&((Reel)*pRe + (Reel)*(co->GetRe())), &((Reel)*pIm + (Reel)*(co->GetIm())));
+                return *res;
+            }
+            else
+            {
+                Complexe* res = new Complexe(&((Rationnel)*pRe + (Rationnel)*(co->GetRe())), &((Rationnel)*pIm + (Rationnel)*(co->GetIm())));
+                return *res;
+            }
         }
         else
         {
-            Complexe* res = new Complexe(&((Rationnel)*pRe + (Rationnel)*(co->GetRe())), &((Rationnel)*pIm + (Rationnel)*(co->GetIm())));
-            return *res;
-        }
-    }
-    else
-    {
-        throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
+            throw CalcException("L'opération d'addition nécessite que les deux opérateurs soient de même type");
 
-    }
+        }
     }
     catch (CalcException c)
     {
@@ -118,33 +119,34 @@ Constante& Complexe::operator-(const Constante& c)const
 
 Constante& Complexe::operator*(const Constante& c)const
 {
-    try {
-    const Complexe* co = dynamic_cast<const Complexe*>(&c);
-    if(co!=0)
+    try
     {
-        if(MainWindow::getMode() == "Entier")
+        const Complexe* co = dynamic_cast<const Complexe*>(&c);
+        if(co!=0)
         {
-            Complexe* res = new Complexe(&((Entier)*pRe*((Entier)*(co->GetRe()))-(Entier)*pIm*((Entier)*(co->GetIm()))),
-                                         &((Entier)*pRe*((Entier)*(co->GetIm()))+(Entier)*pIm*((Entier)*(co->GetRe()))));
-            return *res;
-        }
-        else if(MainWindow::getMode() == "Reel")
-        {
-            Complexe* res = new Complexe(&((Reel)*pRe*((Reel)*(co->GetRe()))-(Reel)*pIm*((Reel)*(co->GetIm()))),
-                                         &((Reel)*pRe*((Reel)*(co->GetIm()))+(Reel)*pIm*((Reel)*(co->GetRe()))));
-            return *res;
+            if(MainWindow::getMode() == "Entier")
+            {
+                Complexe* res = new Complexe(&((Entier)*pRe*((Entier)*(co->GetRe()))-(Entier)*pIm*((Entier)*(co->GetIm()))),
+                                             &((Entier)*pRe*((Entier)*(co->GetIm()))+(Entier)*pIm*((Entier)*(co->GetRe()))));
+                return *res;
+            }
+            else if(MainWindow::getMode() == "Reel")
+            {
+                Complexe* res = new Complexe(&((Reel)*pRe*((Reel)*(co->GetRe()))-(Reel)*pIm*((Reel)*(co->GetIm()))),
+                                             &((Reel)*pRe*((Reel)*(co->GetIm()))+(Reel)*pIm*((Reel)*(co->GetRe()))));
+                return *res;
+            }
+            else
+            {
+                Complexe* res = new Complexe(&((Rationnel)*pRe*((Rationnel)*(co->GetRe()))-(Rationnel)*pIm*((Rationnel)*(co->GetIm()))),
+                                             &((Rationnel)*pRe*((Rationnel)*(co->GetIm()))+(Rationnel)*pIm*((Rationnel)*(co->GetRe()))));
+                return *res;
+            }
         }
         else
         {
-            Complexe* res = new Complexe(&((Rationnel)*pRe*((Rationnel)*(co->GetRe()))-(Rationnel)*pIm*((Rationnel)*(co->GetIm()))),
-                                         &((Rationnel)*pRe*((Rationnel)*(co->GetIm()))+(Rationnel)*pIm*((Rationnel)*(co->GetRe()))));
-            return *res;
+            throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
         }
-    }
-    else
-    {
-        throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
-    }
     }
     catch (CalcException c)
     {

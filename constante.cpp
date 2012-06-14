@@ -1,10 +1,5 @@
 #include "constante.h"
 
-void Constante::operator =(const Constante&)
-{
-    throw CalcException("On ne peut pas affecter");
-}
-
 Constante& Constante::operator+(const Constante&)const
 {
     throw CalcException("On ne peut pas ajouter deux expressions");

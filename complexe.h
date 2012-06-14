@@ -30,12 +30,12 @@ public:
 
     //! Getter de la partie reelle.
     /*! Objet Complexe non modifie donc l'argument implicite reste constant.
-      \return Retourne la partie reelle de l'objet complexe sous forme de pointeur vers une constante.
+      \return La partie reelle de l'objet complexe sous forme de pointeur vers une constante.
     */
     Constante* GetRe()const{return pRe;}
     //! Getter de la partie imaginaire.
     /*! Objet Complexe non modifie donc l'argument implicite reste constant.
-      \return Retourne la partie imaginaire de l'objet complexe sous forme de pointeur vers une constante.
+      \return La partie imaginaire de l'objet complexe sous forme de pointeur vers une constante.
     */
     Constante* GetIm()const{return pIm;}
     //! Setter de la partie reelle.
@@ -51,32 +51,32 @@ public:
 
     //! Definition de la methode virtuelle pure GetVal de la classe Constante.
     /*! Cree un nouvel objet Complexe avec la partie reelle et imaginaire de l'argument implicite.
-      \return Retourne une reference sur Constante.
+      \return Une reference sur Constante.
     */
     Constante& GetVal()const;
 
-    //! Surcharge de l'operateur de cast de Complexe vers int
-    /*! On a choisi de convertir la partie reelle du complexe en int
+    //! Surcharge de l'operateur de cast de Complexe vers int.
+    /*! On a choisi de convertir la partie reelle du complexe en int.
     */
     operator int()const;
-    //! Surcharge de l'operateur de cast de Complexe vers float
-    /*! On a choisi de convertir la partie reelle du complexe en float
+    //! Surcharge de l'operateur de cast de Complexe vers float.
+    /*! On a choisi de convertir la partie reelle du complexe en float.
     */
     operator float()const;
-    //! Surcharge de l'operateur de cast de Complexe vers Entier
-    /*! On a choisi de convertir la partie reelle du complexe en Entier
+    //! Surcharge de l'operateur de cast de Complexe vers Entier.
+    /*! On a choisi de convertir la partie reelle du complexe en Entier.
     */
     operator Entier()const;
-    //! Surcharge de l'operateur de cast de Complexe vers Rationnel
-    /*! On a choisi de convertir la partie reelle du complexe en Rationnel
+    //! Surcharge de l'operateur de cast de Complexe vers Rationnel.
+    /*! On a choisi de convertir la partie reelle du complexe en Rationnel.
     */
     operator Rationnel()const;
-    //! Surcharge de l'operateur de cast de Complexe vers Reel
-    /*! On a choisi de convertir la partie reelle du complexe en Reel
+    //! Surcharge de l'operateur de cast de Complexe vers Reel.
+    /*! On a choisi de convertir la partie reelle du complexe en Reel.
     */
     operator Reel()const;
-    //! Surcharge de l'operateur de cast de Complexe vers Complexe
-    /*! On retourne la valeur de l'argument implicite
+    //! Surcharge de l'operateur de cast de Complexe vers Complexe.
+    /*! On retourne la valeur de l'argument implicite.
     */
     operator Complexe()const;
 

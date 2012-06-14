@@ -54,8 +54,8 @@ Complexe::operator Complexe()const
 /*! On additionne les 2 parties reelles ainsi que les 2 parties imaginaires et on cree un nouveau Complexe avec ces valeurs.
   A noter que l'on tente un dynamic cast sur l'argument qui est la seulement en cas d'un developpement futur
   car toutes nos operandes sont castees avant d'effectuer n'importe quelle operation.
-  \param c Une reference constante vers une Constante
-  \return On retourne une reference sur une Constante contenant notre Complexe
+  \param c Une reference constante vers une Constante.
+  \return On retourne une reference sur une Constante contenant notre Complexe.
 */
 Constante& Complexe::operator+(const Constante& c)const
 {
@@ -94,8 +94,8 @@ Constante& Complexe::operator+(const Constante& c)const
 
 //! Surcharge de l'operateur de soustraction entre deux complexes
 /*! On soustrait les 2 parties reelles ainsi que les 2 parties imaginaires et on cree un nouveau Complexe avec ces valeurs.
-  \param c Une reference constante vers une Constante
-  \return On retourne une reference sur une Constante contenant notre Complexe
+  \param c Une reference constante vers une Constante.
+  \return On retourne une reference sur une Constante contenant notre Complexe.
 */
 Constante& Complexe::operator-(const Constante& c)const
 {
@@ -133,8 +133,8 @@ Constante& Complexe::operator-(const Constante& c)const
 
 //! Surcharge de l'operateur de multiplication entre deux complexes
 /*!
-  \param c Une reference constante vers une Constante
-  \return On retourne une reference sur une Constante contenant notre Complexe
+  \param c Une reference constante vers une Constante.
+  \return On retourne une reference sur une Constante contenant notre Complexe.
 */
 Constante& Complexe::operator*(const Constante& c)const
 {
@@ -175,8 +175,8 @@ Constante& Complexe::operator*(const Constante& c)const
 
 //! Surcharge de l'operateur de division entre deux complexes
 /*!
-  \param c Une reference constante vers une Constante
-  \return On retourne une reference sur une Constante contenant notre Complexe
+  \param c Une reference constante vers une Constante.
+  \return On retourne une reference sur une Constante contenant notre Complexe.
 */
 Constante& Complexe::operator/(const Constante& c)const
 {
@@ -223,7 +223,7 @@ Constante& Complexe::operator/(const Constante& c)const
 
 //! Surcharge de l'operateur de changement de signe d'un complexe
 /*!
-  \return On retourne une reference sur une Constante contenant notre Complexe
+  \return On retourne une reference sur une Constante contenant notre Complexe.
 */
 Constante& Complexe::operator-()const
 {
@@ -244,18 +244,33 @@ Constante& Complexe::operator-()const
     }
 }
 
+//! Operation d'elevation du Complexe au carre.
+/*!
+  On multiplie l'argument implicite par lui-meme.
+  \return On retourne une reference sur une Constante contenant notre Complexe.
+*/
 Constante& Complexe::carree()const
 {
-    Entier* e = new Entier(0);//à implémenter
-    return *e;
+    Complexe* res = new Complexe((*this) * (*this));
+    return *res;
+
 }
 
+//! Operation d'elevation du Complexe au cube.
+/*!
+  On multiplie l'argument implicite par lui-meme par lui-meme.
+  \return On retourne une reference sur une Constante contenant notre Complexe.
+*/
 Constante& Complexe::cube()const
 {
-    Entier* e = new Entier(0);//à implémenter
-    return *e;
+    Complexe* res = new Complexe((*this) * (*this) * (*this));
+    return *res;
 }
 
+//! Surcharge de l'operateur de cast de Complexe vers QString.
+/*!
+  On cree un QTextStream avec une QString initialement vide auquel on ajoute la partie reelle ainsi que la partie imaginaire separees du signe '$'.
+*/
 Complexe::operator QString()
 {
     QString str;

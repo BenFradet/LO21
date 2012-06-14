@@ -1,6 +1,7 @@
 #ifndef CALCEXCEPTION_H
 #define CALCEXCEPTION_H
 
+#include "log.h"
 #include <string>
 #include <exception>
 #include <QMessageBox>
@@ -39,6 +40,7 @@ public:
     */
     void alert()
     {
+        Log::WriteLogs("Exception: " + GetInfo());
         QMessageBox msgBox(0);
         msgBox.setWindowTitle("Erreur!");
         msgBox.setText(GetInfo());

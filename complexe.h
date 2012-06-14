@@ -7,7 +7,7 @@
 #include <QString>
 #include <QStringList>
 
-//! La classe gerant les Complexes.
+//! La classe gerant les Complexe.
 /*! Elle herite de la classe Constante.*/
 class Complexe: public Constante
 {

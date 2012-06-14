@@ -6,7 +6,7 @@
 class Reel;
 class Rationnel;
 
-//! La classe gerant les Entiers.
+//! La classe gerant les Entier.
 /*! Elle herite de la classe Constante.*/
 class Entier: public Constante
 {

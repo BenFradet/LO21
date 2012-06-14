@@ -9,7 +9,7 @@
 
 using namespace std;
 
-//! La classe gerant les Exceptions.
+//! La classe gerant les CalcException.
 
 /*! Elle repose sur la class exception de la bibliotheque standard.*/
 

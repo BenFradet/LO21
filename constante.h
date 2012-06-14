@@ -9,7 +9,7 @@ class Rationnel;
 class Reel;
 class Complexe;
 
-//! La classe abstraite gerant les Constantes.
+//! La classe abstraite gerant les Constante.
 /*! Elle a pour filles les class Entier, Rationnel, Reel et Complexe.
   On y definit les differentes methodes virtuelles et virtuelles pures qui seront remplacees ou implementees dans les classes filles.
   */

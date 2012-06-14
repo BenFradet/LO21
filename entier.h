@@ -6,29 +6,48 @@
 class Reel;
 class Rationnel;
 
+//! La classe gerant les Entiers.
+/*! Elle herite de la classe Constante.*/
 class Entier: public Constante
 {
+    //! Valeur de l'entier representee par un int.
     int value;
 public:
-    Entier(int val):Constante(), value(val){}
-    ~Entier(){}
+    //! Constructeur principal de la classe Entier.
+    /*! On affecte la valeur passee en parametre a l'attribut value.
+    \param val Un entier a affecter a l'attribut value.
+    */
+    Entier(int val):value(val){}
 
-    Entier(QString s) // crée un entier a partir d'un QString
+    //! Autre constructeur.
+    /*! Convertir la QString passe en parametre en un entier.
+      \param s Une QString transformee en int.
+    */
+    Entier(QString s)
     {
         value = s.toInt();
 
     }
 
+    //! Definition de la methode virtuelle pure GetVal de la classe Constante.
+    /*! Cree un nouvel objet Entier a partir de l'attribut value de l'argument implicite.
+      \return Une reference sur Constante.
+    */
     Constante& GetVal()const;
 
+    //! Surcharge de l'operateur de cast de Entier vers int.
     operator int()const;
+    //! Surcharge de l'operateur de cast de Entier vers float.
     operator float()const;
+    //! Surcharge de l'operateur de cast de Entier vers Reel.
     operator Reel()const;
+    //! Surcharge de l'operateur de cast de Entier vers Rationnel.
     operator Rationnel()const;
+    //! Surcharge de l'operateur de cast de Entier vers Entier.
     operator Entier()const;
+    //! Surcharge de l'operateur de cast de Entier vers Complexe.
     operator Complexe()const;
 
-    void operator=(const Constante& c);
     Constante& operator+(const Constante& c)const;
     Constante& operator-(const Constante& c)const;
     Constante& operator*(const Constante& c)const;

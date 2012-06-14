@@ -8,8 +8,7 @@
 #include <QStringList>
 
 //! La classe gerant les Complexes.
-/*! Elle herite de la classe Constante*/
-
+/*! Elle herite de la classe Constante.*/
 class Complexe: public Constante
 {
     //! Sa partie reelle.

@@ -1,8 +1,10 @@
 #ifndef REEL_H
 #define REEL_H
 
-#include "include.h"
+#include "constante.h"
+#include "complexe.h"
 #include <QString>
+#include <QTextStream>
 
 class Entier;
 class Rationnel;

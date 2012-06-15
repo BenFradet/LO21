@@ -1,5 +1,4 @@
 #include "complexe.h"
-#include <QTextStream>
 
 //! Un autre constructeur de la classe Complexe.
 /*! Constuit un objet Complexe a l'aide d'une reference sur QString ainsi que le mode dans lequel notre calculatrice se trouve.

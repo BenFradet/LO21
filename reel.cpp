@@ -1,5 +1,4 @@
 #include "reel.h"
-#include <QTextStream>
 
 Constante& Reel::GetVal()const
 {

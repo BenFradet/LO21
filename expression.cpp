@@ -1,5 +1,4 @@
 #include "expression.h"
-#include <QTextStream>
 
 Constante& Expression::GetVal()const
 {

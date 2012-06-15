@@ -1,5 +1,4 @@
 #include "entier.h"
-#include <QTextStream>
 
 Constante& Entier::GetVal()const
 {

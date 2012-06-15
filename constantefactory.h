@@ -1,7 +1,10 @@
 #ifndef CONSTANTEFACTORY_H
 #define CONSTANTEFACTORY_H
 
-#include "include.h"
+#include "complexe.h"
+#include "entier.h"
+#include "rationnel.h"
+#include "reel.h"
 #include <QString>
 
 //! Fabrique de Constante.

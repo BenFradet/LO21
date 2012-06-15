@@ -1,11 +1,11 @@
 #ifndef COMPLEXE_H
 #define COMPLEXE_H
 
-#include "include.h"
 #include "constantefactory.h"
 #include "mainwindow.h"
 #include <QString>
 #include <QStringList>
+#include <QTextStream>
 
 //! La classe gerant les Complexe.
 /*! Elle herite de la classe Constante.*/

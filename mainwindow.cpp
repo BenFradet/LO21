@@ -1,18 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <QDebug>
-#include <QDirModel>
-#include <QListView>
-#include <QRegExp>
-#include <QMessageBox>
-#include <QEvent>
-#include <QFile>
-#include <QtXml/QtXml>
-#include <io.h>
-#include <qfile.h>
-#include <QIODevice>
-#include <QtXml/QDomDocument>
-#include <QShortcut>
 
 QString MainWindow::mode = "Entier";
 QString MainWindow::angleMode = "Degre";

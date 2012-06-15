@@ -1,7 +1,8 @@
 #ifndef RATIONNEL_H
 #define RATIONNEL_H
 
-#include "include.h"
+#include "constante.h"
+#include "entier.h"
 #include <QString>
 #include <QStringList>
 #include <QTextStream>

@@ -1,10 +1,10 @@
 #ifndef INTEGER_H
 #define INTEGER_H
 
-#include "include.h"
-
-class Reel;
-class Rationnel;
+#include <QTextStream>
+#include "constante.h"
+#include "reel.h"
+#include "rationnel.h"
 
 //! La classe gerant les Entier.
 /*! Elle herite de la classe Constante.*/

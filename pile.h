@@ -1,6 +1,6 @@
 #ifndef PILE_H
 #define PILE_H
-#include "include.h"
+#include "constante.h"
 #include "constantefactory.h"
 #include "expressionfactory.h"
 #include "mainwindow.h"
@@ -10,6 +10,9 @@
 #include <typeinfo>
 #include <QVariant>
 #include <QList>
+#include <QStringList>
+#include <QRegExp>
+#include <QString>
 
 class MainWindow;
 

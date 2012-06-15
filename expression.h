@@ -2,8 +2,10 @@
 #define EXPRESSION_H
 
 #include <string>
-#include "include.h"
 #include <QString>
+#include <QTextStream>
+#include "constante.h"
+#include "entier.h"
 
 //! La classe gerant les Expression.
 /*! Elle herite de la classe Constante.*/

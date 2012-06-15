@@ -1,7 +1,4 @@
 #include "pile.h"
-#include "QStringList"
-#include "QRegExp"
-#include "QString"
 
 Mementos* Mementos::instance1 = 0;
 Mementos* Mementos::instance2 = 0;

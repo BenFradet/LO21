@@ -21,7 +21,8 @@ class Rationnel : public Constante
 public:
     //! Constructeur principal de la classe Rationnel.
     /*! On affecte les valeurs passees en parametres aux attributs num et den.
-    \param val Un entier a affecter a l'attribut value.
+    \param n Un entier a affecter a l'attribut num.
+    \param d Un entier a affecter a l'attribut den.
     \sa CalcException
     */
     Rationnel(int n, int d)

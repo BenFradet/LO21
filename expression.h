@@ -17,7 +17,7 @@ class Expression: public Constante
 public:
     //! Constructeur principal de la classe Expression.
     /*! On affecte la valeur passee en parametre a l'attribut exp.
-    \param val Une QString affectee a l'attribut exp.
+    \param s Une QString affectee a l'attribut exp.
     \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
     */
     Expression(QString s): exp(s){}

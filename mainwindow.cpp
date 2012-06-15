@@ -18,6 +18,18 @@ QString MainWindow::mode = "Entier";
 QString MainWindow::angleMode = "Degre";
 bool MainWindow::ComplexeMode = true;
 
+//! Constructeur principal de la classe MainWindow
+/*! Ce constructeur prend en parametre une pile et un parent, qui vaut 0 s'il n'y en a pas.
+    Il cree une fenetre via setupUi.
+    Il active les parametres de l'interface par défaut.
+    Il cree les raccourcis clavier pour toutes les touches necessaires tels A, B, C, 0, 1, etc.
+    Il connecte ensuite tous les boutons de l'interface a un slot particulier.
+    Enfin, il charge les parametres de l'interface situes dans un fichier xml. Si ce fichier n'existe pas
+    il laisse les parametres par defaut.
+    \param P Un pointeur sur la pile a laquelle l'interface sera reliee.
+    \param parent Un pointeur sur un eventuel parent de type QWidget.*/
+
+
 MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -290,15 +302,23 @@ MainWindow::MainWindow(Pile *P, QWidget *parent) : p(P), QMainWindow(parent), ui
     }
 }
 
+//! Destructeur de la classe MainWindow
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+
+//! Slot qui permet d'ajouter un 0 en entree.
+
 void MainWindow::btn0pressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("0"));
 }
+
+
+//! Slot qui permet d'ajouter un 1 en entree.
 
 void MainWindow::btn1pressed()
 {
@@ -306,11 +326,15 @@ void MainWindow::btn1pressed()
 }
 
 
+//! Slot qui permet d'ajouter un 2 en entree.
+
 void MainWindow::btn2pressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("2"));
 }
 
+
+//! Slot qui permet d'ajouter un 3 en entree.
 
 void MainWindow::btn3pressed()
 {
@@ -318,11 +342,15 @@ void MainWindow::btn3pressed()
 }
 
 
+//! Slot qui permet d'ajouter un 4 en entree.
+
 void MainWindow::btn4pressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("4"));
 }
 
+
+//! Slot qui permet d'ajouter un 5 en entree.
 
 void MainWindow::btn5pressed()
 {
@@ -330,11 +358,15 @@ void MainWindow::btn5pressed()
 }
 
 
+//! Slot qui permet d'ajouter un 6 en entree.
+
 void MainWindow::btn6pressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("6"));
 }
 
+
+//! Slot qui permet d'ajouter un 7 en entree.
 
 void MainWindow::btn7pressed()
 {
@@ -342,231 +374,368 @@ void MainWindow::btn7pressed()
 }
 
 
+//! Slot qui permet d'ajouter un 8 en entree.
+
 void MainWindow::btn8pressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("8"));
 }
+
+
+//! Slot qui permet d'ajouter un 9 en entree.
 
 void MainWindow::btn9pressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("9"));
 }
 
+
+//! Slot qui permet d'ajouter un espace en entree.
+
 void MainWindow::btnSPACEpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append(" "));
 }
+
+
+//! Slot qui permet d'ajouter un + en entree.
 
 void MainWindow::btnAddipressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("+"));
 }
 
+
+//! Slot qui permet d'ajouter un - en entree.
+
 void MainWindow::btnSouspressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("-"));
 }
+
+
+//! Slot qui permet d'ajouter une * en entree.
 
 void MainWindow::btnMultpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("*"));
 }
 
+
+//! Slot qui permet d'ajouter un / en entree.
+
 void MainWindow::btnDivipressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("/"));
 }
+
+
+//! Slot qui permet d'ajouter INV en entree.
 
 void MainWindow::btnINVpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("INV"));
 }
 
+
+//! Slot qui permet d'ajouter COS en entree.
+
 void MainWindow::btnCOSpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("COS"));
 }
+
+
+//! Slot qui permet d'ajouter SIN en entree.
 
 void MainWindow::btnSINpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("SIN"));
 }
 
+
+//! Slot qui permet d'ajouter TAN en entree.
+
 void MainWindow::btnTANpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("TAN"));
 }
+
+
+//! Slot qui permet d'ajouter COSH en entree.
 
 void MainWindow::btnCOSHpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("COSH"));
 }
 
+
+//! Slot qui permet d'ajouter SINH en entree.
+
 void MainWindow::btnSINHpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("SINH"));
 }
+
+
+//! Slot qui permet d'ajouter TANH en entree.
 
 void MainWindow::btnTANHpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("TANH"));
 }
 
+
+//! Slot qui permet d'ajouter LOG en entree.
+
 void MainWindow::btnLOGpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("LOG"));
 }
+
+
+//! Slot qui permet d'ajouter LN en entree.
 
 void MainWindow::btnLNpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("LN"));
 }
 
+
+//! Slot qui permet d'ajouter ! en entree.
+
 void MainWindow::btnFACTOpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("!"));
 }
+
+
+//! Slot qui permet d'ajouter SIGN en entree.
 
 void MainWindow::btnSIGNpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("SIGN"));
 }
 
+
+//! Slot qui permet d'ajouter SQR en entree.
+
 void MainWindow::btnSQRpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("SQR"));
 }
+
+
+//! Slot qui permet d'ajouter SQRT en entree.
 
 void MainWindow::btnSQRTpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("SQRT"));
 }
 
+
+//! Slot qui permet d'ajouter CUBE en entree.
+
 void MainWindow::btnCUBEpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("CUBE"));
 }
+
+
+//! Slot qui permet d'ajouter $ en entree.
 
 void MainWindow::btnCOMPLEXEpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("$"));
 }
 
+
+//! Slot qui permet d'ajouter POW en entree.
+
 void MainWindow::btnPOWpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("POW"));
 }
+
+
+//! Slot qui permet d'ajouter MOD en entree.
 
 void MainWindow::btnMODpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("MOD"));
 }
 
+
+//! Slot qui permet d'ajouter un point en entree.
+
 void MainWindow::btnPOINTpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("."));
 }
+
+
+//! Slot qui permet d'ajouter un A en entree.
 
 void MainWindow::lettreApressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("A"));
 }
 
+
+//! Slot qui permet d'ajouter un B en entree.
+
 void MainWindow::lettreBpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("B"));
 }
+
+
+//! Slot qui permet d'ajouter un C en entree.
 
 void MainWindow::lettreCpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("C"));
 }
 
+
+//! Slot qui permet d'ajouter un D en entree.
+
 void MainWindow::lettreDpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("D"));
 }
+
+
+//! Slot qui permet d'ajouter un E en entree.
 
 void MainWindow::lettreEpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("E"));
 }
 
+
+//! Slot qui permet d'ajouter un G en entree.
+
 void MainWindow::lettreGpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("G"));
 }
+
+
+//! Slot qui permet d'ajouter un H en entree.
 
 void MainWindow::lettreHpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("H"));
 }
 
+
+//! Slot qui permet d'ajouter un I en entree.
+
 void MainWindow::lettreIpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("I"));
 }
+
+
+//! Slot qui permet d'ajouter un L en entree.
 
 void MainWindow::lettreLpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("L"));
 }
 
+
+//! Slot qui permet d'ajouter un M en entree.
+
 void MainWindow::lettreMpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("M"));
 }
+
+
+//! Slot qui permet d'ajouter un N en entree.
 
 void MainWindow::lettreNpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("N"));
 }
 
+
+//! Slot qui permet d'ajouter un O en entree.
+
 void MainWindow::lettreOpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("O"));
 }
+
+
+//! Slot qui permet d'ajouter un P en entree.
 
 void MainWindow::lettrePpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("P"));
 }
 
+
+//! Slot qui permet d'ajouter un Q en entree.
+
 void MainWindow::lettreQpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("Q"));
 }
+
+
+//! Slot qui permet d'ajouter un R en entree.
 
 void MainWindow::lettreRpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("R"));
 }
 
+
+//! Slot qui permet d'ajouter un S en entree.
+
 void MainWindow::lettreSpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("S"));
 }
+
+
+//! Slot qui permet d'ajouter un T en entree.
 
 void MainWindow::lettreTpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("T"));
 }
 
+
+//! Slot qui permet d'ajouter un U en entree.
+
 void MainWindow::lettreUpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("U"));
 }
+
+
+//! Slot qui permet d'ajouter un V en entree.
 
 void MainWindow::lettreVpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("V"));
 }
 
+
+//! Slot qui permet d'ajouter un W en entree.
+
 void MainWindow::lettreWpressed()
 {
     ui->le_entree->setText(ui->le_entree->text().append("W"));
 }
 
+//! Slot d'inverser les places de deux elements de la pile.
+/*! Cette fonction va chercher les valeurs contenues dans 2 line edit
+    et appelle la fonction Swap de la pile*/
 
 void MainWindow::btnSWAPpressed()
 {
@@ -593,6 +762,11 @@ void MainWindow::btnSWAPpressed()
         throw CalcException("Au moins un des arguments est invalide.");
 }
 
+
+//! Slot qui permet de faire la somme d'un nombre donne d'elements.
+/*! Cette fonction prend la valeur contenue par une line dit et
+    et appelle ensuite la fonction Sum de la pile. */
+
 void MainWindow::btnSUMpressed()
 {
    QRegExp test ("^[0-9]+$");
@@ -609,6 +783,11 @@ void MainWindow::btnSUMpressed()
        throw CalcException("Au moins un des arguments est invalide.");
 
 }
+
+
+//! Slot qui permet de calculer la moyenne des X premiers elements.
+/*! Cette fonction utilise la valeur contenue dans une line edit et
+    appelle ensuite la fonction Mean de la pile. */
 
 void MainWindow::btnMEANpressed()
 {
@@ -627,11 +806,17 @@ void MainWindow::btnMEANpressed()
 
 }
 
+
+//! Slot qui permet de vider la pile en appelant la fonction Clear de la pile.
+
 void MainWindow::btnCLEANpressed()
 {
     p->Clear();
     ui->listView->reset();
 }
+
+
+//! Slot qui permet de dupliquer le dernier element de la pile en appelant la fonction Dup de la pile.
 
 void MainWindow::btnDUPpressed()
 {
@@ -639,11 +824,17 @@ void MainWindow::btnDUPpressed()
     ui->listView->reset();
 }
 
+
+//! Slot qui permet d'enlever le dernier element de la pile en appelant la fonction Drop de la pile.
+
 void MainWindow::btnDROPpressed()
 {
    p->Drop();
    ui->listView->reset();
 }
+
+
+//! Slot qui permet d'annuler les dernieres actions en appelant la fonction Annuler de la pile.
 
 void MainWindow::btnAnnulerpressed()
 {
@@ -651,21 +842,34 @@ void MainWindow::btnAnnulerpressed()
     ui->listView->reset();
 }
 
+
+//! Slot qui permet de retablir les dernieres actions en appelant la fonction Retablir de la pile.
+
 void MainWindow::btnRetablirpressed()
 {
     p->Retablir();
     ui->listView->reset();
 }
 
+
+//! Slot qui permet de mettre la calculatrice en mode Scientifique en appelant une fonction de MainWindow.
+
 void MainWindow::affichage_scientifique()
 {
         afficher_sc();
 }
 
+
+//! Slot qui permet de mettre la calculatrice en mode Standard en appelant une fonction de MainWindow.
+
 void MainWindow::affichage_standard()
 {
        afficher_std();
 }
+
+
+//! Slot qui permet d'evaluer une expression en entree.
+/*! Il appelle le Parser de la pile, puis actualise la listview et efface la ligne d'entree.*/
 
 void MainWindow::eval()
 {
@@ -673,6 +877,9 @@ void MainWindow::eval()
     ui->listView->reset();
     ui->le_entree->clear();
 }
+
+
+//! Slot qui envoie une expression dans la pile, ou un seul caractere.
 
 void MainWindow::envoi_pile()
 {
@@ -702,12 +909,16 @@ void MainWindow::envoi_pile()
 }
 
 
+//! Slot qui permet de mettre la calculatrice en mode Rationnel en appelant une fonction de MainWindow.
+
 void MainWindow::MODE_RATIONNELS()
 {
     setModeRationnel();
     ui->listView->reset();
 }
 
+
+//! Slot qui permet de mettre la calculatrice en mode Reel en appelant une fonction de MainWindow.
 
 void MainWindow::MODE_REELS()
 {
@@ -716,11 +927,17 @@ void MainWindow::MODE_REELS()
 }
 
 
+//! Slot qui permet de mettre la calculatrice en mode Entier en appelant une fonction de MainWindow.
+
 void MainWindow::MODE_ENTIERS()
 {
     setModeEntier();
     ui->listView->reset();
 }
+
+
+//! Slot qui permet de mettre la calculatrice en mode Complexe ou de l'enlever.
+/*! \param b Indique l'etat de la checkbox. Si b est active, alors il faut mettre le mode Complexe. */
 
 void MainWindow::COMPLEXE_MODE(int b)
 {
@@ -739,10 +956,21 @@ void MainWindow::COMPLEXE_MODE(int b)
 
 }
 
+
+//! Slot qui permet d'effacer la ligne d'entree.
+
 void MainWindow::btnRAZpressed()
 {
     ui->le_entree->clear();
 }
+
+
+//! Fonction publique de MainWindow qui déclenche une procedure a la fermeture de la fenetre.
+/*! Cette fonction permet d'avertir l'utilisateur a la fermeture du logiciel que les modifications
+    de l'interface seront sauvegardees.
+    La sauvegarde des parametres se fait egalement dans cette fonction. On ouvre le ficher Pile.xml, et on
+    effectue les sauvegardes successives de tous les elements. Si le fichier n'existe pas, alors il est cree.
+    \param event Un evenement qui se declenche quand la fenetre se ferme.*/
 
 void MainWindow::closeEvent(QCloseEvent * event)
 {
@@ -832,6 +1060,11 @@ void MainWindow::closeEvent(QCloseEvent * event)
    QMainWindow::closeEvent(event);
 }
 
+
+//! Fonction publique de MainWindow qui permet un affichage Scientifique.
+/*! Elle permet d'activer certains elements de l'interface, comme des boutons
+    et d'agrandir la taille de la fenetre.*/
+
 void MainWindow::afficher_sc()
 {
     ui->actionStandard->setCheckable(true);
@@ -871,6 +1104,11 @@ void MainWindow::afficher_sc()
     ui->btnLOG->setHidden(false);
 
 }
+
+
+//! Fonction publique de MainWindow qui permet un affichage Scientifique.
+/*! Elle permet de desactiver certains elements de l'interface, comme des boutons
+    et de reduire la taille de la fenetre.*/
 
 void MainWindow::afficher_std()
 {
@@ -912,6 +1150,10 @@ void MainWindow::afficher_std()
     ui->btnLOG->setHidden(true);
 }
 
+
+//! Fonction qui permet de la calculatrice en mode Entier.
+/*! Cette fonction change le label, le mode, et l'etat de plusieurs boutons.*/
+
 void MainWindow::setModeEntier()
 {
     MainWindow::setMode("Entier");
@@ -923,6 +1165,10 @@ void MainWindow::setModeEntier()
     ui->action_Rationnels->setEnabled(true);
     ui->action_Rationnels->setChecked(false);
 }
+
+
+//! Fonction qui permet de la calculatrice en mode Rationnel.
+/*! Cette fonction change le label, le mode, et l'etat de plusieurs boutons.*/
 
 void MainWindow::setModeRationnel()
 {
@@ -936,6 +1182,10 @@ void MainWindow::setModeRationnel()
     ui->action_Entiers->setChecked(false);
 }
 
+
+//! Fonction qui permet de la calculatrice en mode Reel.
+/*! Cette fonction change le label, le mode, et l'etat de plusieurs boutons.*/
+
 void MainWindow::setModeReel()
 {
     MainWindow::setMode("Reel");
@@ -948,6 +1198,8 @@ void MainWindow::setModeReel()
     ui->action_Rationnels->setChecked(false);
 }
 
+//! Slot permettant d'effectuer un retour arriere dans la ligne d'entree.
+
 void MainWindow::backspace()
 {
     QString s1(ui->le_entree->text());
@@ -957,6 +1209,10 @@ void MainWindow::backspace()
         s2[i] = s1[i];
     ui->le_entree->setText(s2);
 }
+
+
+//! Slot qui permet d'activer le mode Degres.
+/*! Il modifie toutes les informations necessaires telles le label, ou l'etat du mode et de boutons.*/
 
 void MainWindow::MODE_DEGRES()
 {
@@ -969,12 +1225,19 @@ void MainWindow::MODE_DEGRES()
     ui->listView->reset();
 }
 
+
+//! Slot qui permet d'activer le mode Radians.
+
 void MainWindow::MODE_RADIANS()
 {
     setModeRadian();
     ui->listView->reset();
 
 }
+
+
+//! Fonction qui permet de la calculatrice en mode Radian.
+/*! Cette fonction change le label, le mode, et l'etat de plusieurs boutons.*/
 
 void MainWindow::setModeRadian()
 {
@@ -985,6 +1248,9 @@ void MainWindow::setModeRadian()
     ui->action_Degres->setChecked(false);
     ui->action_Degres->setEnabled(true);
 }
+
+
+//! Slot permettant d'afficher ou de cacher le clavier en appelant des fonctions de MainWindow.
 
 void MainWindow::CLAVIER(int b)
 
@@ -1000,6 +1266,9 @@ void MainWindow::CLAVIER(int b)
     }
 
 }
+
+
+//! Fonction permettant d'afficher le clavier numerique.
 
 void MainWindow::setClavier()
 {
@@ -1018,6 +1287,9 @@ void MainWindow::setClavier()
 
 }
 
+
+//! Fonction permettant de desactiver le clavier numerique.
+
 void MainWindow::unsetClavier()
 {
 
@@ -1035,6 +1307,11 @@ void MainWindow::unsetClavier()
     ui->btn9->setHidden(true);
 
 }
+
+
+//! Slot permettant de calculer la resultat d'une expression situee sur le sommet de la pile.
+/*! La fonction depile la constante se trouvant sur le sommet. Si c'est une expression, alors
+    appelle la fonction Parser de la pile. */
 
 void MainWindow::eval_expression()
 {
@@ -1060,6 +1337,12 @@ void MainWindow::eval_expression()
     }
 
 }
+
+
+//! Slot permettant de modifier la taille maximale de la pile.
+/*! La fonction recupere la valeur contenue dans une line edit
+    puis appelle la fonction setTaille de la pile.
+    Le label est mis a jour, la listview est actualisee et l'argument est efface.*/
 
 void MainWindow::modif_taille_pile()
 {

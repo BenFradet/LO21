@@ -335,7 +335,7 @@ void Pile::Retablir()
   \sa ExpressionFactory::GetExpressionBinaire2Exp(QString val1, QString val2, QString operation)
   \sa ExpressionFactory::GetExpressionBinaire1Exp(QString exp, QString cons, QString operation)
   \sa ConstanteFactory::GetConstante(QString val, QString mode, bool complexe)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Complexe
@@ -429,7 +429,7 @@ void Pile::Plus(QString mode, bool complexe)
   \sa ExpressionFactory::GetExpressionBinaire2Exp(QString val1, QString val2, QString operation)
   \sa ExpressionFactory::GetExpressionBinaire1Exp(QString exp, QString cons, QString operation)
   \sa ConstanteFactory::GetConstante(QString val, QString mode, bool complexe)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Complexe
@@ -523,7 +523,7 @@ void Pile::Moins(QString mode, bool complexe)
   \sa ExpressionFactory::GetExpressionBinaire2Exp(QString val1, QString val2, QString operation)
   \sa ExpressionFactory::GetExpressionBinaire1Exp(QString exp, QString cons, QString operation)
   \sa ConstanteFactory::GetConstante(QString val, QString mode, bool complexe)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Complexe
@@ -618,7 +618,7 @@ void Pile::Multiplier(QString mode, bool complexe)
   \sa ExpressionFactory::GetExpressionBinaire2Exp(QString val1, QString val2, QString operation)
   \sa ExpressionFactory::GetExpressionBinaire1Exp(QString exp, QString cons, QString operation)
   \sa ConstanteFactory::GetConstante(QString val, QString mode, bool complexe)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Complexe
@@ -712,7 +712,7 @@ void Pile::Diviser(QString mode, bool complexe)
   \sa ExpressionFactory::GetExpressionBinaire2Exp(QString val1, QString val2, QString operation)
   \sa ExpressionFactory::GetExpressionBinaire1Exp(QString exp, QString cons, QString operation)
   \sa ConstanteFactory::GetConstante(QString val, QString mode, bool complexe)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Entier
@@ -797,7 +797,7 @@ void Pile::Puissance(QString mode)
   \sa ExpressionFactory::GetExpressionBinaire2Exp(QString val1, QString val2, QString operation)
   \sa ExpressionFactory::GetExpressionBinaire1Exp(QString exp, QString cons, QString operation)
   \sa ConstanteFactory::GetConstante(QString val, QString mode, bool complexe)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Entier
@@ -862,7 +862,7 @@ void Pile::Modulo(QString mode)
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
   \sa ConstanteFactory::GetConstante(QString val, QString mode, bool complexe)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Complexe
@@ -933,7 +933,7 @@ void Pile::Signe(QString mode, bool complexe)
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa MainWindow::getAngleMode()
   \sa CalcException
   \sa Complexe
@@ -991,7 +991,7 @@ void Pile::Sinus()
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa MainWindow::getAngleMode()
   \sa CalcException
   \sa Complexe
@@ -1049,7 +1049,7 @@ void Pile::Cosinus()
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa MainWindow::getAngleMode()
   \sa CalcException
   \sa Complexe
@@ -1107,7 +1107,7 @@ void Pile::Tangente()
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa MainWindow::getAngleMode()
   \sa CalcException
   \sa Complexe
@@ -1165,7 +1165,7 @@ void Pile::Sinush()
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa MainWindow::getAngleMode()
   \sa CalcException
   \sa Complexe
@@ -1223,7 +1223,7 @@ void Pile::Cosinush()
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa MainWindow::getAngleMode()
   \sa CalcException
   \sa Complexe
@@ -1281,7 +1281,7 @@ void Pile::Tangenteh()
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa Complexe
   \sa Expression
@@ -1326,7 +1326,7 @@ void Pile::LogaNep()
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa Complexe
   \sa Expression
@@ -1371,7 +1371,7 @@ void Pile::LogaDec()
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa Expression
 */
@@ -1409,7 +1409,7 @@ void Pile::Inverse()
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa Complexe
   \sa Expression
@@ -1458,7 +1458,7 @@ void Pile::Racine()
   \sa Empiler()
   \sa ConstanteFactory::GetConstante(QString val, QString mode, bool complexe)
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Complexe
@@ -1531,7 +1531,7 @@ void Pile::Carree(QString mode, bool complexe)
   \sa Empiler()
   \sa ConstanteFactory::GetConstante(QString val, QString mode, bool complexe)
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Complexe
@@ -1602,7 +1602,7 @@ void Pile::Cube(QString mode, bool complexe)
   \sa Depiler()
   \sa Empiler()
   \sa ExpressionFactory::GetExpressionUnaire(QString val, QString operation)
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Entier
@@ -1646,7 +1646,7 @@ void Pile::Factorielle(QString mode)
 /*!
   \param x Un entier designant la place du premier element a echanger.
   \param y Un entier designant la place du second element a echanger.
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
 */
 void Pile::Swap(int x, int y)
@@ -1675,7 +1675,7 @@ void Pile::Swap(int x, int y)
   \param mode Une QString designant le mode dans lequel se trouve la calculatrice.
   \param complexe Un bool decrivant si oui ou non la calculatrice est en mode Complexe.
   \param x Un entier designant le nombre d'elements a sommer.
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Complexe
@@ -1740,7 +1740,7 @@ void Pile::Sum(int x, QString mode, bool complexe)
   \param mode Une QString designant le mode dans lequel se trouve la calculatrice.
   \param complexe Un bool decrivant si oui ou non la calculatrice est en mode Complexe.
   \param x Un entier designant le nombre d'elements a sommer.
-  \sa Logs::WriteLogs(QString string)
+  \sa Log::WriteLogs(QString string)
   \sa CalcException
   \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
   \sa Complexe

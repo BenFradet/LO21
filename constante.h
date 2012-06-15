@@ -28,16 +28,20 @@ public:
     /*! Elle est implementee dans toutes les classes filles.*/
     virtual operator float()const = 0;
     //! Surcharge de l'operateur de cast Entier virtuelle pure.
-    /*! Elle est implementee dans toutes les classes filles.*/
+    /*! Elle est implementee dans toutes les classes filles.
+        \sa Entier */
     virtual operator Entier()const = 0;
     //! Surcharge de l'operateur de cast Rationnel virtuelle pure.
-    /*! Elle est implementee dans toutes les classes filles.*/
+    /*! Elle est implementee dans toutes les classes filles.
+        \sa Rationnel */
     virtual operator Rationnel()const = 0;
     //! Surcharge de l'operateur de cast Reel virtuelle pure.
-    /*! Elle est implementee dans toutes les classes filles.*/
+    /*! Elle est implementee dans toutes les classes filles.
+        \sa Reel */
     virtual operator Reel()const = 0;
     //! Surcharge de l'operateur de cast Complexe virtuelle pure.
-    /*! Elle est implementee dans toutes les classes filles.*/
+    /*! Elle est implementee dans toutes les classes filles.
+        \sa Complexe*/
     virtual operator Complexe()const = 0;
 
     //! Surcharge de l'operateur d'addition entre 2 Constantes.
@@ -121,7 +125,8 @@ public:
     virtual Constante& cube()const;
 
     //! Surcharge de l'operateur de cast QString virtuelle pure.
-    /*! Elle est implementee dans toutes les classes filles.*/
+    /*! Elle est implementee dans toutes les classes filles.
+        \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a> */
     virtual operator QString() = 0;
 };
 

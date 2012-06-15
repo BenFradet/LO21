@@ -775,7 +775,7 @@ void MainWindow::btnSUMpressed()
    if (arg1.contains(test))
    {
        int i = ui->arg_SUM->text().toInt();
-       p->Sum(i, MainWindow::getMode());
+       p->Sum(i, MainWindow::getMode(), MainWindow::getComplexeMode());
        ui->arg_SUM->setText("1");
        ui->listView->reset();
    }
@@ -797,7 +797,7 @@ void MainWindow::btnMEANpressed()
    if (arg1.contains(test))
    {
        int i = ui->arg_MEAN->text().toInt();
-       p->Mean(i, MainWindow::getMode());
+       p->Mean(i, MainWindow::getMode(), MainWindow::getComplexeMode());
        ui->arg_MEAN->setText("1");
        ui->listView->reset();
    }

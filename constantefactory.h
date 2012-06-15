@@ -5,7 +5,7 @@
 #include <QString>
 
 //! Fabrique de Constante.
-/*! Grace au design pattern Fabrique on cree un objet suivant le mode dans lequel la calculatrice se trouve.
+/*! Grace au design pattern <a href="http://fr.wikipedia.org/wiki/Fabrique_(patron_de_conception)">Fabrique</a> on cree un objet suivant le mode dans lequel la calculatrice se trouve.
 */
 class ConstanteFactory
 {

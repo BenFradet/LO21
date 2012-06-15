@@ -12,10 +12,10 @@
 class Complexe: public Constante
 {
     //! Sa partie reelle.
-    /*! On utilise un pointeur sur une constante.*/
+    /*! On utilise un pointeur sur une Constante.*/
     Constante* pRe;
     //! Sa partie imaginaire.
-    /*! On utilise un pointeur sur une constante.*/
+    /*! On utilise un pointeur sur une Constante.*/
     Constante* pIm;
 public:
     //! Le constructeur principal de la classe Complexe.
@@ -29,21 +29,21 @@ public:
 
     //! Getter de la partie reelle.
     /*! Objet Complexe non modifie donc l'argument implicite reste constant.
-      \return La partie reelle de l'objet complexe sous forme de pointeur vers une constante.
+      \return La partie reelle de l'objet Complexe sous forme de pointeur vers une Constante.
     */
     Constante* GetRe()const{return pRe;}
     //! Getter de la partie imaginaire.
     /*! Objet Complexe non modifie donc l'argument implicite reste constant.
-      \return La partie imaginaire de l'objet complexe sous forme de pointeur vers une constante.
+      \return La partie imaginaire de l'objet Complexe sous forme de pointeur vers une Constante.
     */
     Constante* GetIm()const{return pIm;}
     //! Setter de la partie reelle.
-    /*! Affecte l'argument à la partie reelle de l'objet complexe.
+    /*! Affecte l'argument à la partie reelle de l'objet Complexe.
       \param r Un pointeur vers une Constante.
     */
     void SetRe(Constante* r){pRe = r;}
     //! Setter de la partie imaginaire.
-    /*! Affecte l'argument à la partie imaginaire de l'objet complexe.
+    /*! Affecte l'argument à la partie imaginaire de l'objet Complexe.
       \param i Un pointeur vers une Constante.
     */
     void SetIm(Constante* i){pIm = i;}
@@ -68,14 +68,17 @@ public:
     operator Entier()const;
     //! Surcharge de l'operateur de cast de Complexe vers Rationnel.
     /*! On a choisi de convertir la partie reelle du complexe en Rationnel.
+      \sa Entier
     */
     operator Rationnel()const;
     //! Surcharge de l'operateur de cast de Complexe vers Reel.
     /*! On a choisi de convertir la partie reelle du complexe en Reel.
+      \sa Rationnel
     */
     operator Reel()const;
     //! Surcharge de l'operateur de cast de Complexe vers Complexe.
     /*! On retourne la valeur de l'argument implicite.
+      \sa Reel
     */
     operator Complexe()const;
 

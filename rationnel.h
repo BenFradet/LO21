@@ -4,42 +4,62 @@
 #include "include.h"
 #include <QString>
 #include <QStringList>
+#include <QTextStream>
 
 class Entier;
 class Reel;
 
+//! La classe gerant les Rationnel.
+/*! Elle herite de la classe Constante.*/
 class Rationnel : public Constante
 {
+    //! Valeur du numerateur du Rationnel representee par un int.
     int num;
+    //! Valeur du numerateur du Rationnel representee par un int.
     int den;
 public:
-    Rationnel(int n, int d): Constante()
+    //! Constructeur principal de la classe Rationnel.
+    /*! On affecte les valeurs passees en parametres aux attributs num et den.
+    \param val Un entier a affecter a l'attribut value.
+    \sa CalcException
+    */
+    Rationnel(int n, int d)
     {
-        if(d!=0)
+        try
         {
-            num = n;
-            den = d;
+            if(d!=0)
+            {
+                num = n;
+                den = d;
+            }
+            else
+                throw CalcException("Le dénominateur ne peut pas valoir zéro");
         }
-        else
-            throw CalcException("Le dénominateur ne peut pas valoir zéro");
+        catch (CalcException c)
+        {
+            c.alert();
+        }
     }
 
-    ~Rationnel(){}
-
-    Rationnel(QString s)        // crée un rationnel a partir d'un QString
+    //! Autre constructeur.
+    /*! Convertit la QString passe en parametre en un Rationnel.
+      On separe tout d'abord la QString passee en parametre par le '/' puis on affecte au numerateur la partie de gauche et au denominateur la partie de droite.
+      \param s Une QString representant un Rationnel.
+      \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
+      \sa <a href="http://qt-project.org/doc/qt-4.8/QStringList.html">QStringList</a>
+      \sa CalcException
+    */
+    Rationnel(QString s)
     {
         QStringList liste = s.split("/");
 
         if (liste[1].toInt() != 0)
-
         {
-
-        num = liste[0].toInt();
-        den = liste[1].toInt();
+            num = liste[0].toInt();
+            den = liste[1].toInt();
         }
         else
             throw CalcException("Le dénominateur ne peut pas valoir zéro");
-
     }
 
     int GetDen()const{return den;}
@@ -74,7 +94,7 @@ public:
     Constante& carree()const;
     Constante& cube()const;
 
-    operator QString();  //  crée un QString à partir d'un rationnel
+    operator QString();
 };
 
 #endif // RATIONNEL_H

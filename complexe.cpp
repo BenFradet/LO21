@@ -6,6 +6,8 @@
   On separe s par rapport au '$', ensuite on cree un objet de type mode pour la partie reelle ainsi que la partie imaginaire.
   \param s Une reference sur une QString representant le Complexe.
   \param mode Une QString designant le mode de la calculatrice.
+  \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
+  \sa <a href="http://qt-project.org/doc/qt-4.8/QStringList.html">QStringList</a>
 */
 Complexe::Complexe(QString &s, QString mode)
 {
@@ -50,12 +52,17 @@ Complexe::operator Complexe()const
     return *this;
 }
 
-//! Surcharge de l'operateur d'addition entre deux complexes
+//! Surcharge de l'operateur d'addition entre deux Complexe
 /*! On additionne les 2 parties reelles ainsi que les 2 parties imaginaires et on cree un nouveau Complexe avec ces valeurs.
   A noter que l'on tente un dynamic cast sur l'argument qui est la seulement en cas d'un developpement futur
   car toutes nos operandes sont castees avant d'effectuer n'importe quelle operation.
   \param c Une reference constante vers une Constante.
   \return Une reference sur une Constante contenant notre nouveau Complexe.
+  \sa MainWindow::getMode()
+  \sa CalcException
+  \sa Entier
+  \sa Reel
+  \sa Rationnel
 */
 Constante& Complexe::operator+(const Constante& c)const
 {
@@ -96,6 +103,11 @@ Constante& Complexe::operator+(const Constante& c)const
 /*! On soustrait les 2 parties reelles ainsi que les 2 parties imaginaires et on cree un nouveau Complexe avec ces valeurs.
   \param c Une reference constante vers une Constante.
   \return Une reference sur une Constante contenant notre nouveau Complexe.
+  \sa MainWindow::getMode()
+  \sa CalcException
+  \sa Entier
+  \sa Reel
+  \sa Rationnel
 */
 Constante& Complexe::operator-(const Constante& c)const
 {
@@ -135,6 +147,11 @@ Constante& Complexe::operator-(const Constante& c)const
 /*!
   \param c Une reference constante vers une Constante.
   \return Une reference sur une Constante contenant notre nouveau Complexe.
+  \sa MainWindow::getMode()
+  \sa CalcException
+  \sa Entier
+  \sa Reel
+  \sa Rationnel
 */
 Constante& Complexe::operator*(const Constante& c)const
 {
@@ -177,6 +194,11 @@ Constante& Complexe::operator*(const Constante& c)const
 /*!
   \param c Une reference constante vers une Constante.
   \return Une reference sur une Constante contenant notre nouveau Complexe.
+  \sa MainWindow::getMode()
+  \sa CalcException
+  \sa Entier
+  \sa Reel
+  \sa Rationnel
 */
 Constante& Complexe::operator/(const Constante& c)const
 {
@@ -224,6 +246,11 @@ Constante& Complexe::operator/(const Constante& c)const
 //! Surcharge de l'operateur de changement de signe d'un complexe
 /*!
   \return Une reference sur une Constante contenant notre nouveau Complexe.
+  \sa MainWindow::getMode()
+  \sa CalcException
+  \sa Entier
+  \sa Reel
+  \sa Rationnel
 */
 Constante& Complexe::operator-()const
 {
@@ -269,7 +296,9 @@ Constante& Complexe::cube()const
 
 //! Surcharge de l'operateur de cast de Complexe vers QString.
 /*!
-  On cree un QTextStream avec une QString initialement vide auquel on ajoute la partie reelle ainsi que la partie imaginaire separees du signe '$'.
+  On cree un QTextStream avec une QString initialement vide auquel on ajoute la partie reelle ainsi que la partie imaginaire de l'argument implicite separees du signe '$'.
+  \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
+  \sa <a href="http://qt-project.org/doc/qt-4.8/qtextstream.html">QTextStream</a>
 */
 Complexe::operator QString()
 {

@@ -5,6 +5,12 @@
     \param mode Le mode dans lequel la Caclulatrice se trouve
     \param complexe Un booleen indiquant si on se trouve en mode Complexe ou non
     \return Un pointeur sur une Constante
+    \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
+    \sa Constante
+    \sa Entier
+    \sa Reel
+    \sa Rationnel
+    \sa Complexe
 */
 Constante* ConstanteFactory::GetConstante(QString val, QString mode, bool complexe)
 {
@@ -25,6 +31,11 @@ Constante* ConstanteFactory::GetConstante(QString val, QString mode, bool comple
     \param mode Le mode dans lequel la Caclulatrice se trouve
     \param complexe Un booleen indiquant si on se trouve en mode Complexe ou non
     \return Un pointeur sur une Constante
+    \sa <a href="http://qt-project.org/doc/qt-4.8/QString.html">QString</a>
+    \sa Constante
+    \sa Entier
+    \sa Reel
+    \sa Rationnel
 */
 Constante* ConstanteFactory::GetConstante(QString val, QString mode)
 {

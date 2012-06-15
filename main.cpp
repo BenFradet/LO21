@@ -9,7 +9,6 @@
 
 int main(int argc, char *argv[])
 {
-
         QApplication a(argc, argv);
         QDomDocument doc ("CONFIGURATION");
         QFile file ("PILE.xml");
@@ -31,6 +30,5 @@ int main(int argc, char *argv[])
 
         return a.exec();
         Pile::releaseInstance();
-
 }
 

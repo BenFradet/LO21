@@ -1,6 +1,5 @@
 #include <QtGui/QApplication>
 #include "mainwindow.h"
-#include "include.h"
 #include <iostream>
 #include <QDomDocument>
 #include <QString>

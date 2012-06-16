@@ -874,24 +874,16 @@ void MainWindow::envoi_pile()
 
     if (verif.length() != 1)
     {
-
-
-
         QString sortie("'");
         sortie.append(entree);
         sortie.append("'");
         ui->le_entree->setText(sortie);
         p->Parser(sortie);
-
     }
     else
         p->Parser(entree);
     ui->listView->reset();
     ui->le_entree->clear();
-
-
-
-
 }
 
 
@@ -1092,7 +1084,7 @@ void MainWindow::afficher_sc()
 }
 
 
-//! Fonction publique de MainWindow qui permet un affichage Scientifique.
+//! Fonction publique de MainWindow qui permet un affichage non Scientifique.
 /*! Elle permet de desactiver certains elements de l'interface, comme des boutons
     et de reduire la taille de la fenetre.*/
 

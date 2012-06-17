@@ -1,5 +1,25 @@
 #include "rationnel.h"
 
+
+void Rationnel::simplifier()
+{
+    if(den<0)
+    {
+        den *= -1;
+        num *= -1;
+    }
+    int diviseur = den;
+    while(diviseur != 1)
+    {
+        if(num%diviseur == 0 && den%diviseur == 0)
+        {
+            num /= diviseur;
+            den /= diviseur;
+        }
+        diviseur--;
+    }
+}
+
 //! Definition de la methode virtuelle pure GetVal de la classe Constante.
 /*! Cree un nouvel objet Rationnel a partir des attributs de l'argument implicite.
   \return Une reference sur Constante.
@@ -48,6 +68,7 @@ Rationnel::operator Reel()const
 Rationnel::operator Complexe()const
 {
     Rationnel* r = new Rationnel(num, den);
+    r->simplifier();
     Rationnel* zero = new Rationnel(0, 1);
     return Complexe(r, zero);
 }
@@ -67,6 +88,7 @@ Constante& Rationnel::operator+(const Constante& c)const//ADAPTER A FAIRE
         if(r!=0)
         {
             Rationnel* res = new Rationnel(num*r->GetDen() + r->GetNum()*den, den*r->GetDen());
+            res->simplifier();
             return *res;
         }
         else
@@ -94,6 +116,7 @@ Constante& Rationnel::operator-(const Constante& c)const
         if(r!=0)
         {
             Rationnel* res = new Rationnel(num*r->GetDen() - r->GetNum()*den, den*r->GetDen());
+            res->simplifier();
             return *res;
         }
         else
@@ -115,17 +138,19 @@ Constante& Rationnel::operator-(const Constante& c)const
 */
 Constante& Rationnel::operator*(const Constante& c)const
 {
-    try {
-    const Rationnel* r = dynamic_cast<const Rationnel*>(&c);
-    if(r!=0)
+    try
     {
-        Rationnel* res = new Rationnel(num*r->GetNum(), den*r->GetDen());
-        return *res;
-    }
-    else
-    {
-        throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
-    }
+        const Rationnel* r = dynamic_cast<const Rationnel*>(&c);
+        if(r!=0)
+        {
+            Rationnel* res = new Rationnel(num*r->GetNum(), den*r->GetDen());
+            res->simplifier();
+            return *res;
+        }
+        else
+        {
+            throw CalcException("L'opération de multiplication nécessite que les deux opérateurs soient de même type");
+        }
     }
     catch (CalcException c)
     {
@@ -141,17 +166,19 @@ Constante& Rationnel::operator*(const Constante& c)const
 */
 Constante& Rationnel::operator/(const Constante& c)const
 {
-    try {
-    const Rationnel* r = dynamic_cast<const Rationnel*>(&c);
-    if(r!=0)
+    try
     {
-        Rationnel* res = new Rationnel(num*r->GetDen(), den*r->GetNum());
-        return *res;
-    }
-    else
-    {
-        throw CalcException("L'opération de division nécessite que les deux opérateurs soient de même type");
-    }
+        const Rationnel* r = dynamic_cast<const Rationnel*>(&c);
+        if(r!=0)
+        {
+            Rationnel* res = new Rationnel(num*r->GetDen(), den*r->GetNum());
+            res->simplifier();
+            return *res;
+        }
+        else
+        {
+            throw CalcException("L'opération de division nécessite que les deux opérateurs soient de même type");
+        }
     }
     catch (CalcException c)
     {
@@ -184,6 +211,7 @@ Constante& Rationnel::operator^(const Constante& c)const
         if(r!=0)
         {
             Rationnel* res = new Rationnel((int)pow((float)num, (float)(r->GetNum()/r->GetDen())), (int)pow((float)den, (float)(r->GetNum()/r->GetDen())));
+            res->simplifier();
             return *res;
         }
         else
@@ -336,6 +364,7 @@ Constante& Rationnel::inverse()const
         if(num!=0)
         {
             Rationnel* res = new Rationnel(den, num);
+            res->simplifier();
             return *res;
         }
         else
@@ -381,6 +410,7 @@ Constante& Rationnel::racine()const
 Constante& Rationnel::carree()const
 {
     Rationnel* res = new Rationnel((int)pow((float)num,2), (int)pow((float)den,2));
+    res->simplifier();
     return *res;
 }
 
@@ -392,6 +422,7 @@ Constante& Rationnel::carree()const
 Constante& Rationnel::cube()const
 {
     Rationnel* res = new Rationnel((int)pow((float)num,3), (int)pow((float)den,3));
+    res->simplifier();
     return *res;
 }
 

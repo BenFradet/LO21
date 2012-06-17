@@ -11,13 +11,16 @@ class Entier;
 class Reel;
 
 //! La classe gerant les Rationnel.
-/*! Elle herite de la classe Constante.*/
+/*! Elle herite de la classe Constante.
+    A noter que nous aurions pu faire un Adapter avec la classe Fraction developpee en td mais nous avons préféré redévelopper une nouvelle classe.*/
 class Rationnel : public Constante
 {
     //! Valeur du numerateur du Rationnel representee par un int.
     int num;
     //! Valeur du numerateur du Rationnel representee par un int.
     int den;
+    //! Methode permettant de simplifier un Rationnel.
+    void simplifier();
 public:
     //! Constructeur principal de la classe Rationnel.
     /*! On affecte les valeurs passees en parametres aux attributs num et den.
@@ -33,6 +36,7 @@ public:
             {
                 num = n;
                 den = d;
+                simplifier();
             }
             else
                 throw CalcException("Le dénominateur ne peut pas valoir zéro");
@@ -59,6 +63,7 @@ public:
         {
             num = liste[0].toInt();
             den = liste[1].toInt();
+            simplifier();
         }
         else
             throw CalcException("Le dénominateur ne peut pas valoir zéro");

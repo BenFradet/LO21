@@ -1786,8 +1786,17 @@ void Pile::Mean(int x, QString mode, bool complexe)
     }
 }
 
+//! Methode virtuelle pure de QAbstractListModel redefinie
+/*! Renvoie le nombre d'elements dans la pile
+    \return Nombre d'elements dans la pile */
+
 int Pile::rowCount(const QModelIndex &parent)const
 {return sommet;}
+
+
+//! Methode virtuelle pure de QAbstractListModel redefinie
+/*! Renvoie une constante transformee en QVariant via l'operateur QString
+    \return Une constante transformee en QVariant */
 
 QVariant Pile::data (const QModelIndex &index, int role) const
 {
